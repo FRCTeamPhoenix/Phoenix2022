@@ -13,3 +13,19 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+
+// motor ids
+const int TALON_FRONT_LEFT = 1;
+const int TALON_FRONT_RIGHT = 2;
+const int VICTOR_BACK_LEFT = 3;
+const int VICTOR_BACK_RIGHT = 4;
+
+// wheel information
+const units::meter_t WHEEL_DIAMETER = 4.5_in;
+const double TICKS_PER_ROTATION = 4096; // this is likely the value, but if its going twice as fast as expected then this could be the place to look
+
+// PIDF values
+const double DRIVETRAIN_DISTANCE_P = 0.0;
+const double DRIVETRAIN_DISTANCE_I = 0.0;
+const double DRIVETRAIN_DISTANCE_D = 0.0;
+const double DRIVETRAIN_DISTANCE_F = 0.0;
