@@ -4,6 +4,12 @@
 
 #pragma once
 
+#include <units/length.h>
+#include <units/velocity.h>
+#include <units/time.h>
+#include <units/angle.h>
+#include <wpi/math>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -29,3 +35,14 @@ const double DRIVETRAIN_DISTANCE_P = 0.0;
 const double DRIVETRAIN_DISTANCE_I = 0.0;
 const double DRIVETRAIN_DISTANCE_D = 0.0;
 const double DRIVETRAIN_DISTANCE_F = 0.0;
+const double TURN_P = 0.0;
+const double TURN_I = 0.0;
+const double TURN_D = 0.0;
+
+// controller
+const double DRIVE_JOYSTICK = 0;
+const int LEFTSTICK_X = 0;
+const int LEFTSTICK_Y = 1;
+const int RIGHTSTICK_X = 4;
+const int RIGHTSTICK_Y = 5;
+const auto TURN_RATE = wpi::math::pi * 0.5_rad / 1_s;

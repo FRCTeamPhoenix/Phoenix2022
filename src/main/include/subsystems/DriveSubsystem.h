@@ -12,7 +12,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
 
         void Periodic();
 
-        void Tankdrive(double left, double right);
+        void TankDrive(double left, double right);
 
         void ConfigureDefault();
 
@@ -21,6 +21,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
         bool IsStopped();
 
         void AdjustSmoothing(int x);
+
 
         //average of both wheels in terms of error
         units::meter_t ClosedLoopError();

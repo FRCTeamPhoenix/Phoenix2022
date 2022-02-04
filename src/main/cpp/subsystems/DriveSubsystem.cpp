@@ -10,7 +10,7 @@ void DriveSubsystem::Periodic(){
 
 }
 
-void DriveSubsystem::Tankdrive(double left, double right){
+void DriveSubsystem::TankDrive(double left, double right){
     m_frontLeft.Set(ControlMode::PercentOutput, left);
     m_frontRight.Set(ControlMode::PercentOutput, right);
 }
@@ -77,7 +77,7 @@ void DriveSubsystem::ConfigureDefault(){
 
     /* Zero the sensor */
     m_frontLeft.SetSelectedSensorPosition(0, 0, 10);
-    m_frontRight.SetSelectedSensorPosition(0, 0, 10);
+    m_frontRight.SetSelectedSensorPosition(0, 0, 10); 
 }
 
 void DriveSubsystem::ZeroEncoders(){
@@ -96,7 +96,7 @@ units::meter_t DriveSubsystem::ClosedLoopError(){
     return TicksToDistance(average);
 }
 
-//called periodically
+//called periodically <- I don't think this is true but don't want to remove it in case it is
 void DriveSubsystem::RunMotionMagic(units::meter_t distance){
     double ticksDistance = DistanceToTicks(distance);
     m_frontLeft.Set(ControlMode::MotionMagic, ticksDistance);

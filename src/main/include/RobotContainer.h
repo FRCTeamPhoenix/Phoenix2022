@@ -5,6 +5,7 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include "subsystems/DriveSubsystem.h"
 
 
 /**
@@ -24,4 +25,5 @@ class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   void ConfigureButtonBindings();
+  DriveSubsystem m_driveSubsystem;
 };
