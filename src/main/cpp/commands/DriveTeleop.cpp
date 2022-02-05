@@ -29,8 +29,8 @@ void DriveTeleop::Execute(){
     //update heading (use when gyro mounted)
     m_heading += rightStickX * TURN_RATE * deltaTime;
 
-    double leftSide = leftStickY;
-    double rightSide = leftStickY;
+    double leftSide = leftStickY + rightStickX;
+    double rightSide = leftStickY + rightStickX;
     //prevent from going out of -1 to 1 range
     if(rightSide > 1.0){
         double delta = rightSide - 1.0;
