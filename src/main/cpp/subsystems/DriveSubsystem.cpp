@@ -36,9 +36,9 @@ void DriveSubsystem::ConfigureDefault(){
     m_frontRight.SetInverted(false);
     m_backRight.SetInverted(false);
 
-    //set the sensor type to a relative mag encoder
-    m_frontLeft.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
-    m_frontRight.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10);
+    //set the sensor type to an integrated sensor (falcon 500s have integrated)
+    m_frontLeft.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
+    m_frontRight.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
 
     //10 ms period
     m_frontLeft.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
