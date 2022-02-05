@@ -31,8 +31,8 @@ void DriveSubsystem::ConfigureDefault(){
     m_frontLeft.SetSensorPhase(false);
 
     //make the motors go in the arbitrary forward direction
-    m_frontLeft.SetInverted(false);
-    m_backLeft.SetInverted(false);
+    m_frontLeft.SetInverted(true);
+    m_backLeft.SetInverted(true);
     m_frontRight.SetInverted(false);
     m_backRight.SetInverted(false);
 
@@ -96,7 +96,7 @@ units::meter_t DriveSubsystem::ClosedLoopError(){
     return TicksToDistance(average);
 }
 
-//called periodically <- I don't think this is true but don't want to remove it in case it is
+//called periodically
 void DriveSubsystem::RunMotionMagic(units::meter_t distance){
     double ticksDistance = DistanceToTicks(distance);
     m_frontLeft.Set(ControlMode::MotionMagic, ticksDistance);
@@ -111,7 +111,7 @@ double DriveSubsystem::DistanceToTicks(units::meter_t distance){
     return distance / wpi::math::pi / WHEEL_DIAMETER * TICKS_PER_ROTATION;
 }
 
-void DriveSubsystem::AdjustSmoothing(int x){ // call this wherever input is being handled, perhaps using bumpers to increase/decrease
+void DriveSubsystem::AdjustSmoothing(int x){
     smoothing += x;
     if(smoothing < 0){
         smoothing = 0;

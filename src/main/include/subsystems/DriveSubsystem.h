@@ -20,22 +20,23 @@ class DriveSubsystem : public frc2::SubsystemBase {
 
         bool IsStopped();
 
+        //(Changes how 'smooth' motion magic operates) call this wherever input is being handled, perhaps using bumpers to increase/decrease
         void AdjustSmoothing(int x);
-
 
         //average of both wheels in terms of error
         units::meter_t ClosedLoopError();
 
         //called periodically
         void RunMotionMagic(units::meter_t distance);
+
     private:
         units::meter_t TicksToDistance(double ticks);
         double DistanceToTicks(units::meter_t distance);
 
-        WPI_TalonFX m_frontLeft{TALON_FRONT_LEFT};
-        WPI_TalonFX m_frontRight{TALON_FRONT_RIGHT};
-        WPI_TalonFX m_backLeft {VICTOR_BACK_LEFT};
-        WPI_TalonFX m_backRight {VICTOR_BACK_RIGHT};
+        WPI_TalonFX m_frontLeft{FALCON_FRONT_LEFT};
+        WPI_TalonFX m_frontRight{FALCON_FRONT_RIGHT};
+        WPI_TalonFX m_backLeft {FALCON_BACK_LEFT};
+        WPI_TalonFX m_backRight {FALCON_BACK_RIGHT};
 
         int smoothing;
 };

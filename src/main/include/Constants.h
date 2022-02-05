@@ -21,10 +21,10 @@
  */
 
 // motor ids
-const int TALON_FRONT_LEFT = 1;
-const int TALON_FRONT_RIGHT = 2;
-const int VICTOR_BACK_LEFT = 3;
-const int VICTOR_BACK_RIGHT = 4;
+const int FALCON_FRONT_LEFT = 1;
+const int FALCON_FRONT_RIGHT = 2;
+const int FALCON_BACK_LEFT = 3;
+const int FALCON_BACK_RIGHT = 4;
 
 // wheel information
 const units::meter_t WHEEL_DIAMETER = 4.5_in;
