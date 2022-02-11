@@ -6,6 +6,8 @@
 
 #include <frc2/command/Command.h>
 #include "subsystems/DriveSubsystem.h"
+#include "commands/DriveDistance.h"
+#include <units/length.h>
 
 
 /**
@@ -26,4 +28,5 @@ class RobotContainer {
 
   void ConfigureButtonBindings();
   DriveSubsystem m_driveSubsystem;
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 1_m);
 };

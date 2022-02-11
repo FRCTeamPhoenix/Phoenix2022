@@ -24,5 +24,5 @@ void DriveDistance::End(bool interrupted){
 }
 
 bool DriveDistance::IsFinished(){
-    return m_driveSubsystem->IsStopped();
+    return false;
 }
