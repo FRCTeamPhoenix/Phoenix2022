@@ -8,7 +8,7 @@
 #include <units/velocity.h>
 #include <units/time.h>
 #include <units/angle.h>
-#include <wpi/math>
+#include <wpi/numbers>
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -45,4 +45,4 @@ const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
-const auto TURN_RATE = wpi::math::pi * 0.5_rad / 1_s;
+const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;

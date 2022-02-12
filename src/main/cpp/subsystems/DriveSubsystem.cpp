@@ -1,6 +1,6 @@
 #include "subsystems/DriveSubsystem.h"
 
-#include <wpi/math>
+#include <wpi/numbers>
 
 DriveSubsystem::DriveSubsystem(){
     ConfigureDefault();
@@ -104,11 +104,11 @@ void DriveSubsystem::RunMotionMagic(units::meter_t distance){
 }
 
 units::meter_t DriveSubsystem::TicksToDistance(double ticks){
-    return ticks / TICKS_PER_ROTATION * wpi::math::pi * WHEEL_DIAMETER;
+    return ticks / TICKS_PER_ROTATION * wpi::numbers::pi * WHEEL_DIAMETER;
 }
 
 double DriveSubsystem::DistanceToTicks(units::meter_t distance){
-    return distance / wpi::math::pi / WHEEL_DIAMETER * TICKS_PER_ROTATION;
+    return distance / wpi::numbers::pi / WHEEL_DIAMETER * TICKS_PER_ROTATION;
 }
 
 void DriveSubsystem::AdjustSmoothing(int x){

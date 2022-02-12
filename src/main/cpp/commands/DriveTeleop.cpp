@@ -25,6 +25,7 @@ void DriveTeleop::Execute(){
 
     double leftStickY = m_driveJoystick.GetRawAxis(LEFTSTICK_Y);
     double rightStickX = m_driveJoystick.GetRawAxis(RIGHTSTICK_X);
+    double rightStickY = m_driveJoystick.GetRawAxis(RIGHTSTICK_Y);
 
     //update heading (use when gyro mounted)
     m_heading += rightStickX * TURN_RATE * deltaTime;
@@ -42,7 +43,7 @@ void DriveTeleop::Execute(){
         rightSide += delta;
     }
 
-    m_driveSubsystem->TankDrive(leftSide, rightSide);
+    m_driveSubsystem->TankDrive(leftStickY, rightStickY);
 }
 
 void DriveTeleop::End(bool interrupted){
