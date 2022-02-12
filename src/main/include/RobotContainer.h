@@ -9,6 +9,7 @@
 #include "subsystems/DriveSubsystem.h"
 #include "commands/DriveTeleop.h"
 #include "commands/DriveDistance.h"
+#include "commands/PlayMusic.h"
 #include <units/length.h>
 
 
@@ -35,4 +36,5 @@ class RobotContainer {
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 6_ft);
+  PlayMusic m_playMusic{&m_driveSubsystem, "badapple.chrp"};
 };

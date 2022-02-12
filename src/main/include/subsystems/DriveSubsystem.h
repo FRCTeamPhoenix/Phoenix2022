@@ -28,8 +28,20 @@ class DriveSubsystem : public frc2::SubsystemBase {
 
         //called periodically
         void RunMotionMagic(units::meter_t distance);
+        
+        void LoadSong(std::string fileName);
 
+        void PlaySong();
+
+        void PauseSong();
+
+        void StopSong();
     private:
+        //needed for music
+        void ConfigureOrchestra();
+
+        Orchestra m_orchestra;
+
         units::meter_t TicksToDistance(double ticks);
         double DistanceToTicks(units::meter_t distance);
 

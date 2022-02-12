@@ -4,6 +4,8 @@
 
 DriveSubsystem::DriveSubsystem(){
     ConfigureDefault();
+
+    ConfigureOrchestra();
 }
 
 void DriveSubsystem::Periodic(){
@@ -97,6 +99,29 @@ void DriveSubsystem::RunMotionMagic(units::meter_t distance){
     double ticksDistance = DistanceToTicks(distance);
     m_frontLeft.Set(ControlMode::MotionMagic, ticksDistance);
     m_frontRight.Set(ControlMode::MotionMagic, ticksDistance);
+}
+
+void DriveSubsystem::LoadSong(std::string fileName){
+    m_orchestra.LoadMusic(fileName);
+}
+
+void DriveSubsystem::PlaySong(){
+    m_orchestra.Play();
+}
+
+void DriveSubsystem::PauseSong(){
+    m_orchestra.Pause();
+}
+
+void DriveSubsystem::StopSong(){
+    m_orchestra.Stop();
+}
+
+void DriveSubsystem::ConfigureOrchestra(){
+    m_orchestra.AddInstrument(m_frontLeft);
+    m_orchestra.AddInstrument(m_frontRight);
+    m_orchestra.AddInstrument(m_backLeft);
+    m_orchestra.AddInstrument(m_backRight);
 }
 
 units::meter_t DriveSubsystem::TicksToDistance(double ticks){
