@@ -6,6 +6,7 @@
 
 #include <units/length.h>
 #include <units/velocity.h>
+#include <units/acceleration.h>
 #include <units/time.h>
 #include <units/angle.h>
 #include <wpi/numbers>
@@ -31,11 +32,16 @@ const int FALCON_BACK_LEFT = 3;
 const int FALCON_BACK_RIGHT = 4;
 
 // wheel information
-const units::meter_t WHEEL_DIAMETER = 4.5_in;
-const double TICKS_PER_ROTATION = 4096; // this is likely the value, but if its going twice as fast as expected then this could be the place to look
+const units::meter_t WHEEL_DIAMETER = 4_in;
+const double TICKS_PER_ROTATION = 2048.0;
+const double WHEEL_TO_FALCON_RATIO = 12.0;
+
+//16 ft/s and 16 ft/s^2
+const units::meters_per_second_t CRUISE_VELOCITY =  8_fps;
+const units::meters_per_second_squared_t CRUISE_ACCELERATION = 12_fps / 1_s;
 
 // PIDF values
-const double DRIVETRAIN_DISTANCE_P = 0.0;
+const double DRIVETRAIN_DISTANCE_P = 0.8;
 const double DRIVETRAIN_DISTANCE_I = 0.0;
 const double DRIVETRAIN_DISTANCE_D = 0.0;
 const double DRIVETRAIN_DISTANCE_F = 0.0;
