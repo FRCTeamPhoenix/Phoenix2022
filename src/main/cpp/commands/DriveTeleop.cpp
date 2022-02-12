@@ -2,6 +2,7 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <iostream>
+#include <cmath>
 
 DriveTeleop::DriveTeleop(DriveSubsystem* driveSubsystem) :
  m_driveSubsystem(driveSubsystem),
@@ -23,14 +24,43 @@ void DriveTeleop::Execute(){
     units::second_t deltaTime = currentTime - m_lastExecute;
     m_lastExecute = currentTime;
 
-    double leftStickY = m_driveJoystick.GetRawAxis(LEFTSTICK_Y);
-    double rightStickX = m_driveJoystick.GetRawAxis(RIGHTSTICK_X);
-    double rightStickY = m_driveJoystick.GetRawAxis(RIGHTSTICK_Y);
+    //Up should be +1 and right should be 1
+    double leftStickY = -m_driveJoystick.GetRawAxis(LEFTSTICK_Y);
+    double rightStickX = -m_driveJoystick.GetRawAxis(RIGHTSTICK_X);
 
-    //update heading (use when gyro mounted)
+    //deadzones
+    if(std::abs(leftStickY) <= 0.0001){
+        leftStickY = 0.0;
+    }
+
+    if(std::abs(rightStickX) <= 0.0001){
+        rightStickX = 0.0;
+    }
+
+    //scale input based on enum
+    switch(DRIVETRAIN_SCALING){
+        case Scaling::QUADRATIC:
+            //(sign) x^2
+            leftStickY = std::pow(leftStickY, 3) / std::abs(leftStickY);
+            rightStickX = std::pow(rightStickX, 3) / std::abs(rightStickX);
+            break;
+        case Scaling::CUBIC:
+            // x^3
+            leftStickY = std::pow(leftStickY, 3);
+            rightStickX = std::pow(rightStickX, 3);
+            break;
+        case Scaling::ROOT:
+            // x * root x
+            leftStickY = leftStickY * std::sqrt(std::abs(leftStickY));
+            rightStickX = rightStickX * std::sqrt(std::abs(rightStickX));
+            break;
+    }
+        
+
+    //update heading (use if gyro mounted)
     m_heading += rightStickX * TURN_RATE * deltaTime;
 
-    double leftSide = leftStickY + rightStickX;
+    double leftSide = leftStickY - rightStickX;
     double rightSide = leftStickY + rightStickX;
     //prevent from going out of -1 to 1 range
     if(rightSide > 1.0){
@@ -43,7 +73,7 @@ void DriveTeleop::Execute(){
         rightSide += delta;
     }
 
-    m_driveSubsystem->TankDrive(leftStickY, rightStickY);
+    m_driveSubsystem->TankDrive(leftSide, rightSide);
 }
 
 void DriveTeleop::End(bool interrupted){

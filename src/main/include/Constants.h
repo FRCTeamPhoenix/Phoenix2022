@@ -20,6 +20,10 @@
  * they are needed.
  */
 
+// settings
+enum class Scaling {NONE, ROOT, QUADRATIC, CUBIC};
+const Scaling DRIVETRAIN_SCALING = Scaling::ROOT;
+
 // motor ids
 const int FALCON_FRONT_LEFT = 1;
 const int FALCON_FRONT_RIGHT = 2;
