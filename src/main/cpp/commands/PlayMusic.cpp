@@ -2,13 +2,14 @@
 
 PlayMusic::PlayMusic(DriveSubsystem* driveSubsystem, std::string fileName):
 m_driveSubsystem(driveSubsystem),
-m_fileName(fileName){
+m_fileName(fileName),
+m_loops(20){
     AddRequirements(m_driveSubsystem);
 }
 
 void PlayMusic::Initialize(){
     m_driveSubsystem->LoadSong(m_fileName);
-    m_loops = 10;
+    m_loops = 20;
 }
 
 void PlayMusic::Execute(){

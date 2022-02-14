@@ -36,5 +36,5 @@ class RobotContainer {
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 6_ft);
-  PlayMusic m_playMusic{&m_driveSubsystem, "imperialmarch.chrp"};
+  PlayMusic m_playMusic{&m_driveSubsystem, "mario.chrp"};
 };
