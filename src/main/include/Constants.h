@@ -41,7 +41,7 @@ const units::meters_per_second_t CRUISE_VELOCITY =  8_fps;
 const units::meters_per_second_squared_t CRUISE_ACCELERATION = 12_fps / 1_s;
 
 // PIDF values
-const double DRIVETRAIN_DISTANCE_P = 0.8;
+const double DRIVETRAIN_DISTANCE_P = 0.55;
 const double DRIVETRAIN_DISTANCE_I = 0.0;
 const double DRIVETRAIN_DISTANCE_D = 0.0;
 const double DRIVETRAIN_DISTANCE_F = 0.0;
