@@ -40,6 +40,8 @@ const double WHEEL_TO_FALCON_RATIO = 12.0;
 const units::meters_per_second_t CRUISE_VELOCITY =  8_fps;
 const units::meters_per_second_squared_t CRUISE_ACCELERATION = 12_fps / 1_s;
 
+const units::meter_t DISTANCE_THRESHOLD = 2_in;
+
 // PIDF values
 const double DRIVETRAIN_DISTANCE_P = 0.55;
 const double DRIVETRAIN_DISTANCE_I = 0.0;

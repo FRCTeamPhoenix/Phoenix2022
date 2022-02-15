@@ -24,5 +24,5 @@ void DriveDistance::End(bool interrupted){
 }
 
 bool DriveDistance::IsFinished(){
-    return false;
+    return m_driveSubsystem->IsStopped() && (m_distance - m_driveSubsystem->GetAverageDistance() < DISTANCE_THRESHOLD);
 }

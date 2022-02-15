@@ -29,6 +29,8 @@ class DriveSubsystem : public frc2::SubsystemBase {
         //called periodically
         void RunMotionMagic(units::meter_t distance);
 
+        units::meter_t GetAverageDistance();
+
     private:
         units::meter_t TicksToDistance(double ticks);
         double DistanceToTicks(units::meter_t distance);

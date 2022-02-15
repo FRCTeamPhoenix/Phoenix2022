@@ -99,6 +99,10 @@ void DriveSubsystem::RunMotionMagic(units::meter_t distance){
     m_frontRight.Set(ControlMode::MotionMagic, ticksDistance);
 }
 
+units::meter_t DriveSubsystem::GetAverageDistance(){
+    return TicksToDistance(m_frontLeft.GetSelectedSensorPosition(0) + m_frontRight.GetActiveTrajectoryPosition(0)) / 2.0;
+}
+
 units::meter_t DriveSubsystem::TicksToDistance(double ticks){
     return ticks / TICKS_PER_ROTATION  / WHEEL_TO_FALCON_RATIO * wpi::numbers::pi * WHEEL_DIAMETER;
 }
