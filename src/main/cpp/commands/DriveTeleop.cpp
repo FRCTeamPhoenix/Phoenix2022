@@ -41,13 +41,13 @@ void DriveTeleop::Execute(){
     switch(DRIVETRAIN_SCALING){
         case Scaling::QUADRATIC:
             //(sign) x^2
-            leftStickY = std::pow(leftStickY, 3) / std::abs(leftStickY);
-            rightStickX = std::pow(rightStickX, 3) / std::abs(rightStickX);
+            leftStickY = std::pow(leftStickY, 3.0) / std::abs(leftStickY);
+            rightStickX = std::pow(rightStickX, 3.0) / std::abs(rightStickX);
             break;
         case Scaling::CUBIC:
             // x^3
-            leftStickY = std::pow(leftStickY, 3);
-            rightStickX = std::pow(rightStickX, 3);
+            leftStickY = std::pow(leftStickY, 3.0);
+            rightStickX = std::pow(rightStickX, 3.0);
             break;
         case Scaling::ROOT:
             // x * root x
@@ -56,6 +56,7 @@ void DriveTeleop::Execute(){
             break;
     }
         
+    rightStickX *= TURN_PERCENT;
 
     //update heading (use if gyro mounted)
     m_heading += rightStickX * TURN_RATE * deltaTime;

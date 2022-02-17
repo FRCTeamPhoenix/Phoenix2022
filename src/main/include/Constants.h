@@ -24,6 +24,7 @@
 // settings
 enum class Scaling {NONE, ROOT, QUADRATIC, CUBIC};
 const Scaling DRIVETRAIN_SCALING = Scaling::ROOT;
+const double TURN_PERCENT = 0.6;
 
 // motor ids
 const int FALCON_FRONT_LEFT = 1;
