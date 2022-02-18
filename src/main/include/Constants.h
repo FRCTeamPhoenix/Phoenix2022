@@ -32,6 +32,10 @@ const int FALCON_FRONT_RIGHT = 2;
 const int FALCON_BACK_LEFT = 3;
 const int FALCON_BACK_RIGHT = 4;
 
+const int FALCON_EXTENDING_ARM = 5;
+const int TALON_LEFT_ROTATOR = 6;
+const int TALON_RIGHT_ROTATOR = 7;
+
 // wheel information
 const units::meter_t WHEEL_DIAMETER = 4_in;
 const double TICKS_PER_ROTATION = 2048.0;
