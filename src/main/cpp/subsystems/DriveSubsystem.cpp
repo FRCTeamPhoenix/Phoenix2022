@@ -26,10 +26,6 @@ void DriveSubsystem::ConfigureDefault(){
     m_backLeft.Follow(m_frontLeft);
     m_backRight.Follow(m_frontRight);
 
-    //make sure sensors match forward direction
-    m_frontRight.SetSensorPhase(false);
-    m_frontLeft.SetSensorPhase(false);
-
     //make the motors go in the arbitrary forward direction
     m_frontLeft.SetInverted(true);
     m_backLeft.SetInverted(true);
@@ -68,12 +64,13 @@ void DriveSubsystem::ConfigureDefault(){
     m_frontRight.Config_kD(0, DRIVETRAIN_DISTANCE_D);
     m_frontRight.Config_kF(0, DRIVETRAIN_DISTANCE_F);
 
-    //motion magic stuff
-    m_frontLeft.ConfigMotionCruiseVelocity(1500, 10);
-    m_frontLeft.ConfigMotionAcceleration(1500, 10);
-    m_frontRight.ConfigMotionCruiseVelocity(1500, 10);
-    m_frontRight.ConfigMotionAcceleration(1500, 10);
+    //set acceleration and velocity based on real units per 100 ms
+    m_frontLeft.ConfigMotionCruiseVelocity(DistanceToTicks(CRUISE_VELOCITY * 100_ms), 10);
+    m_frontLeft.ConfigMotionAcceleration(DistanceToTicks(CRUISE_ACCELERATION * 1_s * 100_ms ), 10);
+    m_frontRight.ConfigMotionCruiseVelocity(DistanceToTicks(CRUISE_VELOCITY * 100_ms), 10);
+    m_frontRight.ConfigMotionAcceleration(DistanceToTicks(CRUISE_ACCELERATION * 1_s * 100_ms ), 10);
     smoothing = 0;
+    AdjustSmoothing(0);
 
     /* Zero the sensor */
     m_frontLeft.SetSelectedSensorPosition(0, 0, 10);
@@ -87,7 +84,7 @@ void DriveSubsystem::ZeroEncoders(){
 
 bool DriveSubsystem::IsStopped(){
     int threshold = 100;
-    return m_frontLeft.GetSelectedSensorVelocity() < threshold && m_frontRight.GetSelectedSensorVelocity() < threshold;
+    return std::abs(m_frontLeft.GetSelectedSensorVelocity(0)) < threshold && std::abs(m_frontRight.GetSelectedSensorVelocity(0)) < threshold;
 }
 
 //average of both wheels in terms of error
@@ -103,12 +100,16 @@ void DriveSubsystem::RunMotionMagic(units::meter_t distance){
     m_frontRight.Set(ControlMode::MotionMagic, ticksDistance);
 }
 
+units::meter_t DriveSubsystem::GetAverageDistance(){
+    return TicksToDistance(m_frontLeft.GetSelectedSensorPosition(0) + m_frontRight.GetActiveTrajectoryPosition(0)) / 2.0;
+}
+
 units::meter_t DriveSubsystem::TicksToDistance(double ticks){
-    return ticks / TICKS_PER_ROTATION * wpi::numbers::pi * WHEEL_DIAMETER;
+    return ticks / TICKS_PER_ROTATION  / WHEEL_TO_FALCON_RATIO * wpi::numbers::pi * WHEEL_DIAMETER;
 }
 
 double DriveSubsystem::DistanceToTicks(units::meter_t distance){
-    return distance / wpi::numbers::pi / WHEEL_DIAMETER * TICKS_PER_ROTATION;
+    return distance / wpi::numbers::pi / WHEEL_DIAMETER * TICKS_PER_ROTATION * WHEEL_TO_FALCON_RATIO;
 }
 
 void DriveSubsystem::AdjustSmoothing(int x){
