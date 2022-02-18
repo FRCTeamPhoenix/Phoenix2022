@@ -1,6 +1,7 @@
 #include "commands/DriveDistance.h"
 #include <units/length.h>
 #include <iostream>
+#include <wpi/numbers>
 
 DriveDistance::DriveDistance(DriveSubsystem* driveSubsystem, units::meter_t distance):
 m_driveSubsystem(driveSubsystem),
@@ -24,5 +25,6 @@ void DriveDistance::End(bool interrupted){
 }
 
 bool DriveDistance::IsFinished(){
-    return m_driveSubsystem->IsStopped() && (m_distance - m_driveSubsystem->GetAverageDistance() < DISTANCE_THRESHOLD);
+    return m_driveSubsystem->IsStopped() 
+    && (std::abs((m_distance - m_driveSubsystem->GetAverageDistance()).to<double>()) < DISTANCE_THRESHOLD.to<double>());
 }

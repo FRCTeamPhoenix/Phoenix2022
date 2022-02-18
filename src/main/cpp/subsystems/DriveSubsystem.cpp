@@ -70,6 +70,7 @@ void DriveSubsystem::ConfigureDefault(){
     m_frontRight.ConfigMotionCruiseVelocity(DistanceToTicks(CRUISE_VELOCITY * 100_ms), 10);
     m_frontRight.ConfigMotionAcceleration(DistanceToTicks(CRUISE_ACCELERATION * 1_s * 100_ms ), 10);
     smoothing = 0;
+    AdjustSmoothing(0);
 
     /* Zero the sensor */
     m_frontLeft.SetSelectedSensorPosition(0, 0, 10);
@@ -83,7 +84,7 @@ void DriveSubsystem::ZeroEncoders(){
 
 bool DriveSubsystem::IsStopped(){
     int threshold = 100;
-    return m_frontLeft.GetSelectedSensorVelocity() < threshold && m_frontRight.GetSelectedSensorVelocity() < threshold;
+    return std::abs(m_frontLeft.GetSelectedSensorVelocity(0)) < threshold && std::abs(m_frontRight.GetSelectedSensorVelocity(0)) < threshold;
 }
 
 //average of both wheels in terms of error

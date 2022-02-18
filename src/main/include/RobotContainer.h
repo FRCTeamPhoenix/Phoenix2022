@@ -34,5 +34,5 @@ class RobotContainer {
   
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
-  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 6_ft);
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -4_ft);
 };
