@@ -13,17 +13,23 @@ set baud rate
 in separate thread, consistently read lidar measurements
 function to access measurements as needed
 */
-    SerialPort lidarSerialPort(115200, kOnboard);
 
-    int maxByteCount = 256;
-    char reader[maxByteCount];
-    Read lidarRead(reader, maxByteCount);
-    Write lidarWrite(reader, maxByteCount);
+    char buffer[MAX_BYTE_COUNT];
 
-    //char from reader array to ints
-    string readerToString = reader;
-    int readerToInt[maxByteCount];
-    for (int i = 0; i <= maxByteCount; i++) {
-        readerToInt[i] = readerToString[i];
+    serialLidarPort.read(buffer, MAX_BYTE_COUNT);
+
+    void readThread() {
+        while (true) {
+            Read(buffer, MAX_BYTE_COUNT);
+
+            //char from buffer array to string to ints
+            std::string readerToString = "";
+            for (int i = 0; i <= MAX_BYTE_COUNT; i++) {
+                readerToString += buffer[i];
+            }
+
+            for (int i = 0; i <= MAX_BYTE_COUNT; i++) {
+                readerToInt[i] = stoi(readerToString[i]);
+            }
+        }
     }
-

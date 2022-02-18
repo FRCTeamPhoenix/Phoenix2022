@@ -13,3 +13,5 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+
+const int MAX_BYTE_COUNT = 256;
