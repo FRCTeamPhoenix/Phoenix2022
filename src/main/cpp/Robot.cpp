@@ -9,7 +9,6 @@
 
 void Robot::RobotInit() {
   m_vision.Start();
-  
 }
 
 /**
