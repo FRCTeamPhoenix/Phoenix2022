@@ -58,6 +58,7 @@ const double TURN_D = 0.0;
 
 // controller
 const int DRIVE_JOYSTICK = 0;
+const int OPERATOR_JOYSTICK = 1;
 const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;

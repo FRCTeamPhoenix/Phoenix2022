@@ -24,6 +24,8 @@ void ClimberSubsystem::ConfigureDefault(){
 
     //configure the sensor
     m_extenderArm.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
+    m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
+    m_leftRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
 
     //10 ms period for PID
     m_extenderArm.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
@@ -43,7 +45,6 @@ void ClimberSubsystem::ConfigureDefault(){
 
     //zero the sensors
     ZeroExtenderEncoders();
-    ZeroRotatorEncoders();
 }
 
 void ClimberSubsystem::SetExtenderSpeed(double percent){
