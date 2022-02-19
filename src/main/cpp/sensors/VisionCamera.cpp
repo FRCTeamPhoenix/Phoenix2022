@@ -4,22 +4,29 @@
 #include "sensors/VisionCamera.h"
 #include <thread>
 
-VisionCamera::VisionCamera(){
+using namespace cv;
 
+VisionCamera::VisionCamera()
+{
 }
 
-void VisionCamera::Start(){
+void VisionCamera::Start()
+{
   std::thread visionThread(VisionThread);
   visionThread.detach();
 }
 
-void VisionCamera::VisionThread(){
+void VisionCamera::VisionThread()
+{
   cs::UsbCamera camera = frc::CameraServer::StartAutomaticCapture();
-  camera.SetResolution(320, 240);
+  camera.SetResolution(720, 480);
+  camera.SetFPS(30);
   cs::CvSink cvSink = frc::CameraServer::GetVideo();
-  cs::CvSource outputStreamStd = frc::CameraServer::PutVideo("Gray", 320, 240);
+  cs::CvSource outputStreamStd = frc::CameraServer::PutVideo("Gray", 720, 480);
   cv::Mat source;
   cv::Mat output;
+  
+  int i = 1;
 
   while (true)
   {
@@ -27,7 +34,7 @@ void VisionCamera::VisionThread(){
     {
       continue;
     }
-    cvtColor(source, output, cv::COLOR_BGR2GRAY);
-    outputStreamStd.PutFrame(output);
+    outputStreamStd.putVideo(source);
+
   }
 }
