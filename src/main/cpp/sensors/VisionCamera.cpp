@@ -14,7 +14,7 @@ void VisionCamera::Start(){
 }
 
 void VisionCamera::VisionThread(){
-  cs::UsbCamera camera1 = frc::CameraServer::StartAutomaticCapture(0);
+  cs::UsbCamera camera1 = frc::CameraServer::StartAutomaticCapture();
 
   camera1.SetConnectionStrategy(cs::VideoSource::ConnectionStrategy::kConnectionKeepOpen);
 
