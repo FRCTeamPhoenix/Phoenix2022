@@ -14,13 +14,13 @@ void ClimberSubsystem::ConfigureDefault(){
     m_leftRotator.ConfigFactoryDefault();
     m_extenderArm.ConfigFactoryDefault();
 
+    //make the left and right side work in tandem
+    m_leftRotator.Follow(m_rightRotator);
+
     //invert to make go right direction
     m_leftRotator.SetInverted(InvertType::OpposeMaster);
     m_rightRotator.SetInverted(false);
     m_extenderArm.SetInverted(false);
-
-    //make the left and right side work in tandem
-    m_leftRotator.Follow(m_rightRotator);
 
     //configure the sensor
     m_extenderArm.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
