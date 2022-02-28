@@ -105,11 +105,11 @@ units::meter_t DriveSubsystem::GetAverageDistance(){
 }
 
 units::meter_t DriveSubsystem::TicksToDistance(double ticks){
-    return ticks / TICKS_PER_ROTATION  / WHEEL_TO_FALCON_RATIO * wpi::numbers::pi * WHEEL_DIAMETER;
+    return ticks / FALCON_TICKS_PER_ROTATION  / WHEEL_TO_FALCON_RATIO * wpi::numbers::pi * WHEEL_DIAMETER;
 }
 
 double DriveSubsystem::DistanceToTicks(units::meter_t distance){
-    return distance / wpi::numbers::pi / WHEEL_DIAMETER * TICKS_PER_ROTATION * WHEEL_TO_FALCON_RATIO;
+    return distance / wpi::numbers::pi / WHEEL_DIAMETER * FALCON_TICKS_PER_ROTATION * WHEEL_TO_FALCON_RATIO;
 }
 
 void DriveSubsystem::AdjustSmoothing(int x){

@@ -38,7 +38,7 @@ const int TALON_RIGHT_ROTATOR = 7;
 
 // wheel information
 const units::meter_t WHEEL_DIAMETER = 4_in;
-const double TICKS_PER_ROTATION = 2048.0;
+const double FALCON_TICKS_PER_ROTATION = 2048.0;
 const double WHEEL_TO_FALCON_RATIO = 12.0;
 
 //16 ft/s and 16 ft/s^2
@@ -64,3 +64,11 @@ const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
+
+// climber
+const units::meter_t DISTANCE_PER_REVOLUTION = 3.13_in;
+const double TALON_TICKS_PER_ROTATION = 4096;
+const double MOTOR_TO_ARM_ROTATION = 210;
+const units::radian_t ROTATION_LIMIT = 0_deg;
+const units::meter_t EXTEND_LIMIT = 0_m;
+

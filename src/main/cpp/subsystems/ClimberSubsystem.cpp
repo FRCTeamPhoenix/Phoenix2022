@@ -63,3 +63,22 @@ void ClimberSubsystem::ZeroRotatorEncoders(){
     m_leftRotator.SetSelectedSensorPosition(0, 0, 10);
     m_rightRotator.SetSelectedSensorPosition(0, 0, 10);
 }
+
+units::meter_t ClimberSubsystem::ExtenderTicksToDistance(double ticks){
+    return ticks / FALCON_TICKS_PER_ROTATION * DISTANCE_PER_REVOLUTION;
+}
+
+double ClimberSubsystem::ExtenderDistanceToTicks(units::meter_t distance){
+    return distance / DISTANCE_PER_REVOLUTION * FALCON_TICKS_PER_ROTATION;
+}
+
+units::radian_t ClimberSubsystem::RotatorTicksToDegrees(double ticks){
+    return ticks / TALON_TICKS_PER_ROTATION / MOTOR_TO_ARM_ROTATION * 360_deg;
+}
+
+double ClimberSubsystem::RotatorDegreesToTicks(units::radian_t degrees){
+    return degrees / 360_deg * MOTOR_TO_ARM_ROTATION * TALON_TICKS_PER_ROTATION;   
+}
+
+
+//ctre::phoenix::motorcontrol::IMotorController::ConfigForwardSoftLimitThreshold();

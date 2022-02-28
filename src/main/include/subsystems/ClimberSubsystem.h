@@ -22,6 +22,10 @@ class ClimberSubsystem : public frc2::SubsystemBase {
 
         void ZeroRotatorEncoders();
     private:
+        units::meter_t ExtenderTicksToDistance(double ticks);
+        double ExtenderDistanceToTicks(units::meter_t distance);
+        units::radian_t RotatorTicksToDegrees(double ticks);
+        double RotatorDegreesToTicks(units::radian_t degrees);
         WPI_TalonFX m_extenderArm{FALCON_EXTENDING_ARM};
         WPI_TalonSRX m_leftRotator{TALON_LEFT_ROTATOR};
         WPI_TalonSRX m_rightRotator{TALON_RIGHT_ROTATOR};
