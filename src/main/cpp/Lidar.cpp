@@ -4,8 +4,6 @@
 #include <frc/SerialPort.h>
 #include <iostream>
 
-
-
 void Lidar::readThread() {
     while (true) {
         //reads lidar code from arduino
