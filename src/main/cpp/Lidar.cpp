@@ -4,24 +4,27 @@
 #include <frc/SerialPort.h>
 #include <iostream>
 
-void Lidar::readThread() {
-    while (true) {
-        //reads lidar code from arduino
-        int readerToInt;
-        frc::SerialPort::Port kOnboard;
-        char buffer[MAX_BYTE_COUNT];
+void Lidar::readThread()
+{
+    int readerToInt;
+    char buffer[MAX_BYTE_COUNT];
+    frc::SerialPort lidarSerialPort(115200, frc::SerialPort::Port::kMXP);
 
-        frc::SerialPort lidarSerialPort(115200, kOnboard);
-
+    while (true)
+    {
+        // reads lidar code from arduino
         lidarSerialPort.Read(buffer, MAX_BYTE_COUNT);
 
-        readerToInt = std::atoi(buffer);
-        
-        std::cout << readerToInt;
+        std::string bufferToString (buffer);
+
+        readerToInt = std::stoi(bufferToString);  
+        std::cout << readerToInt << std::endl;
+
     }
 }
 
-void Lidar::StartLidar() {
+void Lidar::StartLidar()
+{
     std::thread lidarThread(readThread);
+    lidarThread.detach();
 }
-

@@ -9,7 +9,7 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   //command must be MOVED to be stored here
-  m_driveSubsystem.SetDefaultCommand(std::move(m_driveTeleop));
+  /*m_driveSubsystem.SetDefaultCommand(std::move(m_driveTeleop));*/
 
   // Configure the button bindings
   ConfigureButtonBindings();
@@ -21,5 +21,6 @@ void RobotContainer::ConfigureButtonBindings() {
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  return &m_driveDistance;
+  /*return &m_driveDistance;*/
+  return nullptr;
 }
