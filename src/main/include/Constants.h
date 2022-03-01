@@ -66,9 +66,12 @@ const int RIGHTSTICK_Y = 5;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 // climber
-const units::meter_t DISTANCE_PER_REVOLUTION = 3.13_in;
-const double TALON_TICKS_PER_ROTATION = 4096;
-const double MOTOR_TO_ARM_ROTATION = 210;
-const units::radian_t ROTATION_LIMIT = 0_deg;
-const units::meter_t EXTEND_LIMIT = 0_m;
+const units::meter_t DISTANCE_PER_EXTENDER_REVOLUTION = 3.13_in;
+const double TALON_TICKS_PER_ROTATION = 4096.0;
+const double FALCON_TO_EXTENDER_RATIO = 36.0;
+const double TALON_TO_ROTATOR_RATIO = 44.0 / 15.0;
+const units::radian_t MIN_ROTATION = 0_deg;
+const units::radian_t MAX_ROTATION = 180_deg;
+const units::meter_t MIN_EXTEND = 0_in;
+const units::meter_t MAX_EXTEND = 15_in;
 

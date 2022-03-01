@@ -65,20 +65,17 @@ void ClimberSubsystem::ZeroRotatorEncoders(){
 }
 
 units::meter_t ClimberSubsystem::ExtenderTicksToDistance(double ticks){
-    return ticks / FALCON_TICKS_PER_ROTATION * DISTANCE_PER_REVOLUTION;
+    return ticks / FALCON_TICKS_PER_ROTATION / FALCON_TO_EXTENDER_RATIO * DISTANCE_PER_EXTENDER_REVOLUTION;
 }
 
 double ClimberSubsystem::ExtenderDistanceToTicks(units::meter_t distance){
-    return distance / DISTANCE_PER_REVOLUTION * FALCON_TICKS_PER_ROTATION;
+    return distance / DISTANCE_PER_EXTENDER_REVOLUTION * FALCON_TO_EXTENDER_RATIO * FALCON_TICKS_PER_ROTATION;
 }
 
 units::radian_t ClimberSubsystem::RotatorTicksToDegrees(double ticks){
-    return ticks / TALON_TICKS_PER_ROTATION / MOTOR_TO_ARM_ROTATION * 360_deg;
+    return ticks / TALON_TICKS_PER_ROTATION / TALON_TO_ROTATOR_RATIO * 360_deg;
 }
 
 double ClimberSubsystem::RotatorDegreesToTicks(units::radian_t degrees){
-    return degrees / 360_deg * MOTOR_TO_ARM_ROTATION * TALON_TICKS_PER_ROTATION;   
+    return degrees / 360_deg * TALON_TICKS_PER_ROTATION * TALON_TO_ROTATOR_RATIO;   
 }
-
-
-//ctre::phoenix::motorcontrol::IMotorController::ConfigForwardSoftLimitThreshold();
