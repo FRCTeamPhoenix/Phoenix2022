@@ -47,7 +47,7 @@ const units::meters_per_second_squared_t CRUISE_ACCELERATION = 12_fps / 1_s;
 
 const units::meter_t DISTANCE_THRESHOLD = 2_in;
 
-// PIDF values
+// PIDF drivetrain values
 const double DRIVETRAIN_DISTANCE_P = 0.55;
 const double DRIVETRAIN_DISTANCE_I = 0.0;
 const double DRIVETRAIN_DISTANCE_D = 0.0;
@@ -55,6 +55,18 @@ const double DRIVETRAIN_DISTANCE_F = 0.0;
 const double TURN_P = 0.0;
 const double TURN_I = 0.0;
 const double TURN_D = 0.0;
+
+//Extender PIDF
+const double EXTENDER_P = 0.0;
+const double EXTENDER_I = 0.0;
+const double EXTENDER_D = 0.0;
+const double EXTENDER_F = 0.0;
+
+//Rotator PIDF
+const double ROTATOR_P = 0.0;
+const double ROTATOR_I = 0.0;
+const double ROTATOR_D = 0.0;
+const double ROTATOR_F = 0.0;
 
 // controller
 const int DRIVE_JOYSTICK = 0;

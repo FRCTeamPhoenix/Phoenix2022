@@ -43,6 +43,17 @@ void ClimberSubsystem::ConfigureDefault(){
     m_rightRotator.ConfigPeakOutputForward(1.0, 10);
     m_rightRotator.ConfigPeakOutputReverse(-1.0, 10);
 
+    //configure PID values
+    m_extenderArm.Config_kP(0, EXTENDER_P);
+    m_extenderArm.Config_kI(0, EXTENDER_I);
+    m_extenderArm.Config_kD(0, EXTENDER_D);
+    m_extenderArm.Config_kF(0, EXTENDER_F);
+
+    m_rightRotator.Config_kP(0, ROTATOR_P);
+    m_rightRotator.Config_kI(0, ROTATOR_I);
+    m_rightRotator.Config_kD(0, ROTATOR_D);
+    m_rightRotator.Config_kF(0, ROTATOR_F);
+
     //zero the sensors
     ZeroExtenderEncoders();
 }
@@ -55,6 +66,15 @@ void ClimberSubsystem::SetRotatorSpeed(double percent){
     m_rightRotator.Set(ControlMode::PercentOutput, percent);
 }
 
+void ClimberSubsystem::SetExtenderDistance(units::meter_t distance){
+    m_extenderArm.Set(ControlMode::Position, ExtenderDistanceToTicks(distance));
+}
+
+void ClimberSubsystem::SetRotatorAngle(units::radian_t angle){
+    m_rightRotator.Set(ControlMode::Position, RotatorDegreesToTicks(angle));
+}
+
+
 void ClimberSubsystem::ZeroExtenderEncoders(){
     m_extenderArm.SetSelectedSensorPosition(0, 0, 10);
 }
@@ -62,6 +82,14 @@ void ClimberSubsystem::ZeroExtenderEncoders(){
 void ClimberSubsystem::ZeroRotatorEncoders(){
     m_leftRotator.SetSelectedSensorPosition(0, 0, 10);
     m_rightRotator.SetSelectedSensorPosition(0, 0, 10);
+}
+
+units::meter_t ClimberSubsystem::GetExtenderDistance(){
+    return ExtenderTicksToDistance(m_extenderArm.GetSelectedSensorPosition(0));
+}
+
+units::radian_t ClimberSubsystem::GetRotatorAngle(){
+    return RotatorTicksToDegrees(m_rightRotator.GetSelectedSensorPosition(0));
 }
 
 units::meter_t ClimberSubsystem::ExtenderTicksToDistance(double ticks){
