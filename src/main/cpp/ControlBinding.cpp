@@ -25,9 +25,9 @@ void ControlBinding::setDefaultControls(){
 
 void ControlBinding::getReadings(){
     
-    double leftStick = -m_driverJoystick.GetRawAxis(frc::Preferences::GetInt(LEFTKEY, 1));
-    double rightStick = -m_driverJoystick.GetRawAxis(frc::Preferences::GetInt(RIGHTKEY, 4));
-    bool climberUp = -m_driverJoystick.GetRawButtonPressed(frc::Preferences::GetInt(CLIMBERUPKEY,7));
+  double leftStick = -m_driveController.GetRawAxis(frc::Preferences::GetInt(LEFTKEY, 1));
+  double rightStick = -m_driveController.GetRawAxis(frc::Preferences::GetInt(RIGHTKEY, 4));
+  bool climberUp = -m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(CLIMBERUPKEY,7));
 }
 /*
 void ControlBinding::setControls(){

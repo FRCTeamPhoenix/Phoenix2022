@@ -36,10 +36,10 @@ class ControlBinding {
     ControlBinding();
     void initialize();	
 
-    frc::GenericHID controller{0};
+    frc::GenericHID m_driveController{0};
+    frc::GenericHID m_supportController{1};
 
     private:
-    frc::Joystick m_driverJoystick{DRIVE_JOYSTICK};
 
     void setControlers();
     void setDefaultControls();
