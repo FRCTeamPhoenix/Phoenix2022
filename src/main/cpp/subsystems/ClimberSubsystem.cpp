@@ -1,21 +1,35 @@
 #include "subsystems/ClimberSubsystem.h"
 
+#include <frc/smartdashboard/SmartDashboard.h>
+
 ClimberSubsystem::ClimberSubsystem(){
     ConfigureDefault();
 }
 
 void ClimberSubsystem::Periodic(){
+    if(frc::SmartDashboard::GetBoolean("Zero Rotators", false)){
+        ZeroRotatorEncoders();
+        frc::SmartDashboard::PutBoolean("Zero Rotators", false);
+    }
 
+    if(frc::SmartDashboard::GetBoolean("Zero Extenders", false)){
+        ZeroExtenderEncoders();
+        frc::SmartDashboard::PutBoolean("Zero Extenders", false);
+    }
 }
 
 void ClimberSubsystem::ConfigureDefault(){
+    //put a boolean value on the smartdashboard for zeroing
+    frc::SmartDashboard::SetDefaultBoolean("Zero Rotators", false);
+    frc::SmartDashboard::SetDefaultBoolean("Zero Extenders", false);
+
     //reset everything
     m_rightRotator.ConfigFactoryDefault();
     m_leftRotator.ConfigFactoryDefault();
     m_extenderArm.ConfigFactoryDefault();
 
     //make the left and right side work in tandem
-    m_leftRotator.Follow(m_rightRotator);
+    m_leftRotator.Follow(m_rightRotator, FollowerType::FollowerType_AuxOutput1);
 
     //invert to make go right direction
     m_leftRotator.SetInverted(InvertType::OpposeMaster);
@@ -53,9 +67,6 @@ void ClimberSubsystem::ConfigureDefault(){
     m_rightRotator.Config_kI(0, ROTATOR_I);
     m_rightRotator.Config_kD(0, ROTATOR_D);
     m_rightRotator.Config_kF(0, ROTATOR_F);
-
-    //zero the sensors
-    ZeroExtenderEncoders();
 }
 
 void ClimberSubsystem::SetExtenderSpeed(double percent){
@@ -63,15 +74,17 @@ void ClimberSubsystem::SetExtenderSpeed(double percent){
 }
 
 void ClimberSubsystem::SetRotatorSpeed(double percent){
+    m_leftRotator.Set(ControlMode::PercentOutput, percent);
     m_rightRotator.Set(ControlMode::PercentOutput, percent);
 }
 
 void ClimberSubsystem::SetExtenderDistance(units::meter_t distance){
-    m_extenderArm.Set(ControlMode::Position, ExtenderDistanceToTicks(distance));
+    m_extenderArm.Set(ControlMode::MotionMagic, ExtenderDistanceToTicks(distance));
 }
 
 void ClimberSubsystem::SetRotatorAngle(units::radian_t angle){
-    m_rightRotator.Set(ControlMode::Position, RotatorDegreesToTicks(angle));
+    //set it to double the ticks since it is using sum mode
+    m_rightRotator.Set(ControlMode::MotionMagic, RotatorDegreesToTicks(angle) * 2.0);
 }
 
 
