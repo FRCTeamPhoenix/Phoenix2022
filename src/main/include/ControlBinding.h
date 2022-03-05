@@ -41,12 +41,12 @@ class ControlBinding {
         bool returnButton(); 
     };
 */
-    void axis(std::string key);
-    void button(std::string key);
+    double axis(std::string key);
+    bool button(std::string key);
 
-    private:;
+    private:
 
     void setDefaultControls();
-    void getReadings();
+    //void getReadings();
 
 }; 

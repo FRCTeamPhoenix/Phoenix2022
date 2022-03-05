@@ -7,7 +7,7 @@ ControlBinding::ControlBinding(){}
 
 void ControlBinding::initialize() {
     setDefaultControls();
-    getReadings();
+    //getReadings();
 }
 
 void ControlBinding::setDefaultControls(){
@@ -23,12 +23,14 @@ void ControlBinding::setDefaultControls(){
     }  
 }
 
-void ControlBinding::axis(std::string key){
-  -m_driveController.GetRawAxis(frc::Preferences::GetInt(key, 0));
+double ControlBinding::axis(std::string key){
+  double axis = -m_driveController.GetRawAxis(frc::Preferences::GetInt(key, 0));
+  return axis;
 }
 
-void ControlBinding::button(std::string key){
-  -m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(key,0));
+bool ControlBinding::button(std::string key){
+  bool button = -m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(key,0));
+  return button;
 }
 
 /*void ControlBinding::getReadings(){
