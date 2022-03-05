@@ -91,7 +91,11 @@ const double TALON_TICKS_PER_ROTATION = 4096.0;
 const double FALCON_TO_EXTENDER_RATIO = 36.0;
 const double TALON_TO_ROTATOR_RATIO = 44.0 / 15.0;
 const units::radian_t MIN_ROTATION = 0_deg;
-const units::radian_t MAX_ROTATION = 180_deg;
+const units::radian_t MAX_ROTATION = 170_deg;
 const units::meter_t MIN_EXTEND = 0_in;
 const units::meter_t MAX_EXTEND = 15_in;
+const units::meters_per_second_t EXTENDER_VELOCITY = 1_fps;
+const units::meters_per_second_squared_t EXTENDER_ACCELERATION = 2_fps / 1_s;
+const auto ROTATOR_VELOCITY = 45_deg / 1_s;
+const auto ROTATOR_ACCELERATION = 15_deg / 1_s / 1_s;
 

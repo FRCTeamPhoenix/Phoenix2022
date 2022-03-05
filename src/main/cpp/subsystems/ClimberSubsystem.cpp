@@ -95,6 +95,12 @@ void ClimberSubsystem::ConfigureDefault(){
     m_rightRotator.Config_kI(1, ROTATOR_AUX_I);
     m_rightRotator.Config_kD(1, ROTATOR_AUX_D);
     m_rightRotator.Config_kF(1, ROTATOR_AUX_F);
+
+    //set motion magic cruise velocity and acceleration
+    m_rightRotator.ConfigMotionCruiseVelocity(RotatorDegreesToTicks(ROTATOR_VELOCITY * 100_ms), 10);
+    m_rightRotator.ConfigMotionAcceleration(RotatorDegreesToTicks(ROTATOR_ACCELERATION * 1_s * 100_ms), 10);
+    m_extenderArm.ConfigMotionCruiseVelocity(ExtenderDistanceToTicks(EXTENDER_VELOCITY * 100_ms), 10);
+    m_extenderArm.ConfigMotionAcceleration(ExtenderDistanceToTicks(EXTENDER_ACCELERATION * 100_ms), 10);
 }
 
 void ClimberSubsystem::SetExtenderSpeed(double percent){
