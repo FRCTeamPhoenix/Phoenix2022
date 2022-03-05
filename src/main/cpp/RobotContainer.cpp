@@ -10,6 +10,7 @@ RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   //command must be MOVED to be stored here
   m_driveSubsystem.SetDefaultCommand(std::move(m_driveTeleop));
+  m_climberSubsystem.SetDefaultCommand(std::move(m_operatorTeleop));
 
   // Configure the button bindings
   ConfigureButtonBindings();

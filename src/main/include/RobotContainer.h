@@ -7,7 +7,9 @@
 #include <frc2/command/Command.h>
 
 #include "subsystems/DriveSubsystem.h"
+#include "subsystems/ClimberSubsystem.h"
 #include "commands/DriveTeleop.h"
+#include "commands/OperatorTeleop.h"
 #include "commands/DriveDistance.h"
 #include <units/length.h>
 
@@ -31,8 +33,10 @@ class RobotContainer {
   void ConfigureButtonBindings();
   //subsystems
   DriveSubsystem m_driveSubsystem;
+  ClimberSubsystem m_climberSubsystem;
   
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
-  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -4_ft);
+  OperatorTeleop m_operatorTeleop{&m_climberSubsystem};
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
 };
