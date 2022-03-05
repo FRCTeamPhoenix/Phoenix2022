@@ -7,7 +7,6 @@ ControlBinding::ControlBinding(){}
 
 void ControlBinding::initialize() {
     setDefaultControls();
-    //getReadings();
 }
 
 void ControlBinding::setDefaultControls(){
@@ -22,30 +21,14 @@ void ControlBinding::setDefaultControls(){
       frc::Preferences::SetInt(CLIMBERUPKEY, 7);
     }  
 }
-
+//finds axis of named key
 double ControlBinding::axis(std::string key){
   double axis = -m_driveController.GetRawAxis(frc::Preferences::GetInt(key, 0));
   return axis;
 }
 
+//finds if button is pushed of named key
 bool ControlBinding::button(std::string key){
   bool button = -m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(key,0));
   return button;
 }
-
-/*void ControlBinding::getReadings(){
-    
-  //double leftStick = -m_driveController.GetRawAxis(frc::Preferences::GetInt(LEFTKEY, 0));
-  //double rightStick = -m_driveController.GetRawAxis(frc::Preferences::GetInt(RIGHTKEY, 0));
-  //bool climberUp = -m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(CLIMBERUPKEY,0));
-}*/
-
-/*template<typename axis>
-double ControlBinding::CheckAxis<axis>::returnAxis(){
-  return -m_driveController.GetRawAxis(frc::Preferences::GetInt(axis, 0));
-}
-template<typename button>
-bool ControlBinding::CheckButton<button>::returnButton(){
-  return -m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(button,0));
-}
-*/

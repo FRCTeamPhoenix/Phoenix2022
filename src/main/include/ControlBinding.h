@@ -24,29 +24,16 @@ class ControlBinding {
     ControlBinding();
     void initialize();	
 
-    //set controller port namws
+    //set controller port names
     frc::GenericHID m_driveController{0};
     frc::GenericHID m_supportController{1};
 
-    /*get raw axis, generic
-    template <typename axis>
-    class CheckAxis{
-        public:
-        double returnAxis();
-    }; 
-    //get raw button, generic 
-    template <typename button>
-    class CheckButton{
-        public:
-        bool returnButton(); 
-    };
-*/
+
     double axis(std::string key);
     bool button(std::string key);
 
     private:
 
     void setDefaultControls();
-    //void getReadings();
 
 }; 
