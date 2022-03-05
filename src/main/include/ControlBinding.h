@@ -9,19 +9,6 @@
 
 #include "Constants.h" 
 
-enum class JoystickType {
-    DRIVER, OPERATOR
-};
-
-enum class ControlType {
-    AXIS, BUTTON
-};
-
-struct ControlData {
-    JoystickType driver;
-    ControlType control;
-    int id;
-};
 
 class ControlBinding {
     public:
@@ -41,12 +28,6 @@ class ControlBinding {
 
     private:
 
-    void setControlers();
     void setDefaultControls();
     void getReadings();
-    //void setControls();
-
-    bool bOne = false;
-    double left_x = 0.0;
-    double left_y = 0.0;
 }; 

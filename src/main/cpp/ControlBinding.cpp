@@ -7,7 +7,7 @@ ControlBinding::ControlBinding(){}
 
 void ControlBinding::initialize() {
     setDefaultControls();
-    //displayControlBindings();
+    getReadings();
 }
 
 void ControlBinding::setDefaultControls(){
@@ -29,8 +29,3 @@ void ControlBinding::getReadings(){
   double rightStick = -m_driveController.GetRawAxis(frc::Preferences::GetInt(RIGHTKEY, 4));
   bool climberUp = -m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(CLIMBERUPKEY,7));
 }
-/*
-void ControlBinding::setControls(){
-    //prefrences
-}
-*/
