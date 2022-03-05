@@ -60,6 +60,6 @@ const int RIGHTSTICK_Y = 5;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 //control binding
-static constexpr std::string_view LeftKey = "Left";
-static constexpr std::string_view RightKey = "Right";
-static constexpr std::string_view ClimberUpKey = "ClimberUp";
+static constexpr std::string_view LEFTKEY = "Left";
+static constexpr std::string_view RIGHTKEY = "Right";
+static constexpr std::string_view CLIMBERUPKEY = "ClimberUp";

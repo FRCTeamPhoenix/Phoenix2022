@@ -6,6 +6,7 @@
 #include <frc/XboxController.h>
 #include <frc/GenericHID.h>
 
+
 #include "Constants.h" 
 
 enum class JoystickType {
@@ -40,8 +41,9 @@ class ControlBinding {
     private:
     frc::Joystick m_driverJoystick{DRIVE_JOYSTICK};
 
+    void setControlers();
     void setDefaultControls();
-    //void displayControlBindings();
+    void getReadings();
     //void setControls();
 
     bool bOne = false;
