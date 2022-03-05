@@ -28,6 +28,11 @@ void ClimberSubsystem::ConfigureDefault(){
     m_leftRotator.ConfigFactoryDefault();
     m_extenderArm.ConfigFactoryDefault();
 
+    //make all three motors break mode
+    m_rightRotator.SetNeutralMode(NeutralMode::Brake);
+    m_leftRotator.SetNeutralMode(NeutralMode::Brake);
+    m_extenderArm.SetNeutralMode(NeutralMode::Brake);
+
     //make the left and right side work in tandem
     m_leftRotator.Follow(m_rightRotator, FollowerType::FollowerType_AuxOutput1);
 
@@ -36,11 +41,25 @@ void ClimberSubsystem::ConfigureDefault(){
     m_rightRotator.SetInverted(false);
     m_extenderArm.SetInverted(false);
 
-    //configure the sensor
+    //configure the sensors
     m_extenderArm.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
-    m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
-    m_leftRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
 
+    //pid loop 0 - left + right
+    //pid loop 1 - left - right
+    m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::SensorSum, 0, 10);
+    //set the left side slot 0 sensor and then set the remote sensor to the left side's slot 0 sensor
+    m_leftRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
+    m_rightRotator.ConfigRemoteFeedbackFilter(m_leftRotator, 0, 10);
+    //term 0 is absolute sensor while term 1 is the left side remote sensor
+    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Sum0, FeedbackDevice::CTRE_MagEncoder_Absolute, 10);
+    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Sum1, FeedbackDevice::RemoteSensor0, 10);
+    //set the primary loop to be 0.5 times err because it is a sum
+    m_rightRotator.ConfigSelectedFeedbackCoefficient(0.5, 0, 10);
+    //set the right side to use sensor diff for the aux loop followed by pretty much the same config
+    m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::SensorDifference, 1, 10);
+    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff1, FeedbackDevice::CTRE_MagEncoder_Absolute, 10);
+    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff0, FeedbackDevice::RemoteSensor0, 10);
+    
     //10 ms period for PID
     m_extenderArm.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
     m_rightRotator.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
@@ -56,6 +75,10 @@ void ClimberSubsystem::ConfigureDefault(){
     m_rightRotator.ConfigNominalOutputReverse(0.0, 10);
     m_rightRotator.ConfigPeakOutputForward(MAX_ROTATOR_OUTPUT, 10);
     m_rightRotator.ConfigPeakOutputReverse(-MAX_ROTATOR_OUTPUT, 10);
+    m_leftRotator.ConfigNominalOutputForward(0.0, 10);
+    m_leftRotator.ConfigNominalOutputReverse(0.0, 10);
+    m_leftRotator.ConfigPeakOutputForward(MAX_ROTATOR_OUTPUT, 10);
+    m_leftRotator.ConfigPeakOutputReverse(-MAX_ROTATOR_OUTPUT, 10);
 
     //configure PID values
     m_extenderArm.Config_kP(0, EXTENDER_P);
@@ -67,6 +90,11 @@ void ClimberSubsystem::ConfigureDefault(){
     m_rightRotator.Config_kI(0, ROTATOR_I);
     m_rightRotator.Config_kD(0, ROTATOR_D);
     m_rightRotator.Config_kF(0, ROTATOR_F);
+
+    m_rightRotator.Config_kP(1, ROTATOR_AUX_P);
+    m_rightRotator.Config_kI(1, ROTATOR_AUX_I);
+    m_rightRotator.Config_kD(1, ROTATOR_AUX_D);
+    m_rightRotator.Config_kF(1, ROTATOR_AUX_F);
 }
 
 void ClimberSubsystem::SetExtenderSpeed(double percent){
@@ -83,8 +111,8 @@ void ClimberSubsystem::SetExtenderDistance(units::meter_t distance){
 }
 
 void ClimberSubsystem::SetRotatorAngle(units::radian_t angle){
-    //set it to double the ticks since it is using sum mode
-    m_rightRotator.Set(ControlMode::MotionMagic, RotatorDegreesToTicks(angle) * 2.0);
+    //go to the target angle with an auxillary demand of 0 (this is to keep both sides close together)
+    m_rightRotator.Set(ControlMode::MotionMagic, RotatorDegreesToTicks(angle), DemandType::DemandType_AuxPID, 0);
 }
 
 

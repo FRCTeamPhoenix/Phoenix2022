@@ -68,6 +68,12 @@ const double ROTATOR_I = 0.0;
 const double ROTATOR_D = 0.0;
 const double ROTATOR_F = 0.0;
 
+//aux pid loop to make the sides line up
+const double ROTATOR_AUX_P = 0.0;
+const double ROTATOR_AUX_I = 0.0;
+const double ROTATOR_AUX_D = 0.0;
+const double ROTATOR_AUX_F = 0.0;
+
 // controller
 const int DRIVE_JOYSTICK = 0;
 const int OPERATOR_JOYSTICK = 1;
