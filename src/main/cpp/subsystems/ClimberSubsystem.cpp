@@ -36,12 +36,12 @@ void ClimberSubsystem::ConfigureDefault(){
     //nominal = default, peak = maximum
     m_extenderArm.ConfigNominalOutputForward(0.0, 10);
     m_extenderArm.ConfigNominalOutputReverse(0.0, 10);
-    m_extenderArm.ConfigPeakOutputForward(1.0, 10);
-    m_extenderArm.ConfigPeakOutputReverse(-1.0, 10);
+    m_extenderArm.ConfigPeakOutputForward(MAX_EXTENDER_OUTPUT, 10);
+    m_extenderArm.ConfigPeakOutputReverse(-MAX_EXTENDER_OUTPUT, 10);
     m_rightRotator.ConfigNominalOutputForward(0.0, 10);
     m_rightRotator.ConfigNominalOutputReverse(0.0, 10);
-    m_rightRotator.ConfigPeakOutputForward(1.0, 10);
-    m_rightRotator.ConfigPeakOutputReverse(-1.0, 10);
+    m_rightRotator.ConfigPeakOutputForward(MAX_ROTATOR_OUTPUT, 10);
+    m_rightRotator.ConfigPeakOutputReverse(-MAX_ROTATOR_OUTPUT, 10);
 
     //configure PID values
     m_extenderArm.Config_kP(0, EXTENDER_P);
