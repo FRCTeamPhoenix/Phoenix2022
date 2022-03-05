@@ -13,30 +13,30 @@ class IntakeSubsystem : public frc2::SubsystemBase {
 
         void ConfigureDefault();
 
-        void SetLiftSpeed(double speed);
+        void SetArmSpeed(double speed);
         
-        void SetPivotSpeed(double speed);
+        void SetWristSpeed(double speed);
 
         void SetIntakeSpeed(double speed);
 
-        void SetLiftAngle(units::radian_t angle);
+        void SetArmAngle(units::radian_t angle);
 
-        void SetPivotAngle(units::radian_t angle);
+        void SetWristAngle(units::radian_t angle);
 
-        void ZeroLiftEncoders();
+        void ZeroArmEncoders();
 
-        void ZeroIntakePivot();
+        void ZeroIntakeWrist();
 
-        units::radian_t GetLiftAngle();
+        units::radian_t GetArmAngle();
 
-        units::radian_t GetPivotAngle();
+        units::radian_t GetWristAngle();
     private:
-        units::radian_t LiftTicksToAngle(double ticks);
-        double LiftAngleToTicks(units::radian_t angle);
-        units::radian_t PivotTicksToAngle(double ticks);
-        double PivotAngleToTicks(units::radian_t angle);
+        units::radian_t ArmTicksToAngle(double ticks);
+        double ArmAngleToTicks(units::radian_t angle);
+        units::radian_t WristTicksToAngle(double ticks);
+        double WristAngleToTicks(units::radian_t angle);
 
-        WPI_TalonSRX m_intakeLift{TALON_INTAKE_LIFT};
-        WPI_TalonSRX m_intakePivot{TALON_INTAKE_PIVOT};
-        frc::Spark m_intake{SPARK_INTAKE};
+        frc::Spark m_intakeArm{SPARK_ARM};
+        WPI_TalonSRX m_intakeWrist{TALON_WRIST};
+        WPI_TalonSRX m_intake{TALON_INTAKE};
 };

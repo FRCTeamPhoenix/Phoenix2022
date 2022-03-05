@@ -36,9 +36,9 @@ const int FALCON_EXTENDING_ARM = 5;
 const int TALON_LEFT_ROTATOR = 6;
 const int TALON_RIGHT_ROTATOR = 7;
 
-const int TALON_INTAKE_LIFT = 8;
-const int SPARK_INTAKE = 9;
-const int TALON_INTAKE_PIVOT = 10;
+const int SPARK_ARM = 8;
+const int TALON_INTAKE = 9;
+const int TALON_WRIST = 10;
 
 
 // wheel information
@@ -81,6 +81,9 @@ const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
+
+// intake
+const double TALON_TO_ARM_RATIO = 64.0;
 
 // climber
 const units::meter_t DISTANCE_PER_EXTENDER_REVOLUTION = 3.13_in;
