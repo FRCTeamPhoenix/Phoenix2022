@@ -1,4 +1,5 @@
 #include "commands/OperatorTeleop.h"
+#include <iostream>
 
 OperatorTeleop::OperatorTeleop(ClimberSubsystem* climberSubsystem):
 m_climberSubsystem(climberSubsystem){
@@ -6,6 +7,7 @@ m_climberSubsystem(climberSubsystem){
 }
 
 void OperatorTeleop::Initialize(){
+    std::cout << "Started operator teleop" << std::endl;
     m_climberSubsystem->SetExtenderSpeed(0.0);
     m_climberSubsystem->SetRotatorSpeed(0.0);
 }
@@ -17,6 +19,7 @@ void OperatorTeleop::Execute(){
 }
 
 void OperatorTeleop::End(bool interrupted){
+    std::cout << "Ended operator teleop" << std::endl;
     m_climberSubsystem->SetExtenderSpeed(0.0);
     m_climberSubsystem->SetRotatorSpeed(0.0);
 }

@@ -5,6 +5,7 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include <frc2/command/ParallelCommandGroup.h>
 
 #include "subsystems/DriveSubsystem.h"
 #include "subsystems/ClimberSubsystem.h"
@@ -26,6 +27,8 @@ class RobotContainer {
  public:
   RobotContainer();
 
+  frc2::Command* GetTeleopCommand();
+
   frc2::Command* GetAutonomousCommand();
 
  private:
@@ -39,6 +42,10 @@ class RobotContainer {
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
   OperatorTeleop m_operatorTeleop{&m_climberSubsystem};
+  
+  //used to sequence both teleop commands at once to not interfere with climber (yuck)
+  frc2::ParallelCommandGroup m_teleopCommand{m_driveTeleop, m_operatorTeleop};
+
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 90_deg);
 };
