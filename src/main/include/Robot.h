@@ -7,6 +7,7 @@
 #include <frc/TimedRobot.h>
 #include <frc2/command/Command.h>
 
+#include "sensors/VisionCamera.h"
 #include "RobotContainer.h"
 
 class Robot : public frc::TimedRobot {
@@ -26,5 +27,7 @@ class Robot : public frc::TimedRobot {
   // doesn't have undefined behavior and potentially crash.
   frc2::Command* m_autonomousCommand = nullptr;
 
+  
+  VisionCamera m_vision;
   RobotContainer m_container;
 };

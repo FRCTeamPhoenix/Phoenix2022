@@ -17,6 +17,7 @@
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "files.associations": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "algorithm": "cpp",
     "array": "cpp",
     "atomic": "cpp",
@@ -29,6 +30,8 @@
     "compare": "cpp",
     "concepts": "cpp",
 =======
+=======
+>>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7
     "math": "cpp",
     "numbers": "cpp",
     "cmath": "cpp",
@@ -42,7 +45,10 @@
     "cctype": "cpp",
     "clocale": "cpp",
     "codecvt": "cpp",
+<<<<<<< HEAD
 >>>>>>> 7a19cce2ff80bf5c143f8e6066f89e695f5d951c
+=======
+>>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7
     "condition_variable": "cpp",
     "cstdarg": "cpp",
     "cstddef": "cpp",
@@ -52,6 +58,7 @@
     "cstring": "cpp",
     "ctime": "cpp",
     "cwchar": "cpp",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "exception": "cpp",
     "format": "cpp",
@@ -106,6 +113,8 @@
     "xtree": "cpp",
     "xutility": "cpp"
 =======
+=======
+>>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7
     "cwctype": "cpp",
     "deque": "cpp",
     "list": "cpp",
@@ -148,6 +157,9 @@
     "thread": "cpp",
     "cinttypes": "cpp",
     "typeinfo": "cpp"
+<<<<<<< HEAD
 >>>>>>> 7a19cce2ff80bf5c143f8e6066f89e695f5d951c
+=======
+>>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7
   }
 }

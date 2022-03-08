@@ -21,9 +21,12 @@
  * they are needed.
  */
 
+<<<<<<< HEAD
 //lidar
 const int MAX_BYTE_COUNT = 256;
 
+=======
+>>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7
 // settings
 enum class Scaling {NONE, ROOT, QUADRATIC, CUBIC};
 const Scaling DRIVETRAIN_SCALING = Scaling::ROOT;
@@ -61,4 +64,8 @@ const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
+<<<<<<< HEAD
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
+=======
+const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
+>>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7

@@ -9,8 +9,12 @@
 #include <frc2/command/CommandScheduler.h>
 
 void Robot::RobotInit() {
+<<<<<<< HEAD
   Lidar lidarTest;
   lidarTest.StartLidar();
+=======
+  m_vision.Start();
+>>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7
 }
 
 /**

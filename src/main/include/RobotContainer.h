@@ -30,9 +30,17 @@ class RobotContainer {
 
   void ConfigureButtonBindings();
   //subsystems
+<<<<<<< HEAD
   //DriveSubsystem m_driveSubsystem;
   
   //commands
   /*DriveTeleop m_driveTeleop{&m_driveSubsystem};
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -4_ft);*/
+=======
+  DriveSubsystem m_driveSubsystem;
+  
+  //commands
+  DriveTeleop m_driveTeleop{&m_driveSubsystem};
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
+>>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7
 };
