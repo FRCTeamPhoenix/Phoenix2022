@@ -15,9 +15,9 @@ class ControlBinding {
     public:
 
     static ControlBinding* getInstance() {
-            static ControlBinding instance;
-            return &instance;
-        }
+        static ControlBinding instance;
+        return &instance;
+    }
 
     ControlBinding(ControlBinding const&) = delete;
     void operator = (ControlBinding const&) = delete;    
@@ -33,7 +33,8 @@ class ControlBinding {
     bool button(std::string key);
 
     private:
-
+    ControlBinding() {}
+    
     void setDefaultControls();
 
 }; 

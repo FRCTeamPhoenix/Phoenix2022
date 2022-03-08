@@ -23,12 +23,12 @@ void ControlBinding::setDefaultControls(){
 }
 //finds axis of named key
 double ControlBinding::axis(std::string key){
-  double axis = -m_driveController.GetRawAxis(frc::Preferences::GetInt(key, 0));
+  double axis = m_driveController.GetRawAxis(frc::Preferences::GetInt(key, 0));
   return axis;
 }
 
 //finds if button is pushed of named key
 bool ControlBinding::button(std::string key){
-  bool button = -m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(key,0));
+  bool button = m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(key,0));
   return button;
 }
