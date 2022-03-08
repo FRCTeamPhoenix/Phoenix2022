@@ -8,7 +8,7 @@
 #include <frc2/command/CommandScheduler.h>
 
 void Robot::RobotInit() {
-  m_vision.Start();
+  //m_vision.Start();
 }
 
 /**

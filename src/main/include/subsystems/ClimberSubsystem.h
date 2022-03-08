@@ -2,6 +2,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <units/length.h>
+#include <units/angle.h>
 #include <ctre/Phoenix.h>
 
 #include "Constants.h"

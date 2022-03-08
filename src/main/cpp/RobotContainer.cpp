@@ -20,5 +20,5 @@ frc2::Command* RobotContainer::GetTeleopCommand(){
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
-  return &m_driveDistance;
+  return &m_climberState;
 }

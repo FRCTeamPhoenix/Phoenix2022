@@ -44,8 +44,8 @@ void ClimberSubsystem::ConfigureDefault(){
     //configure the sensors
     m_extenderArm.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
 
-    //pid loop 0 - left + right
-    //pid loop 1 - left - right
+    //pid loop 0 - right + left
+    //pid loop 1 - right - left
     m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::SensorSum, 0, 10);
     //set the left side slot 0 sensor and then set the remote sensor to the left side's slot 0 sensor
     m_leftRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
@@ -53,12 +53,12 @@ void ClimberSubsystem::ConfigureDefault(){
     //term 0 is absolute sensor while term 1 is the left side remote sensor
     m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Sum0, FeedbackDevice::CTRE_MagEncoder_Absolute, 10);
     m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Sum1, FeedbackDevice::RemoteSensor0, 10);
-    //set the primary loop to be 0.5 times err because it is a sum
     m_rightRotator.ConfigSelectedFeedbackCoefficient(0.5, 0, 10);
     //set the right side to use sensor diff for the aux loop followed by pretty much the same config
     m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::SensorDifference, 1, 10);
-    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff1, FeedbackDevice::CTRE_MagEncoder_Absolute, 10);
-    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff0, FeedbackDevice::RemoteSensor0, 10);
+    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff0, FeedbackDevice::CTRE_MagEncoder_Absolute, 10);
+    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff1, FeedbackDevice::RemoteSensor0, 10);
+    
     
     //10 ms period for PID
     m_extenderArm.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
@@ -96,11 +96,15 @@ void ClimberSubsystem::ConfigureDefault(){
     m_rightRotator.Config_kD(1, ROTATOR_AUX_D);
     m_rightRotator.Config_kF(1, ROTATOR_AUX_F);
 
+    //set the proper pid slots
+    m_rightRotator.SelectProfileSlot(0, 0);
+    m_rightRotator.SelectProfileSlot(1, 1);
+
     //set motion magic cruise velocity and acceleration
     m_rightRotator.ConfigMotionCruiseVelocity(RotatorDegreesToTicks(ROTATOR_VELOCITY * 100_ms), 10);
     m_rightRotator.ConfigMotionAcceleration(RotatorDegreesToTicks(ROTATOR_ACCELERATION * 1_s * 100_ms), 10);
     m_extenderArm.ConfigMotionCruiseVelocity(ExtenderDistanceToTicks(EXTENDER_VELOCITY * 100_ms), 10);
-    m_extenderArm.ConfigMotionAcceleration(ExtenderDistanceToTicks(EXTENDER_ACCELERATION * 100_ms), 10);
+    m_extenderArm.ConfigMotionAcceleration(ExtenderDistanceToTicks(EXTENDER_ACCELERATION  * 1_s * 100_ms), 10);
 }
 
 void ClimberSubsystem::SetExtenderSpeed(double percent){
@@ -123,12 +127,12 @@ void ClimberSubsystem::SetRotatorAngle(units::radian_t angle){
 
 
 void ClimberSubsystem::ZeroExtenderEncoders(){
-    m_extenderArm.SetSelectedSensorPosition(0, 0, 10);
+    m_extenderArm.SetSelectedSensorPosition(0, 0);
 }
 
 void ClimberSubsystem::ZeroRotatorEncoders(){
-    m_leftRotator.SetSelectedSensorPosition(0, 0, 10);
-    m_rightRotator.SetSelectedSensorPosition(0, 0, 10);
+    m_leftRotator.SetSelectedSensorPosition(0, 0);
+    m_rightRotator.SetSelectedSensorPosition(0, 0);
 }
 
 units::meter_t ClimberSubsystem::GetExtenderDistance(){

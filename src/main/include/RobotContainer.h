@@ -40,11 +40,8 @@ class RobotContainer {
   ClimberSubsystem m_climberSubsystem;
   
   //commands
-  DriveTeleop m_driveTeleop{&m_driveSubsystem};
-  OperatorTeleop m_operatorTeleop{&m_climberSubsystem};
-  
   //used to sequence both teleop commands at once to not interfere with climber (yuck)
-  frc2::ParallelCommandGroup m_teleopCommand{m_driveTeleop, m_operatorTeleop};
+  frc2::ParallelCommandGroup m_teleopCommand{DriveTeleop(&m_driveSubsystem), OperatorTeleop{&m_climberSubsystem}};
 
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 90_deg);
