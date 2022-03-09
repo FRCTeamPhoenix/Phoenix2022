@@ -63,16 +63,19 @@ const double EXTENDER_D = 0.0;
 const double EXTENDER_F = 0.0;
 
 //Rotator PIDF
-const double ROTATOR_P = 0.0;
-const double ROTATOR_I = 0.0;
-const double ROTATOR_D = 0.0;
+const double ROTATOR_P = 30.0;
+const double ROTATOR_I = 0.015;
+const double ROTATOR_D = 300.0;
 const double ROTATOR_F = 0.0;
+const double ROTATOR_MAX_INTEGRAL_ACCUM = 16384;
 
 //aux pid loop to make the sides line up
-const double ROTATOR_AUX_P = 0.0;
-const double ROTATOR_AUX_I = 0.0;
-const double ROTATOR_AUX_D = 0.0;
+const double ROTATOR_AUX_P = 8.0;
+const double ROTATOR_AUX_I = 0.025;
+const double ROTATOR_AUX_D = 130.0;
 const double ROTATOR_AUX_F = 0.0;
+const double ROTATOR_AUX_ERR = 10.0;
+const double ROTATOR_AUX_MAX_INTEGRAL_ACCUM = 16384;
 
 // controller
 const int DRIVE_JOYSTICK = 0;

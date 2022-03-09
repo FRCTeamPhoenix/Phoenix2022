@@ -2,6 +2,8 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 
+#include <iostream>
+
 ClimberSubsystem::ClimberSubsystem(){
     ConfigureDefault();
 }
@@ -20,8 +22,8 @@ void ClimberSubsystem::Periodic(){
 
 void ClimberSubsystem::ConfigureDefault(){
     //put a boolean value on the smartdashboard for zeroing
-    frc::SmartDashboard::SetDefaultBoolean("Zero Rotators", false);
-    frc::SmartDashboard::SetDefaultBoolean("Zero Extenders", false);
+    frc::SmartDashboard::PutBoolean("Zero Rotators", false);
+    frc::SmartDashboard::PutBoolean("Zero Extenders", false);
 
     //reset everything
     m_rightRotator.ConfigFactoryDefault();
@@ -48,15 +50,16 @@ void ClimberSubsystem::ConfigureDefault(){
     //pid loop 1 - right - left
     m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::SensorSum, 0, 10);
     //set the left side slot 0 sensor and then set the remote sensor to the left side's slot 0 sensor
-    m_leftRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
+    m_leftRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
+    m_leftRotator.SetSensorPhase(false);
     m_rightRotator.ConfigRemoteFeedbackFilter(m_leftRotator, 0, 10);
     //term 0 is absolute sensor while term 1 is the left side remote sensor
-    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Sum0, FeedbackDevice::CTRE_MagEncoder_Absolute, 10);
+    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Sum0, FeedbackDevice::CTRE_MagEncoder_Relative, 10);
     m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Sum1, FeedbackDevice::RemoteSensor0, 10);
     m_rightRotator.ConfigSelectedFeedbackCoefficient(0.5, 0, 10);
     //set the right side to use sensor diff for the aux loop followed by pretty much the same config
     m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::SensorDifference, 1, 10);
-    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff0, FeedbackDevice::CTRE_MagEncoder_Absolute, 10);
+    m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff0, FeedbackDevice::CTRE_MagEncoder_Relative, 10);
     m_rightRotator.ConfigSensorTerm(SensorTerm::SensorTerm_Diff1, FeedbackDevice::RemoteSensor0, 10);
     
     
@@ -127,12 +130,23 @@ void ClimberSubsystem::SetRotatorAngle(units::radian_t angle){
 
 
 void ClimberSubsystem::ZeroExtenderEncoders(){
+    std::cout << "Zeroed the extender encoders" << std::endl;
     m_extenderArm.SetSelectedSensorPosition(0, 0);
 }
 
 void ClimberSubsystem::ZeroRotatorEncoders(){
+    std::cout << "Zeroed the rotator encoders" << std::endl;
+    //configure both sides to use absolute position then reset the configuration
+    m_leftRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0);
+    m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0);
+
+    m_rightRotator.SetSensorPhase(false);
+    m_leftRotator.SetSensorPhase(false);
+
     m_leftRotator.SetSelectedSensorPosition(0, 0);
     m_rightRotator.SetSelectedSensorPosition(0, 0);
+
+    ConfigureDefault();
 }
 
 units::meter_t ClimberSubsystem::GetExtenderDistance(){
