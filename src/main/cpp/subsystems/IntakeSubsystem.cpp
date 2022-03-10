@@ -1,7 +1,7 @@
 #include "subsystems/IntakeSubsystem.h"
 
 IntakeSubsystem::IntakeSubsystem(){
-
+    m_encoder = m_intakeArm.GetEncoder();
 }
 
 void IntakeSubsystem::ConfigureDefault(){
@@ -36,7 +36,7 @@ void IntakeSubsystem::ZeroIntakeWrist(){
 }
 
 units::radian_t IntakeSubsystem::GetArmAngle(){
-    return ArmTicksToAngle(m_intakeArm);
+    return ArmTicksToAngle(m_encoder.GetPosition());
 }
 
 units::radian_t IntakeSubsystem::GetWristAngle(){
