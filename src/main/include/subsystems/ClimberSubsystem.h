@@ -29,7 +29,11 @@ class ClimberSubsystem : public frc2::SubsystemBase {
 
         units::meter_t GetExtenderDistance();
 
-        units::radian_t GetRotatorAngle();
+        units::radian_t GetRightRotatorAngle();
+
+        units::radian_t GetLeftRotatorAngle();
+
+        bool IsRotatorStopped();
     private:
         units::meter_t ExtenderTicksToDistance(double ticks);
         double ExtenderDistanceToTicks(units::meter_t distance);
