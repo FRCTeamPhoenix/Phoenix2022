@@ -1,6 +1,6 @@
 #include "commands/IntakeState.h"
 
-IntakeState::IntakeState(IntakeSubsystem* IntakeSubsystem):
+IntakeState::IntakeState(IntakeSubsystem* IntakeSubsystem, units::radian_t angle):
 m_intakeSubsystem(IntakeSubsystem)
 {
     AddRequirements(IntakeSubsystem);

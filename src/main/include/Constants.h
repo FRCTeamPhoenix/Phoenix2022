@@ -84,6 +84,9 @@ const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 // intake
 const double TALON_TO_ARM_RATIO = 64.0;
+const double ARM_P = 0.001;
+const double ARM_I = 0;
+const double ARM_D = 0;
 
 // climber
 const units::meter_t DISTANCE_PER_EXTENDER_REVOLUTION = 3.13_in;
