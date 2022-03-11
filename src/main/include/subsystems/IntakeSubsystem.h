@@ -39,9 +39,6 @@ class IntakeSubsystem : public frc2::SubsystemBase {
 
         // frc::Spark m_intakeArm{SPARK_ARM};
         rev::CANSparkMax m_intakeArm{SPARK_ARM, rev::CANSparkMaxLowLevel::MotorType{1}};
-        // Confirm that SPARK_ARM is correct and the motor is brushless
-        rev::SparkMaxRelativeEncoder m_encoder;
-        // idk enough c++ to know which constructor to use
         WPI_TalonSRX m_intakeWrist{TALON_WRIST};
         WPI_TalonSRX m_intake{TALON_INTAKE};
 };
