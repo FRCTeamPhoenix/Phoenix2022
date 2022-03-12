@@ -147,8 +147,12 @@ units::radian_t ClimberSubsystem::GetLeftRotatorAngle(){
 }
 
 bool ClimberSubsystem::IsRotatorStopped(){
-    return std::abs(m_leftRotator.GetSelectedSensorVelocity(0)) < ROTATOR_STOPPED_THRESHOLD 
-    && std::abs(m_rightRotator.GetSelectedSensorVelocity(0)) < ROTATOR_STOPPED_THRESHOLD;
+    return std::abs(m_leftRotator.GetSelectedSensorVelocity(0)) < ROTATOR_VELOCITY_THRESHOLD
+    && std::abs(m_rightRotator.GetSelectedSensorVelocity(0)) < ROTATOR_VELOCITY_THRESHOLD;
+}
+
+bool ClimberSubsystem::IsExtenderStopped(){
+    return std::abs(m_extenderArm.GetSelectedSensorVelocity(0)) < EXTENDER_VELOCITY_THRESHOLD;
 }
 
 units::meter_t ClimberSubsystem::ExtenderTicksToDistance(double ticks){

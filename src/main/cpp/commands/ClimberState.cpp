@@ -13,6 +13,7 @@ m_rotatorAngle(rotatorAngle)
 void ClimberState::Initialize(){
     //Do NOT zero motor speed here as that would cause the mechanism to drop
     std::cout << "Setting climber state: " << m_extenderDistance.to<double>() << " m and " << m_rotatorAngle.to<double>() << " rad" << std::endl;
+    std::cout << "Extender (ticks): " << m_climberSubsystem->ExtenderDistanceToTicks(m_extenderDistance) << " Rotator (ticks):" << m_climberSubsystem->RotatorDegreesToTicks(m_rotatorAngle) << std::endl;
 }
 
 void ClimberState::Execute(){
@@ -27,5 +28,11 @@ void ClimberState::End(bool interrupted){
 
 bool ClimberState::IsFinished(){
     //normally, check if both mechanisms are stopped and within a set target range
-    return false;
+    bool rotatorVelocityStopped = m_climberSubsystem->IsRotatorStopped();
+    bool extenderVelocityStopped = m_climberSubsystem->IsExtenderStopped();
+    bool rotatorPositionStopped = std::abs(m_climberSubsystem->GetLeftRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>()
+    && std::abs(m_climberSubsystem->GetRightRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>();
+    bool extenderPositionStopped = std::abs(m_climberSubsystem->GetExtenderDistance().to<double>() - m_extenderDistance.to<double>()) < EXTENDER_POSITION_THRESHOLD.to<double>();
+    std::cout << "IsFinished rv: " << rotatorVelocityStopped << " ev: " << extenderVelocityStopped << " rp: " << rotatorPositionStopped << " ep: " <<extenderPositionStopped << std::endl; 
+    return rotatorPositionStopped && extenderPositionStopped && rotatorVelocityStopped && extenderVelocityStopped;
 }
