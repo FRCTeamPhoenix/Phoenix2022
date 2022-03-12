@@ -6,8 +6,15 @@
 
 #include <frc/TimedRobot.h>
 #include <frc2/command/Command.h>
+#include <frc/Joystick.h>
+#include <frc2/command/SequentialCommandGroup.h>
+#include <frc/Timer.h>
+#include <frc2/command/InstantCommand.h>
+#include <frc2/command/FunctionalCommand.h>
 
 #include "RobotContainer.h"
+#include "commands/DriveTeleop.h"
+#include "ControlBinding.h"
 
 class Robot : public frc::TimedRobot {
  public:

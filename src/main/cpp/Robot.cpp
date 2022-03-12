@@ -7,9 +7,11 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
+#include <frc2/command/button/JoystickButton.h>
 
-void Robot::RobotInit() {}
-
+void Robot::RobotInit() {
+  ControlBinding::getInstance()->initialize();
+}
 /**
  * This function is called every robot packet, no matter the mode. Use
  * this for items like diagnostics that you want to run during disabled,
@@ -41,6 +43,7 @@ void Robot::AutonomousInit() {
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Schedule();
   }
+  frc2::CommandScheduler::GetInstance().CancelAll(); 
 }
 
 void Robot::AutonomousPeriodic() {}

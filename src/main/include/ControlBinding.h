@@ -33,7 +33,6 @@ class ControlBinding {
     bool button(std::string key);
 
     private:
-    ControlBinding() {}
     
     void setDefaultControls();
 
