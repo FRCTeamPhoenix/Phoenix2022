@@ -33,6 +33,5 @@ bool ClimberState::IsFinished(){
     bool rotatorPositionStopped = std::abs(m_climberSubsystem->GetLeftRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>()
     && std::abs(m_climberSubsystem->GetRightRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>();
     bool extenderPositionStopped = std::abs(m_climberSubsystem->GetExtenderDistance().to<double>() - m_extenderDistance.to<double>()) < EXTENDER_POSITION_THRESHOLD.to<double>();
-    std::cout << "IsFinished rv: " << rotatorVelocityStopped << " ev: " << extenderVelocityStopped << " rp: " << rotatorPositionStopped << " ep: " <<extenderPositionStopped << std::endl; 
     return rotatorPositionStopped && extenderPositionStopped && rotatorVelocityStopped && extenderVelocityStopped;
 }
