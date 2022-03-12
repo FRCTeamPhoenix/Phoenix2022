@@ -42,12 +42,15 @@ void ClimberSubsystem::ConfigureDefault(){
 
     //configure the sensors
     m_extenderArm.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
-
     //set the sensors to be relative sensors
     m_rightRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
     m_leftRotator.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
     m_rightRotator.SetSensorPhase(false);
     m_leftRotator.SetSensorPhase(false);
+
+    //configure the limit switches to be closed by default
+    m_extenderArm.ConfigForwardLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyClosed, 10);
+    m_extenderArm.ConfigReverseLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyClosed, 10);
 
     //10 ms period for PID
     m_extenderArm.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
@@ -149,11 +152,11 @@ bool ClimberSubsystem::IsRotatorStopped(){
 }
 
 units::meter_t ClimberSubsystem::ExtenderTicksToDistance(double ticks){
-    return ticks / FALCON_TICKS_PER_ROTATION / FALCON_TO_EXTENDER_RATIO * DISTANCE_PER_EXTENDER_REVOLUTION;
+    return ticks / FALCON_TICKS_PER_ROTATION / FALCON_TO_EXTENDER_RATIO * EXTENDER_SPROCKET_DIAMETER * wpi::numbers::pi;
 }
 
 double ClimberSubsystem::ExtenderDistanceToTicks(units::meter_t distance){
-    return distance / DISTANCE_PER_EXTENDER_REVOLUTION * FALCON_TO_EXTENDER_RATIO * FALCON_TICKS_PER_ROTATION;
+    return distance / EXTENDER_SPROCKET_DIAMETER / wpi::numbers::pi * FALCON_TO_EXTENDER_RATIO * FALCON_TICKS_PER_ROTATION;
 }
 
 units::radian_t ClimberSubsystem::RotatorTicksToDegrees(double ticks){

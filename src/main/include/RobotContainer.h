@@ -44,5 +44,5 @@ class RobotContainer {
   frc2::ParallelCommandGroup m_teleopCommand{DriveTeleop(&m_driveSubsystem), OperatorTeleop{&m_climberSubsystem}};
 
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
-  ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 90_deg);
+  ClimberState m_climberState = ClimberState(&m_climberSubsystem, 2.5_in, 40_deg);
 };

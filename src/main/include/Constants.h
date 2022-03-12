@@ -57,18 +57,18 @@ const double TURN_I = 0.0;
 const double TURN_D = 0.0;
 
 //Extender PIDF
-const double EXTENDER_P = 0.0;
+const double EXTENDER_P = 0.28;
 const double EXTENDER_I = 0.0;
 const double EXTENDER_D = 0.0;
-const double EXTENDER_F = 0.0;
+const double EXTENDER_F = 0.05;
 
 //Rotator PIDF
-const double ROTATOR_LEFT_P = 0.0;
+const double ROTATOR_LEFT_P = 3.2;
 const double ROTATOR_LEFT_I = 0.0;
 const double ROTATOR_LEFT_D = 0.0;
 const double ROTATOR_LEFT_F = 0.0;
 
-const double ROTATOR_RIGHT_P = 0.0;
+const double ROTATOR_RIGHT_P = 3.2;
 const double ROTATOR_RIGHT_I = 0.0;
 const double ROTATOR_RIGHT_D = 0.0;
 const double ROTATOR_RIGHT_F = 0.0;
@@ -87,7 +87,7 @@ const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 // climber
 const double MAX_EXTENDER_OUTPUT = 0.5;
 const double MAX_ROTATOR_OUTPUT = 0.5;
-const units::meter_t DISTANCE_PER_EXTENDER_REVOLUTION = 3.13_in;
+const units::meter_t EXTENDER_SPROCKET_DIAMETER = 1.79_in;
 const double TALON_TICKS_PER_ROTATION = 4096.0;
 const double FALCON_TO_EXTENDER_RATIO = 36.0;
 const double TALON_TO_ROTATOR_RATIO = 44.0 / 15.0;
@@ -95,8 +95,8 @@ const units::radian_t MIN_ROTATION = 0_deg;
 const units::radian_t MAX_ROTATION = 170_deg;
 const units::meter_t MIN_EXTEND = 0_in;
 const units::meter_t MAX_EXTEND = 15_in;
-const units::meters_per_second_t EXTENDER_VELOCITY = 1_fps;
-const units::meters_per_second_squared_t EXTENDER_ACCELERATION = 2_fps / 1_s;
-const auto ROTATOR_VELOCITY = 45_deg / 1_s;
-const auto ROTATOR_ACCELERATION = 15_deg / 1_s / 1_s;
+const units::meters_per_second_t EXTENDER_VELOCITY = 2_fps;
+const units::meters_per_second_squared_t EXTENDER_ACCELERATION = 4_fps / 1_s;
+const auto ROTATOR_VELOCITY = 90_deg / 1_s;
+const auto ROTATOR_ACCELERATION = 90_deg / 1_s / 1_s;
 
