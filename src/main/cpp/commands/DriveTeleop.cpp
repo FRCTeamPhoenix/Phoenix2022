@@ -26,8 +26,8 @@ void DriveTeleop::Execute(){
     m_lastExecute = currentTime;
 
     //Up should be +1 and right should be 1
-    double leftStickY = -m_driveJoystick.GetRawAxis(LEFTSTICK_Y);
-    double rightStickX = -m_driveJoystick.GetRawAxis(RIGHTSTICK_X);
+    double leftStickY = -ControlBinding::GetInstance()->GetAxis("LeftKey");
+    double rightStickX = -ControlBinding::GetInstance()->GetAxis("RightKey");
 
     //deadzones
     if(std::abs(leftStickY) <= 0.0001){

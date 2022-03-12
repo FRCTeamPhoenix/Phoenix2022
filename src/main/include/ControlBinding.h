@@ -14,7 +14,7 @@
 class ControlBinding {
     public:
 
-    static ControlBinding* getInstance() {
+    static ControlBinding* GetInstance() {
         static ControlBinding instance;
         return &instance;
     }
@@ -22,18 +22,18 @@ class ControlBinding {
     ControlBinding(ControlBinding const&) = delete;
     void operator = (ControlBinding const&) = delete;    
     ControlBinding();
-    void initialize();	
+    void Initialize();	
 
     //set controller port names
     frc::GenericHID m_driveController{0};
     frc::GenericHID m_supportController{1};
 
 
-    double axis(std::string key);
-    bool button(std::string key);
+    double GetAxis(std::string key);
+    bool GetButton(std::string key);
 
     private:
     
-    void setDefaultControls();
+    void SetDefaultControls();
 
 }; 

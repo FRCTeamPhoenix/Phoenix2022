@@ -10,7 +10,7 @@
 #include <frc2/command/button/JoystickButton.h>
 
 void Robot::RobotInit() {
-  ControlBinding::getInstance()->initialize();
+  ControlBinding::GetInstance()->Initialize();
 }
 /**
  * This function is called every robot packet, no matter the mode. Use

@@ -5,11 +5,11 @@
 
 ControlBinding::ControlBinding(){}
 
-void ControlBinding::initialize() {
-    setDefaultControls();
+void ControlBinding::Initialize() {
+    SetDefaultControls();
 }
 
-void ControlBinding::setDefaultControls(){
+void ControlBinding::SetDefaultControls(){
     // set prefrences and defult values
   if (!frc::Preferences::ContainsKey(LEFTKEY)) {
       frc::Preferences::SetInt(LEFTKEY, 1);
@@ -22,13 +22,13 @@ void ControlBinding::setDefaultControls(){
     }  
 }
 //finds axis of named key
-double ControlBinding::axis(std::string key){
+double ControlBinding::GetAxis(std::string key){
   double axis = m_driveController.GetRawAxis(frc::Preferences::GetInt(key, 0));
   return axis;
 }
 
 //finds if button is pushed of named key
-bool ControlBinding::button(std::string key){
+bool ControlBinding::GetButton(std::string key){
   bool button = m_supportController.GetRawButtonPressed(frc::Preferences::GetInt(key,0));
   return button;
 }
