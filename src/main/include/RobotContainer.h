@@ -44,5 +44,20 @@ class RobotContainer {
   frc2::ParallelCommandGroup m_teleopCommand{DriveTeleop(&m_driveSubsystem), OperatorTeleop{&m_climberSubsystem}};
 
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
-  ClimberState m_climberState = ClimberState(&m_climberSubsystem, 2.5_in, 40_deg);
+  ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
+  //assume the extender is currently latched on, but the robot is on the floor and the rotators are directly up
+  //pull down and move the rotators back
+  //move the rotators in place
+  //extend slightly to latch rotators
+  //rotate forwards (tilts bot backwards)
+  //extend to first traversal bar
+  //rotate backwards and pull in extender to latch on extender
+  //retract extender and rotate backwards
+  //move the rotators in place
+  //extend slightly to latch rotators
+  //rotate forwards (tilts bot backwards)
+  //extend to first traversal bar
+  //rotate backwards and pull in extender to latch on extender
+  //retract extender and rotate backwards
+  //move the rotators in place
 };

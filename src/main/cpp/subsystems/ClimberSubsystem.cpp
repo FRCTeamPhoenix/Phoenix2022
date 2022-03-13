@@ -3,6 +3,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 #include <iostream>
+#include <string>
 
 ClimberSubsystem::ClimberSubsystem(){
     ConfigureDefault();
@@ -18,6 +19,12 @@ void ClimberSubsystem::Periodic(){
         ZeroExtenderEncoders();
         frc::SmartDashboard::PutBoolean("Zero Extenders", false);
     }
+
+    //display the current angles and extender height
+    units::degree_t angle = (GetLeftRotatorAngle() + GetRightRotatorAngle()) / 2.0;
+    frc::SmartDashboard::PutString("Rotator Angle", std::to_string(angle.to<double>()) + " deg");
+    units::inch_t height = GetExtenderDistance();
+    frc::SmartDashboard::PutString("Extender Height", std::to_string(height.to<double>()) + " in");
 }
 
 void ClimberSubsystem::ConfigureDefault(){

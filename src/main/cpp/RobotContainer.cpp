@@ -4,9 +4,15 @@
 
 #include "RobotContainer.h"
 #include "subsystems/DriveSubsystem.h"
-#include "units/length.h"
+#include <units/angle.h>
+#include <units/length.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 RobotContainer::RobotContainer() {
+  //set default auto paramaters
+  frc::SmartDashboard::SetDefaultNumber("Target Height", 0.0);
+  frc::SmartDashboard::SetDefaultNumber("Target Angle", 0.0);
+
   // Configure the button bindings
   ConfigureButtonBindings();
 }
@@ -20,5 +26,9 @@ frc2::Command* RobotContainer::GetTeleopCommand(){
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
+  //grab the current dashboard values for target height and target angle
+  units::meter_t targetHeight = units::meter_t(frc::SmartDashboard::GetNumber("Target Height", 0.0));
+  units::radian_t targetAngle = units::radian_t(frc::SmartDashboard::GetNumber("Target Angle", 0.0));
+  m_climberState = ClimberState(&m_climberSubsystem, targetHeight, targetAngle);
   return &m_climberState;
 }

@@ -45,6 +45,8 @@ void DriveTeleop::Execute(){
             leftStickY = leftStickY * std::sqrt(std::abs(leftStickY));
             rightStickX = rightStickX * std::sqrt(std::abs(rightStickX));
             break;
+        default:
+            break;
     }
         
     rightStickX *= TURN_PERCENT;
