@@ -6,6 +6,7 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/ParallelCommandGroup.h>
+#include <frc2/command/SequentialCommandGroup.h>
 
 #include "subsystems/DriveSubsystem.h"
 #include "subsystems/ClimberSubsystem.h"
@@ -45,19 +46,46 @@ class RobotContainer {
 
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
+  //height for the starting position is 19.5 in
   //assume the extender is currently latched on, but the robot is on the floor and the rotators are directly up
-  //pull down and move the rotators back
-  //move the rotators in place
-  //extend slightly to latch rotators
-  //rotate forwards (tilts bot backwards)
-  //extend to first traversal bar
-  //rotate backwards and pull in extender to latch on extender
-  //retract extender and rotate backwards
-  //move the rotators in place
-  //extend slightly to latch rotators
-  //rotate forwards (tilts bot backwards)
-  //extend to first traversal bar
-  //rotate backwards and pull in extender to latch on extender
-  //retract extender and rotate backwards
-  //move the rotators in place
+  frc2::SequentialCommandGroup m_climberRoutine{
+    //pull down and move the rotators back
+    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    //move the rotators in place
+    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    //extend slightly to latch rotators -- FIRST RUNG LATCHED --
+    ClimberState(&m_climberSubsystem, 2_in, 35_deg),
+    //rotate forwards (tilts bot backwards)
+    ClimberState(&m_climberSubsystem, 2_in, 64_deg),
+    //extend to first traversal bar
+    ClimberState(&m_climberSubsystem, 24_in, 64_deg),
+    //rotate backwards
+    ClimberState(&m_climberSubsystem, 24_in, 54_deg),
+    //latch extender
+    ClimberState(&m_climberSubsystem, 4_in, 54_deg, true),
+    //rotate backwards
+    ClimberState(&m_climberSubsystem, 4_in, 30_deg),
+    //retract extender
+    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    //move the rotators in place
+    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    //extend slightly to latch rotators -- SECOND RUNG LATCHED --
+    ClimberState(&m_climberSubsystem, 2_in, 35_deg),
+    //rotate forwards (tilts bot backwards)
+    ClimberState(&m_climberSubsystem, 2_in, 64_deg),
+    //extend to third traversal bar
+    ClimberState(&m_climberSubsystem, 24_in, 64_deg),
+    //rotate backwards
+    ClimberState(&m_climberSubsystem, 24_in, 54_deg),
+    //latch extender
+    ClimberState(&m_climberSubsystem, 4_in, 54_deg, true),
+    //rotate backwards
+    ClimberState(&m_climberSubsystem, 4_in, 30_deg),
+    //retract extender
+    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    //move the rotators in place
+    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    //extend slightly to latch rotators -- THIRD RUNG LATCHED --
+    ClimberState(&m_climberSubsystem, 2_in, 35_deg)
+  };
 };

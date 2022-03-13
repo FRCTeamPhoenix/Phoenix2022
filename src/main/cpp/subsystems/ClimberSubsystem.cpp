@@ -57,7 +57,7 @@ void ClimberSubsystem::ConfigureDefault(){
 
     //configure the limit switches to be closed by default
     m_extenderArm.ConfigForwardLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyClosed, 10);
-    m_extenderArm.ConfigReverseLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyClosed, 10);
+    m_extenderArm.ConfigReverseLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyOpen, 10);
 
     //10 ms period for PID
     m_extenderArm.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);

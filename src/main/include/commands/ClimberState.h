@@ -10,7 +10,7 @@
 
 class ClimberState : public frc2::CommandHelper<frc2::CommandBase, ClimberState>{
 public:
-    ClimberState(ClimberSubsystem* climberSubsystem, units::meter_t extenderDistance, units::radian_t rotatorAngle);
+    ClimberState(ClimberSubsystem* climberSubsystem, units::meter_t extenderDistance, units::radian_t rotatorAngle, bool disableArms = false);
 
     void Initialize() override;
 
@@ -25,4 +25,5 @@ private:
     
     units::meter_t m_extenderDistance;
     units::radian_t m_rotatorAngle;
+    bool m_disableRotator;
 };

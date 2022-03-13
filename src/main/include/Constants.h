@@ -62,7 +62,7 @@ const double EXTENDER_I = 0.0;
 const double EXTENDER_D = 0.0;
 const double EXTENDER_F = 0.05;
 
-const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.3_in;
+const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.5_in;
 const double EXTENDER_VELOCITY_THRESHOLD = 10;
 
 //Rotator PIDF
@@ -76,7 +76,7 @@ const double ROTATOR_RIGHT_I = 0.0;
 const double ROTATOR_RIGHT_D = 0.0;
 const double ROTATOR_RIGHT_F = 0.0;
 
-const units::radian_t ROTATOR_POSITION_THRESHOLD = 0.5_deg;
+const units::radian_t ROTATOR_POSITION_THRESHOLD = 2_deg;
 const double ROTATOR_VELOCITY_THRESHOLD = 10.0;
 
 // controller

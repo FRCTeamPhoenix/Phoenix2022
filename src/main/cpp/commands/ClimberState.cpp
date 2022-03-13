@@ -2,10 +2,11 @@
 
 #include <iostream>
 
-ClimberState::ClimberState(ClimberSubsystem* climberSubsystem, units::meter_t extenderDistance, units::radian_t rotatorAngle):
+ClimberState::ClimberState(ClimberSubsystem* climberSubsystem, units::meter_t extenderDistance, units::radian_t rotatorAngle, bool disableArms):
 m_climberSubsystem(climberSubsystem),
 m_extenderDistance(extenderDistance),
-m_rotatorAngle(rotatorAngle)
+m_rotatorAngle(rotatorAngle),
+m_disableRotator(disableArms)
 {
     AddRequirements(climberSubsystem);
 }
@@ -18,7 +19,10 @@ void ClimberState::Initialize(){
 
 void ClimberState::Execute(){
     m_climberSubsystem->SetExtenderDistance(m_extenderDistance);
-    m_climberSubsystem->SetRotatorAngle(m_rotatorAngle);
+    if(!m_disableRotator)
+        m_climberSubsystem->SetRotatorAngle(m_rotatorAngle);
+    else
+        m_climberSubsystem->SetRotatorSpeed(0.0);
 }
 
 void ClimberState::End(bool interrupted){
@@ -33,5 +37,6 @@ bool ClimberState::IsFinished(){
     bool rotatorPositionStopped = std::abs(m_climberSubsystem->GetLeftRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>()
     && std::abs(m_climberSubsystem->GetRightRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>();
     bool extenderPositionStopped = std::abs(m_climberSubsystem->GetExtenderDistance().to<double>() - m_extenderDistance.to<double>()) < EXTENDER_POSITION_THRESHOLD.to<double>();
-    return rotatorPositionStopped && extenderPositionStopped && rotatorVelocityStopped && extenderVelocityStopped;
+    return extenderVelocityStopped && extenderPositionStopped 
+    && ((rotatorVelocityStopped && rotatorPositionStopped) || m_disableRotator);
 }
