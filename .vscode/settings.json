@@ -16,9 +16,7 @@
   },
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "files.associations": {
-<<<<<<< HEAD
-    "*.inc": "cpp"
-=======
+    "*.inc": "cpp",
     "math": "cpp",
     "numbers": "cpp",
     "cmath": "cpp",
@@ -83,6 +81,5 @@
     "thread": "cpp",
     "cinttypes": "cpp",
     "typeinfo": "cpp"
->>>>>>> f53ac6bf4f9099b17bfa60a68e031fd8320f65f7
   }
 }
