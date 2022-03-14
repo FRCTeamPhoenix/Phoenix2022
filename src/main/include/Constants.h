@@ -80,6 +80,8 @@ const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
+const int BUMPER_L = 4;
+const int BUMPER_R = 5;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 // intake
