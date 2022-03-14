@@ -12,6 +12,7 @@
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/FunctionalCommand.h>
 
+#include "sensors/VisionCamera.h"
 #include "RobotContainer.h"
 #include "commands/DriveTeleop.h"
 #include "ControlBinding.h"
@@ -33,5 +34,7 @@ class Robot : public frc::TimedRobot {
   // doesn't have undefined behavior and potentially crash.
   frc2::Command* m_autonomousCommand = nullptr;
 
+  
+  VisionCamera m_vision;
   RobotContainer m_container;
 };

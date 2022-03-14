@@ -6,6 +6,11 @@
 
 #include <frc2/command/Command.h>
 
+#include "subsystems/DriveSubsystem.h"
+#include "commands/DriveTeleop.h"
+#include "commands/DriveDistance.h"
+#include <units/length.h>
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -24,4 +29,10 @@ class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   void ConfigureButtonBindings();
+  //subsystems
+  DriveSubsystem m_driveSubsystem;
+  
+  //commands
+  DriveTeleop m_driveTeleop{&m_driveSubsystem};
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
 };

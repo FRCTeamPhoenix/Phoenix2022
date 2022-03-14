@@ -32,4 +32,4 @@ private:
     frc::Timer m_timer;
     units::second_t m_lastExecute;
     units::radian_t m_heading;
-}; 
+};

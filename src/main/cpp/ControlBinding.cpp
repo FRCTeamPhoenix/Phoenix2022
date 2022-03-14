@@ -21,6 +21,7 @@ void ControlBinding::SetDefaultControls(){
       frc::Preferences::SetInt(CLIMBERUPKEY, 7);
     }  
 }
+
 //finds axis of named key
 double ControlBinding::GetAxis(std::string key){
   double axis = m_driveController.GetRawAxis(frc::Preferences::GetInt(key, 0));

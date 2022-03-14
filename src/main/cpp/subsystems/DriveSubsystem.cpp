@@ -122,4 +122,4 @@ void DriveSubsystem::AdjustSmoothing(int x){
     // will also probably want visual display of current smoothing
     m_frontLeft.ConfigMotionSCurveStrength(smoothing, 0);
     m_frontRight.ConfigMotionSCurveStrength(smoothing, 0);
-} 
+}

@@ -10,6 +10,13 @@
 #include <units/angle.h>
 #include <wpi/numbers>
 
+#include <units/length.h>
+#include <units/velocity.h>
+#include <units/acceleration.h>
+#include <units/time.h>
+#include <units/angle.h>
+#include <wpi/numbers>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -63,3 +70,5 @@ const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 static constexpr std::string_view LEFTKEY = "Left";
 static constexpr std::string_view RIGHTKEY = "Right";
 static constexpr std::string_view CLIMBERUPKEY = "ClimberUp";
+
+const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;

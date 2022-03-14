@@ -41,4 +41,4 @@ class DriveSubsystem : public frc2::SubsystemBase {
         WPI_TalonFX m_backRight {FALCON_BACK_RIGHT};
 
         int smoothing;
-}; 
+};
