@@ -37,12 +37,6 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  //cancel telop command
-  if(m_teleopCommand != nullptr){
-    m_teleopCommand->Cancel();
-    m_teleopCommand = nullptr;
-  }
-
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand != nullptr) {
@@ -61,18 +55,13 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
-
-  //start running the telop command
-  m_teleopCommand = m_container.GetTeleopCommand();
-  if(m_teleopCommand != nullptr){
-    m_teleopCommand->Schedule();
-  }
 }
 
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+}
 
 /**
  * This function is called periodically during test mode.

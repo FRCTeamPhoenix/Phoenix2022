@@ -88,6 +88,14 @@ const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
+//control panel
+const int CONTROL_PANEL_JOYSTICK = 2;
+const int LOWER_BUTTON = 0;
+const int RAISE_BUTTON = 1;
+const int START_AUTO_BUTTON = 2;
+const int CANCEL_AUTO_BUTTON = 3;
+const int ZERO_CLIMBER_BUTTON = 4;
+
 // climber
 const double MAX_EXTENDER_OUTPUT = 0.5;
 const double MAX_ROTATOR_OUTPUT = 0.5;

@@ -5,8 +5,11 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include <frc2/command/InstantCommand.h>
 #include <frc2/command/ParallelCommandGroup.h>
 #include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/button/JoystickButton.h>
+#include <frc/Joystick.h>
 
 #include "subsystems/DriveSubsystem.h"
 #include "subsystems/ClimberSubsystem.h"
@@ -28,12 +31,16 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::Command* GetTeleopCommand();
-
   frc2::Command* GetAutonomousCommand();
 
  private:
   // The robot's subsystems and commands are defined here...
+  frc::Joystick m_controlPanel{CONTROL_PANEL_JOYSTICK};
+  frc2::JoystickButton m_lowerButton{&m_controlPanel, LOWER_BUTTON};
+  frc2::JoystickButton m_raiseButton{&m_controlPanel, RAISE_BUTTON};
+  frc2::JoystickButton m_autoButton{&m_controlPanel, START_AUTO_BUTTON};
+  frc2::JoystickButton m_cancelAutoButton{&m_controlPanel, CANCEL_AUTO_BUTTON};
+  frc2::JoystickButton m_zeroButton{&m_controlPanel, ZERO_CLIMBER_BUTTON};
 
   void ConfigureButtonBindings();
   //subsystems
@@ -41,12 +48,16 @@ class RobotContainer {
   ClimberSubsystem m_climberSubsystem;
   
   //commands
-  //used to sequence both teleop commands at once to not interfere with climber (yuck)
-  frc2::ParallelCommandGroup m_teleopCommand{DriveTeleop(&m_driveSubsystem), OperatorTeleop{&m_climberSubsystem}};
+  DriveTeleop m_driveTeleop{&m_driveSubsystem};
 
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
+
+  //default position
+  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 0_deg};
   //height for the starting position is 19.5 in
+  ClimberState m_raiseClimber{&m_climberSubsystem, 19.5_in, 0_deg};
+
   //assume the extender is currently latched on, but the robot is on the floor and the rotators are directly up
   frc2::SequentialCommandGroup m_climberRoutine{
     //pull down and move the rotators back
@@ -88,4 +99,7 @@ class RobotContainer {
     //extend slightly to latch rotators -- THIRD RUNG LATCHED --
     ClimberState(&m_climberSubsystem, 2_in, 35_deg)
   };
+
+  //inline commands for some of the buttons
+  frc2::InstantCommand m_zeroClimber{[this] { m_climberSubsystem.ZeroRotatorEncoders(); m_climberSubsystem.ZeroExtenderEncoders();}, {&m_climberSubsystem}};
 };

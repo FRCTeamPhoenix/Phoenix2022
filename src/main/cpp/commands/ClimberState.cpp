@@ -27,6 +27,11 @@ void ClimberState::Execute(){
 
 void ClimberState::End(bool interrupted){
     //Once again, do NOT modify the output as a constant motor speed must be applied to overcome gravity (adjust _F value in Constants)
+    if(interrupted){
+        //this command was most likely emergency stopped, try maintaining current position
+        m_climberSubsystem->SetRotatorAngle((m_climberSubsystem->GetLeftRotatorAngle() + m_climberSubsystem->GetRightRotatorAngle()) / 2.0);
+        m_climberSubsystem->SetExtenderDistance(m_climberSubsystem->GetExtenderDistance());
+    }
     std::cout << "Climber state complete" << std::endl;
 }
 
