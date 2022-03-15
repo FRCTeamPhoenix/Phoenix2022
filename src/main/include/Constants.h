@@ -80,8 +80,8 @@ const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
-const int BUMPER_L = 4;
-const int BUMPER_R = 5;
+const int BUMPER_L = 5;
+const int BUMPER_R = 6;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 // intake
@@ -89,6 +89,8 @@ const double TALON_TO_ARM_RATIO = 64.0;
 const double ARM_P = 0.001;
 const double ARM_I = 0;
 const double ARM_D = 0;
+const double INTAKE_WRIST_SPEED = 0.4;
+const double INTAKE_SPEED = 0.3;
 
 // climber
 const units::meter_t DISTANCE_PER_EXTENDER_REVOLUTION = 3.13_in;

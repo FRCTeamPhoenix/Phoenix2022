@@ -14,14 +14,9 @@ void OperatorTeleop::Initialize(){
 }
 
 void OperatorTeleop::Execute(){
-    frc::SmartDashboard::PutNumber("Arm Scale", arm_scale);
-    frc::SmartDashboard::PutNumber("Wrist Scale", wrist_scale);
-    frc::SmartDashboard::PutBoolean("Invert Arm", invert_arm);
-    frc::SmartDashboard::PutBoolean("Invert Arm", invert_arm);
-    frc::SmartDashboard::PutBoolean("Invert Intake", invert_intake);
-    m_intakeSubsystem->SetArmSpeed(m_operatorJoystick.GetRawAxis(LEFTSTICK_Y) * arm_scale * (invert_arm ? -1 : 1));
-    m_intakeSubsystem->SetWristSpeed(m_operatorJoystick.GetRawAxis(RIGHTSTICK_Y) * wrist_scale * (invert_wrist ? -1 : 1));
-    m_intakeSubsystem->SetIntakeSpeed((m_operatorJoystick.GetRawButton(BUMPER_L) - m_operatorJoystick.GetRawButton(BUMPER_R)) * (invert_intake ? -1 : 1));
+    m_intakeSubsystem->SetArmSpeed(-m_operatorJoystick.GetRawAxis(LEFTSTICK_Y));
+    m_intakeSubsystem->SetWristSpeed(-m_operatorJoystick.GetRawAxis(RIGHTSTICK_Y) * INTAKE_WRIST_SPEED);
+    m_intakeSubsystem->SetIntakeSpeed((m_operatorJoystick.GetRawButton(BUMPER_L) - m_operatorJoystick.GetRawButton(BUMPER_R)) * INTAKE_SPEED);
 }
 
 void OperatorTeleop::End(bool interrupted){

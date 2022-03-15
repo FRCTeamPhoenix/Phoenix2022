@@ -10,10 +10,28 @@ IntakeSubsystem::IntakeSubsystem(){
 void IntakeSubsystem::ConfigureDefault(){
     m_intake.ConfigFactoryDefault();
     m_intakeWrist.ConfigFactoryDefault();
+
+    //choose direction (going right way?)
+    m_intake.SetInverted(true);
+    m_intakeWrist.SetInverted(true);
+    m_intakeArm.SetInverted(false);
+
+    //output limits
+    m_intake.ConfigNominalOutputForward(0.0, 10);
+    m_intake.ConfigNominalOutputReverse(0.0, 10);
+    m_intake.ConfigPeakOutputForward(1.0, 10);
+    m_intake.ConfigPeakOutputReverse(-1.0, 10);
+    m_intakeWrist.ConfigNominalOutputForward(0.0, 10);
+    m_intakeWrist.ConfigNominalOutputReverse(0.0, 10);
+    m_intakeWrist.ConfigPeakOutputForward(1.0, 10);
+    m_intakeWrist.ConfigPeakOutputReverse(-1.0, 10);
+
+    //make bot resist motion
+    m_intakeWrist.SetNeutralMode(NeutralMode::Brake);
 }
 
 void IntakeSubsystem::SetArmSpeed(double speed){
-    m_intake.Set(ControlMode::PercentOutput, speed);
+    m_intakeArm.Set(speed);
 }
 
 void IntakeSubsystem::SetWristSpeed(double speed){

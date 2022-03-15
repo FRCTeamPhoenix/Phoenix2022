@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Constants.h"
-#include "subsystems/ClimberSubsystem.h"
 #include "subsystems/IntakeSubsystem.h"
 
 #include <frc2/command/CommandHelper.h>
@@ -23,13 +22,6 @@ public:
     bool IsFinished() override;
 
 private:
-    ClimberSubsystem* m_climberSubsystem;
-    frc::Joystick m_operatorJoystick{OPERATOR_JOYSTICK};
     IntakeSubsystem* m_intakeSubsystem;
     frc::Joystick m_operatorJoystick{OPERATOR_JOYSTICK};
-    int arm_scale = 1;
-    int wrist_scale = 1;
-    bool invert_arm = false;
-    bool invert_wrist = true;
-    bool invert_intake = true;
 };

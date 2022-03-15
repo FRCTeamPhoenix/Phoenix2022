@@ -37,8 +37,8 @@ class IntakeSubsystem : public frc2::SubsystemBase {
         units::radian_t WristTicksToAngle(double ticks);
         double WristAngleToTicks(units::radian_t angle);
 
-        // frc::Spark m_intakeArm{SPARK_ARM};
+        //1 because brushless
         rev::CANSparkMax m_intakeArm{SPARK_ARM, rev::CANSparkMaxLowLevel::MotorType{1}};
         WPI_TalonSRX m_intakeWrist{TALON_WRIST};
-        WPI_TalonSRX m_intake{TALON_INTAKE};
+        WPI_VictorSPX m_intake{TALON_INTAKE};
 };
