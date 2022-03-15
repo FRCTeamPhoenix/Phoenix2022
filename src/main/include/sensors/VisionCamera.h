@@ -9,5 +9,6 @@ class VisionCamera{
         void Start();
 
     private:
-        static void VisionThread();
+        static void VisionThreadInitial();
+        static void BallDetection();
 };
