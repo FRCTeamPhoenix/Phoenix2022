@@ -28,8 +28,8 @@ private:
     int arm_scale = 1;
     int wrist_scale = 1;
     bool invert_arm = false;
-    bool invert_wrist = false;
-    bool invert_intake = false;
+    bool invert_wrist = true;
+    bool invert_intake = true;
     // units::radian_t angle;
     // frc2::PIDController m_pidController{ARM_P, ARM_I, ARM_D};
 };
