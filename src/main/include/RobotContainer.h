@@ -6,6 +6,7 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/InstantCommand.h>
+#include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ParallelCommandGroup.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/button/JoystickButton.h>
@@ -55,8 +56,8 @@ class RobotContainer {
 
   //default position
   ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 0_deg};
-  //height for the starting position is 19.5 in
-  ClimberState m_raiseClimber{&m_climberSubsystem, 19.5_in, 0_deg};
+  //height for the starting position is 20 in
+  ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 0_deg};
 
   //assume the extender is currently latched on, but the robot is on the floor and the rotators are directly up
   frc2::SequentialCommandGroup m_climberRoutine{
@@ -65,41 +66,47 @@ class RobotContainer {
     //move the rotators in place
     ClimberState(&m_climberSubsystem, 0_in, 35_deg),
     //extend slightly to latch rotators -- FIRST RUNG LATCHED --
-    ClimberState(&m_climberSubsystem, 2_in, 35_deg),
+    ClimberState(&m_climberSubsystem, 2.5_in, 35_deg),
     //rotate forwards (tilts bot backwards)
-    ClimberState(&m_climberSubsystem, 2_in, 64_deg),
+    ClimberState(&m_climberSubsystem, 2.5_in, 64_deg),
     //extend to first traversal bar
-    ClimberState(&m_climberSubsystem, 24_in, 64_deg),
+    ClimberState(&m_climberSubsystem, 24.5_in, 64_deg),
     //rotate backwards
-    ClimberState(&m_climberSubsystem, 24_in, 54_deg),
+    ClimberState(&m_climberSubsystem, 24.5_in, 54_deg),
     //latch extender
-    ClimberState(&m_climberSubsystem, 4_in, 54_deg, true),
+    ClimberState(&m_climberSubsystem, 4.5_in, 54_deg, true),
     //rotate backwards
-    ClimberState(&m_climberSubsystem, 4_in, 30_deg),
+    ClimberState(&m_climberSubsystem, 4.5_in, 30_deg),
     //retract extender
     ClimberState(&m_climberSubsystem, 0_in, 30_deg),
     //move the rotators in place
     ClimberState(&m_climberSubsystem, 0_in, 35_deg),
     //extend slightly to latch rotators -- SECOND RUNG LATCHED --
-    ClimberState(&m_climberSubsystem, 2_in, 35_deg),
+    ClimberState(&m_climberSubsystem, 2.5_in, 35_deg),
     //rotate forwards (tilts bot backwards)
-    ClimberState(&m_climberSubsystem, 2_in, 64_deg),
+    ClimberState(&m_climberSubsystem, 2.5_in, 64_deg),
     //extend to third traversal bar
-    ClimberState(&m_climberSubsystem, 24_in, 64_deg),
-    //rotate backwards
-    ClimberState(&m_climberSubsystem, 24_in, 54_deg),
+    ClimberState(&m_climberSubsystem, 24.5_in, 64_deg),
+    //rotate backward
+    ClimberState(&m_climberSubsystem, 24.5_in, 54_deg),
     //latch extender
-    ClimberState(&m_climberSubsystem, 4_in, 54_deg, true),
+    ClimberState(&m_climberSubsystem, 4.5_in, 54_deg, true),
     //rotate backwards
-    ClimberState(&m_climberSubsystem, 4_in, 30_deg),
+    ClimberState(&m_climberSubsystem, 4.5_in, 30_deg),
     //retract extender
     ClimberState(&m_climberSubsystem, 0_in, 30_deg),
     //move the rotators in place
     ClimberState(&m_climberSubsystem, 0_in, 35_deg),
     //extend slightly to latch rotators -- THIRD RUNG LATCHED --
-    ClimberState(&m_climberSubsystem, 2_in, 35_deg)
+    ClimberState(&m_climberSubsystem, 2.5_in, 35_deg)
   };
 
   //inline commands for some of the buttons
-  frc2::InstantCommand m_zeroClimber{[this] { m_climberSubsystem.ZeroRotatorEncoders(); m_climberSubsystem.ZeroExtenderEncoders();}, {&m_climberSubsystem}};
+  frc2::FunctionalCommand m_zeroClimber{
+    [this] {},
+    [this] { m_climberSubsystem.SetExtenderSpeed(-0.2); },
+    [this] (bool interrupted) { m_climberSubsystem.ZeroRotatorEncoders(); m_climberSubsystem.ZeroExtenderEncoders();},
+    [this] {return m_climberSubsystem.GetBottomExtenderLimit();},
+    {&m_climberSubsystem}
+  };
 };

@@ -44,6 +44,10 @@ class ClimberSubsystem : public frc2::SubsystemBase {
         units::radian_t RotatorTicksToDegrees(double ticks);
 
         double RotatorDegreesToTicks(units::radian_t degrees);
+
+        bool GetBottomExtenderLimit();
+
+        bool GetTopExtenderLimit();
     private:
         WPI_TalonFX m_extenderArm{FALCON_EXTENDING_ARM};
         WPI_TalonSRX m_leftRotator{TALON_LEFT_ROTATOR};

@@ -57,7 +57,7 @@ void ClimberSubsystem::ConfigureDefault(){
 
     //configure the limit switches to be closed by default
     m_extenderArm.ConfigForwardLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyClosed, 10);
-    m_extenderArm.ConfigReverseLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyOpen, 10);
+    m_extenderArm.ConfigReverseLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyClosed, 10);
 
     //10 ms period for PID
     m_extenderArm.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
@@ -176,4 +176,14 @@ units::radian_t ClimberSubsystem::RotatorTicksToDegrees(double ticks){
 
 double ClimberSubsystem::RotatorDegreesToTicks(units::radian_t degrees){
     return degrees / 360_deg * TALON_TICKS_PER_ROTATION * TALON_TO_ROTATOR_RATIO;   
+}
+
+bool ClimberSubsystem::GetBottomExtenderLimit(){
+    //normally closed so if open its triggered
+    return (!m_extenderArm.IsRevLimitSwitchClosed());
+}
+
+bool ClimberSubsystem::GetTopExtenderLimit(){
+    //normally closed so if open its triggered
+    return (!m_extenderArm.IsFwdLimitSwitchClosed());
 }
