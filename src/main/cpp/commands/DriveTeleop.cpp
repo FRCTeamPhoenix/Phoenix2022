@@ -16,7 +16,7 @@ void DriveTeleop::Initialize(){
 
 void DriveTeleop::Execute(){
     //Up should be +1 and right should be 1
-    double leftStickY = -m_driveJoystick.GetRawAxis(LEFTSTICK_Y) * DRIVETRAIN_SCALING;
+    double leftStickY = -m_driveJoystick.GetRawAxis(LEFTSTICK_Y) * DRIVETRAIN_SPEED_MULTIPLIER;
     double rightStickX = -m_driveJoystick.GetRawAxis(RIGHTSTICK_X);
 
     //deadzones

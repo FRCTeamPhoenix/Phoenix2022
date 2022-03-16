@@ -24,7 +24,7 @@
 // settings
 enum class Scaling {NONE, ROOT, QUADRATIC, CUBIC};
 const Scaling DRIVETRAIN_SCALING = Scaling::ROOT;
-const double SPEED_MULTIPLIER = 0.6;
+const double DRIVETRAIN_SPEED_MULTIPLIER = 0.6;
 const double TURN_PERCENT = 0.6;
 
 // motor ids
@@ -49,7 +49,7 @@ const double WHEEL_TO_FALCON_RATIO = 12.0;
 
 //16 ft/s and 16 ft/s^2
 const units::meters_per_second_t CRUISE_VELOCITY =  8_fps;
-const units::meters_per_second_squared_t CRUISE_ACCELERATION = 12_fps / 1_s;
+const units::meters_per_second_squared_t CRUISE_ACCELERATION = 8_fps / 1_s;
 
 const units::meter_t DISTANCE_THRESHOLD = 2_in;
 
@@ -110,7 +110,8 @@ const double ARM_P = 0.001;
 const double ARM_I = 0;
 const double ARM_D = 0;
 const double INTAKE_WRIST_SPEED = 0.4;
-const double INTAKE_SPEED = 0.3;
+const double INTAKE_SPEED = 0.6;
+const double INTAKE_ARM_SPEED = 0.4;
 
 // climber
 const double MAX_EXTENDER_OUTPUT = 0.5;
