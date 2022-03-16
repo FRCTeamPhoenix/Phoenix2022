@@ -14,6 +14,7 @@ RobotContainer::RobotContainer() {
   frc::SmartDashboard::SetDefaultNumber("Target Angle", 0.0);
 
   m_driveSubsystem.SetDefaultCommand(std::move(m_driveTeleop));
+  m_intakeSubsystem.SetDefaultCommand(std::move(m_operatorTeleop));
 
   // Configure the button bindings
   ConfigureButtonBindings();

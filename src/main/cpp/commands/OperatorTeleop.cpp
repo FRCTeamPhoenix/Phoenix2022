@@ -1,18 +1,28 @@
 #include "commands/OperatorTeleop.h"
-#include <iostream>
+#include <frc/smartdashboard/SmartDashboard.h>
 
-OperatorTeleop::OperatorTeleop(){
+
+OperatorTeleop::OperatorTeleop(IntakeSubsystem* IntakeSubsystem):
+m_intakeSubsystem(IntakeSubsystem){
+    AddRequirements(IntakeSubsystem);
 }
 
 void OperatorTeleop::Initialize(){
-    std::cout << "Started operator teleop" << std::endl;
+    m_intakeSubsystem->SetArmSpeed(0.0);
+    m_intakeSubsystem->SetWristSpeed(0.0);
+    m_intakeSubsystem->SetIntakeSpeed(0.0);
 }
 
 void OperatorTeleop::Execute(){
+    m_intakeSubsystem->SetArmSpeed(-m_operatorJoystick.GetRawAxis(LEFTSTICK_Y));
+    m_intakeSubsystem->SetWristSpeed(-m_operatorJoystick.GetRawAxis(RIGHTSTICK_Y) * INTAKE_WRIST_SPEED);
+    m_intakeSubsystem->SetIntakeSpeed((m_operatorJoystick.GetRawButton(BUMPER_L) - m_operatorJoystick.GetRawButton(BUMPER_R)) * INTAKE_SPEED);
 }
 
 void OperatorTeleop::End(bool interrupted){
-    std::cout << "Ended operator teleop" << std::endl;
+    m_intakeSubsystem->SetArmSpeed(0.0);
+    m_intakeSubsystem->SetWristSpeed(0.0);
+    m_intakeSubsystem->SetIntakeSpeed(0.0);
 }
 
 bool OperatorTeleop::IsFinished(){

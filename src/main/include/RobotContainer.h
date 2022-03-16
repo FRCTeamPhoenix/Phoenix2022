@@ -14,6 +14,7 @@
 
 #include "subsystems/DriveSubsystem.h"
 #include "subsystems/ClimberSubsystem.h"
+#include "subsystems/IntakeSubsystem.h"
 #include "commands/DriveTeleop.h"
 #include "commands/OperatorTeleop.h"
 #include "commands/DriveDistance.h"
@@ -47,10 +48,11 @@ class RobotContainer {
   //subsystems
   DriveSubsystem m_driveSubsystem;
   ClimberSubsystem m_climberSubsystem;
+  IntakeSubsystem m_intakeSubsystem;
   
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
-
+  OperatorTeleop m_operatorTeleop{&m_intakeSubsystem};
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
 

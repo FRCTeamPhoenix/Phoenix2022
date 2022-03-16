@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Constants.h"
+#include "subsystems/IntakeSubsystem.h"
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/CommandBase.h>
@@ -10,7 +11,7 @@
 
 class OperatorTeleop : public frc2::CommandHelper<frc2::CommandBase, OperatorTeleop>{
 public:
-    OperatorTeleop();
+    OperatorTeleop(IntakeSubsystem* intakeSubsystem);
 
     void Initialize() override;
 
@@ -21,5 +22,6 @@ public:
     bool IsFinished() override;
 
 private:
+    IntakeSubsystem* m_intakeSubsystem;
     frc::Joystick m_operatorJoystick{OPERATOR_JOYSTICK};
 };

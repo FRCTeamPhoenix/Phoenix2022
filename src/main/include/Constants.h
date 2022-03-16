@@ -37,6 +37,11 @@ const int FALCON_EXTENDING_ARM = 5;
 const int TALON_LEFT_ROTATOR = 6;
 const int TALON_RIGHT_ROTATOR = 7;
 
+const int SPARK_ARM = 8;
+const int TALON_INTAKE = 9;
+const int TALON_WRIST = 10;
+
+
 // wheel information
 const units::meter_t WHEEL_DIAMETER = 4_in;
 const double FALCON_TICKS_PER_ROTATION = 2048.0;
@@ -87,6 +92,8 @@ const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
+const int BUMPER_L = 5;
+const int BUMPER_R = 6;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 //control panel
@@ -96,6 +103,14 @@ const int RAISE_BUTTON = 2;
 const int START_AUTO_BUTTON = 3;
 const int CANCEL_AUTO_BUTTON = 4;
 const int ZERO_CLIMBER_BUTTON = 5;
+
+// intake
+const double TALON_TO_ARM_RATIO = 64.0;
+const double ARM_P = 0.001;
+const double ARM_I = 0;
+const double ARM_D = 0;
+const double INTAKE_WRIST_SPEED = 0.4;
+const double INTAKE_SPEED = 0.3;
 
 // climber
 const double MAX_EXTENDER_OUTPUT = 0.5;
