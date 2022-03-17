@@ -26,6 +26,7 @@ public:
 private:
     DriveSubsystem* m_driveSubsystem;
     frc::Joystick m_driveJoystick{DRIVE_JOYSTICK};
+<<<<<<< HEAD
 
     frc::PIDController m_turnController{TURN_P, TURN_I, TURN_D};
 
@@ -33,3 +34,6 @@ private:
     units::second_t m_lastExecute;
     units::radian_t m_heading;
 };
+=======
+};
+>>>>>>> 14fab95331de3d83627fba40536c7a0c7c63335b

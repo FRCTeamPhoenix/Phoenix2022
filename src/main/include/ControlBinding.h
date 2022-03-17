@@ -12,7 +12,7 @@
 
 
 class ControlBinding {
-    public:
+public:
 
     static ControlBinding* GetInstance() {
         static ControlBinding instance;
@@ -24,16 +24,14 @@ class ControlBinding {
     ControlBinding();
     void Initialize();	
 
+    double GetAxis(std::string key, bool opController);
+    bool GetButton(std::string key, bool opController);
+
+private:
     //set controller port names
     frc::GenericHID m_driveController{0};
     frc::GenericHID m_supportController{1};
 
-
-    double GetAxis(std::string key);
-    bool GetButton(std::string key);
-
-    private:
-    
     void SetDefaultControls();
 
 }; 

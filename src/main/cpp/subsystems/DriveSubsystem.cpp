@@ -28,15 +28,15 @@ void DriveSubsystem::ConfigureDefault(){
 
     //make the motors go in the arbitrary forward direction
     m_frontLeft.SetInverted(true);
-    m_backLeft.SetInverted(true);
+    m_backLeft.SetInverted(InvertType::FollowMaster);
     m_frontRight.SetInverted(false);
-    m_backRight.SetInverted(false);
+    m_backRight.SetInverted(InvertType::FollowMaster);
 
     //set the sensor type to an integrated sensor (falcon 500s have integrated)
     m_frontLeft.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
     m_frontRight.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 10);
 
-    //10 ms period
+    //10 ms period for pid
     m_frontLeft.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
     m_frontRight.SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, 10);
     m_frontLeft.SetStatusFramePeriod(StatusFrameEnhanced::Status_13_Base_PIDF0, 10, 10);
@@ -105,11 +105,11 @@ units::meter_t DriveSubsystem::GetAverageDistance(){
 }
 
 units::meter_t DriveSubsystem::TicksToDistance(double ticks){
-    return ticks / TICKS_PER_ROTATION  / WHEEL_TO_FALCON_RATIO * wpi::numbers::pi * WHEEL_DIAMETER;
+    return ticks / FALCON_TICKS_PER_ROTATION  / WHEEL_TO_FALCON_RATIO * wpi::numbers::pi * WHEEL_DIAMETER;
 }
 
 double DriveSubsystem::DistanceToTicks(units::meter_t distance){
-    return distance / wpi::numbers::pi / WHEEL_DIAMETER * TICKS_PER_ROTATION * WHEEL_TO_FALCON_RATIO;
+    return distance / wpi::numbers::pi / WHEEL_DIAMETER * FALCON_TICKS_PER_ROTATION * WHEEL_TO_FALCON_RATIO;
 }
 
 void DriveSubsystem::AdjustSmoothing(int x){

@@ -30,6 +30,7 @@
 // settings
 enum class Scaling {NONE, ROOT, QUADRATIC, CUBIC};
 const Scaling DRIVETRAIN_SCALING = Scaling::ROOT;
+const double DRIVETRAIN_SPEED_MULTIPLIER = 0.6;
 const double TURN_PERCENT = 0.6;
 
 // motor ids
@@ -38,18 +39,27 @@ const int FALCON_FRONT_RIGHT = 2;
 const int FALCON_BACK_LEFT = 3;
 const int FALCON_BACK_RIGHT = 4;
 
+const int FALCON_EXTENDING_ARM = 5;
+const int TALON_LEFT_ROTATOR = 6;
+const int TALON_RIGHT_ROTATOR = 7;
+
+const int SPARK_ARM = 8;
+const int TALON_INTAKE = 9;
+const int TALON_WRIST = 10;
+
+
 // wheel information
 const units::meter_t WHEEL_DIAMETER = 4_in;
-const double TICKS_PER_ROTATION = 2048.0;
+const double FALCON_TICKS_PER_ROTATION = 2048.0;
 const double WHEEL_TO_FALCON_RATIO = 12.0;
 
 //16 ft/s and 16 ft/s^2
 const units::meters_per_second_t CRUISE_VELOCITY =  8_fps;
-const units::meters_per_second_squared_t CRUISE_ACCELERATION = 12_fps / 1_s;
+const units::meters_per_second_squared_t CRUISE_ACCELERATION = 8_fps / 1_s;
 
 const units::meter_t DISTANCE_THRESHOLD = 2_in;
 
-// PIDF values
+// PIDF drivetrain values
 const double DRIVETRAIN_DISTANCE_P = 0.55;
 const double DRIVETRAIN_DISTANCE_I = 0.0;
 const double DRIVETRAIN_DISTANCE_D = 0.0;
@@ -58,17 +68,81 @@ const double TURN_P = 0.0;
 const double TURN_I = 0.0;
 const double TURN_D = 0.0;
 
+//Extender PIDF
+const double EXTENDER_P = 0.28;
+const double EXTENDER_I = 0.0;
+const double EXTENDER_D = 0.0;
+const double EXTENDER_F = 0.05;
+
+const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.5_in;
+const double EXTENDER_VELOCITY_THRESHOLD = 10;
+
+//Rotator PIDF
+const double ROTATOR_LEFT_P = 3.2;
+const double ROTATOR_LEFT_I = 0.0;
+const double ROTATOR_LEFT_D = 0.0;
+const double ROTATOR_LEFT_F = 0.0;
+
+const double ROTATOR_RIGHT_P = 3.2;
+const double ROTATOR_RIGHT_I = 0.0;
+const double ROTATOR_RIGHT_D = 0.0;
+const double ROTATOR_RIGHT_F = 0.0;
+
+const units::radian_t ROTATOR_POSITION_THRESHOLD = 2_deg;
+const double ROTATOR_VELOCITY_THRESHOLD = 10.0;
+
 // controller
 const int DRIVE_JOYSTICK = 0;
+const int OPERATOR_JOYSTICK = 1;
 const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
-const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 //control binding
-static constexpr std::string_view LEFTKEY = "Left";
-static constexpr std::string_view RIGHTKEY = "Right";
-static constexpr std::string_view CLIMBERUPKEY = "ClimberUp";
+namespace controls{
+    const std::string FORWARDAXIS = "FORWARD";
+    const std::string TURNAXIS = "TURN";
+    const std::string ARMAXIS = "ARM";
+    const std::string WRISTAXIS = "WRIST";
+    const std::string INTAKEINBUTTON = "INTAKEIN";
+    const std::string INTAKEOUTBUTTOn = "INTAKEOUT";
+}
 
+const int BUMPER_L = 5;
+const int BUMPER_R = 6;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
+
+//control panel
+const int CONTROL_PANEL_JOYSTICK = 2;
+const int LOWER_BUTTON = 1;
+const int RAISE_BUTTON = 2;
+const int START_AUTO_BUTTON = 3;
+const int CANCEL_AUTO_BUTTON = 4;
+const int ZERO_CLIMBER_BUTTON = 5;
+
+// intake
+const double TALON_TO_ARM_RATIO = 64.0;
+const double ARM_P = 0.001;
+const double ARM_I = 0;
+const double ARM_D = 0;
+const double INTAKE_WRIST_SPEED = 0.4;
+const double INTAKE_SPEED = 0.6;
+const double INTAKE_ARM_SPEED = 0.4;
+
+// climber
+const double MAX_EXTENDER_OUTPUT = 0.5;
+const double MAX_ROTATOR_OUTPUT = 0.5;
+const units::meter_t EXTENDER_SPROCKET_DIAMETER = 1.79_in;
+const double TALON_TICKS_PER_ROTATION = 4096.0;
+const double FALCON_TO_EXTENDER_RATIO = 36.0;
+const double TALON_TO_ROTATOR_RATIO = 44.0 / 15.0;
+const units::radian_t MIN_ROTATION = 0_deg;
+const units::radian_t MAX_ROTATION = 170_deg;
+const units::meter_t MIN_EXTEND = 0_in;
+const units::meter_t MAX_EXTEND = 15_in;
+const units::meters_per_second_t EXTENDER_VELOCITY = 2_fps;
+const units::meters_per_second_squared_t EXTENDER_ACCELERATION = 4_fps / 1_s;
+const auto ROTATOR_VELOCITY = 90_deg / 1_s;
+const auto ROTATOR_ACCELERATION = 90_deg / 1_s / 1_s;
+

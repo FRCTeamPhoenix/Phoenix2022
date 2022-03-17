@@ -6,28 +6,19 @@
 #include <cmath>
 
 DriveTeleop::DriveTeleop(DriveSubsystem* driveSubsystem) :
- m_driveSubsystem(driveSubsystem),
- m_heading(0_rad){
+ m_driveSubsystem(driveSubsystem){
      AddRequirements(m_driveSubsystem);
 }
 
 void DriveTeleop::Initialize(){
-    m_heading = 0_deg;
     m_driveSubsystem->TankDrive(0.0, 0.0);
-    m_timer.Start();
     m_driveSubsystem->ZeroEncoders();
-    m_lastExecute = m_timer.Get();
 }
 
 void DriveTeleop::Execute(){
-    //calculate delta time
-    units::second_t currentTime = m_timer.Get();
-    units::second_t deltaTime = currentTime - m_lastExecute;
-    m_lastExecute = currentTime;
-
     //Up should be +1 and right should be 1
-    double leftStickY = -ControlBinding::GetInstance()->GetAxis("LeftKey");
-    double rightStickX = -ControlBinding::GetInstance()->GetAxis("RightKey");
+    double leftStickY = -ControlBinding::GetInstance()->GetAxis("Forward");
+    double rightStickX = -ControlBinding::GetInstance()->GetAxis("Turn");
 
     //deadzones
     if(std::abs(leftStickY) <= 0.0001){
@@ -55,12 +46,11 @@ void DriveTeleop::Execute(){
             leftStickY = leftStickY * std::sqrt(std::abs(leftStickY));
             rightStickX = rightStickX * std::sqrt(std::abs(rightStickX));
             break;
+        default:
+            break;
     }
         
     rightStickX *= TURN_PERCENT;
-
-    //update heading (use if gyro mounted)
-    m_heading += rightStickX * TURN_RATE * deltaTime;
 
     double leftSide = leftStickY - rightStickX;
     double rightSide = leftStickY + rightStickX;
@@ -79,7 +69,6 @@ void DriveTeleop::Execute(){
 }
 
 void DriveTeleop::End(bool interrupted){
-    m_timer.Stop();
     m_driveSubsystem->TankDrive(0.0, 0.0);
 }
 
