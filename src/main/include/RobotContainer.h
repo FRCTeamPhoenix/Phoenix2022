@@ -8,8 +8,11 @@
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ParallelCommandGroup.h>
+#include <frc2/command/ParallelRaceGroup.h>
+#include <frc2/command/RunCommand.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/button/JoystickButton.h>
+#include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Joystick.h>
 
 #include "subsystems/DriveSubsystem.h"
@@ -53,7 +56,28 @@ class RobotContainer {
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
   OperatorTeleop m_operatorTeleop{&m_intakeSubsystem};
-  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 8_ft);
+
+  //forward, backward then shoot
+  frc2::SequentialCommandGroup m_oneBallCommand{
+    frc2::ParallelRaceGroup{
+      frc2::RunCommand{
+        [this] {m_intakeSubsystem.SetArmSpeed(0.2); m_intakeSubsystem.SetWristSpeed(0.2); },
+        {&m_intakeSubsystem}
+      },
+      frc2::SequentialCommandGroup{
+        DriveDistance(&m_driveSubsystem, 8_ft),
+        DriveDistance(&m_driveSubsystem, -13_ft),
+      }
+    },
+    frc2::RunCommand{
+      [this] {m_intakeSubsystem.SetArmSpeed(0.2); m_intakeSubsystem.SetWristSpeed(0.2);m_intakeSubsystem.SetIntakeSpeed(1.0);},
+      {&m_intakeSubsystem}
+    }
+  };
+
+  frc::SendableChooser<frc2::Command*> m_autoChooser;
+
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
 
   //default position
