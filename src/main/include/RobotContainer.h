@@ -104,11 +104,13 @@ class RobotContainer {
   };
 
   //inline commands for some of the buttons
-  frc2::FunctionalCommand m_zeroClimber{
-    [this] {},
-    [this] { m_climberSubsystem.SetExtenderSpeed(-0.2); },
-    [this] (bool interrupted) { m_climberSubsystem.ZeroRotatorEncoders(); m_climberSubsystem.ZeroExtenderEncoders();},
-    [this] {return m_climberSubsystem.GetBottomExtenderLimit();},
+  frc2::InstantCommand m_zeroHeld{
+    [this] { m_climberSubsystem.SetExtenderSpeed(-0.2); m_climberSubsystem.SetRotatorSpeed(-0.1);},
+    {&m_climberSubsystem}
+  };
+
+  frc2::InstantCommand m_zeroReleased{
+    [this] { m_climberSubsystem.ZeroExtenderEncoders(); m_climberSubsystem.ZeroRotatorEncoders(); },
     {&m_climberSubsystem}
   };
 };

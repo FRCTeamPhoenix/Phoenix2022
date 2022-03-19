@@ -26,7 +26,7 @@ void RobotContainer::ConfigureButtonBindings() {
   m_raiseButton.CancelWhenPressed(&m_defaultClimberState).CancelWhenPressed(&m_climberRoutine).WhenPressed(&m_raiseClimber);
   m_autoButton.CancelWhenPressed(&m_raiseClimber).CancelWhenPressed(&m_defaultClimberState).WhenPressed(&m_climberRoutine);
   m_cancelAutoButton.CancelWhenPressed(&m_raiseClimber).CancelWhenPressed(&m_defaultClimberState).CancelWhenPressed(&m_climberRoutine);
-  m_zeroButton.WhenPressed(&m_zeroClimber);
+  m_zeroButton.WhileHeld(&m_zeroHeld).WhenReleased(&m_zeroReleased);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
