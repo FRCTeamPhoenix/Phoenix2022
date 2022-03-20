@@ -111,7 +111,7 @@ const double ARM_I = 0;
 const double ARM_D = 0;
 const double INTAKE_WRIST_SPEED = 0.4;
 const double INTAKE_SPEED = 0.6;
-const double INTAKE_ARM_SPEED = 0.4;
+const double INTAKE_ARM_SPEED = 1.0;
 
 // climber
 const double MAX_EXTENDER_OUTPUT = 0.5;

@@ -81,16 +81,16 @@ class RobotContainer {
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
 
   //default position
-  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 0_deg};
+  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 20_deg};
   //height for the starting position is 20 in
-  ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 0_deg};
+  ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 20_deg};
 
   //assume the extender is currently latched on, but the robot is on the floor and the rotators are directly up
   frc2::SequentialCommandGroup m_climberRoutine{
     //pull down and move the rotators back
-    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 30_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
     //extend slightly to latch rotators -- FIRST RUNG LATCHED --
     ClimberState(&m_climberSubsystem, 2.5_in, 35_deg),
     //rotate forwards (tilts bot backwards)
@@ -104,9 +104,9 @@ class RobotContainer {
     //rotate backwards
     ClimberState(&m_climberSubsystem, 4.5_in, 30_deg),
     //retract extender
-    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 30_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
     //extend slightly to latch rotators -- SECOND RUNG LATCHED --
     ClimberState(&m_climberSubsystem, 2.5_in, 35_deg),
     //rotate forwards (tilts bot backwards)
@@ -120,9 +120,9 @@ class RobotContainer {
     //rotate backwards
     ClimberState(&m_climberSubsystem, 4.5_in, 30_deg),
     //retract extender
-    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 30_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
     //extend slightly to latch rotators -- THIRD RUNG LATCHED --
     ClimberState(&m_climberSubsystem, 2.5_in, 35_deg)
   };

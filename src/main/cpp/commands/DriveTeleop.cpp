@@ -16,8 +16,11 @@ void DriveTeleop::Initialize(){
 
 void DriveTeleop::Execute(){
     //Up should be +1 and right should be 1
-    double leftStickY = -m_driveJoystick.GetRawAxis(LEFTSTICK_Y) * DRIVETRAIN_SPEED_MULTIPLIER;
+    bool fullSpeed = m_driveJoystick.GetRawButton(1);
+
+    double leftStickY = -m_driveJoystick.GetRawAxis(LEFTSTICK_Y) * (fullSpeed ? 1.0 : DRIVETRAIN_SPEED_MULTIPLIER);
     double rightStickX = -m_driveJoystick.GetRawAxis(RIGHTSTICK_X);
+    
 
     //deadzones
     if(std::abs(leftStickY) <= 0.0001){
