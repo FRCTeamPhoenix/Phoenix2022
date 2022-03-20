@@ -82,7 +82,7 @@ const double ROTATOR_RIGHT_I = 0.0;
 const double ROTATOR_RIGHT_D = 0.0;
 const double ROTATOR_RIGHT_F = 0.0;
 
-const units::radian_t ROTATOR_POSITION_THRESHOLD = 2_deg;
+const units::radian_t ROTATOR_POSITION_THRESHOLD = 2.2_deg;
 const double ROTATOR_VELOCITY_THRESHOLD = 10.0;
 
 // controller

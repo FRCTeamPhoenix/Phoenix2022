@@ -56,7 +56,7 @@ class RobotContainer {
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
   OperatorTeleop m_operatorTeleop{&m_intakeSubsystem};
-  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 8_ft);
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 6_ft);
 
   //forward, backward then shoot
   frc2::SequentialCommandGroup m_oneBallCommand{
