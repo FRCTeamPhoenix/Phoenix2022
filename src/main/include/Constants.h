@@ -68,8 +68,8 @@ const double EXTENDER_I = 0.0;
 const double EXTENDER_D = 0.0;
 const double EXTENDER_F = 0.05;
 
-const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.5_in;
-const double EXTENDER_VELOCITY_THRESHOLD = 10;
+const units::meter_t EXTENDER_POSITION_THRESHOLD = 1.0_in;
+const double EXTENDER_VELOCITY_THRESHOLD = 100;
 
 //Rotator PIDF
 const double ROTATOR_LEFT_P = 3.2;
@@ -82,7 +82,7 @@ const double ROTATOR_RIGHT_I = 0.0;
 const double ROTATOR_RIGHT_D = 0.0;
 const double ROTATOR_RIGHT_F = 0.0;
 
-const units::radian_t ROTATOR_POSITION_THRESHOLD = 2_deg;
+const units::radian_t ROTATOR_POSITION_THRESHOLD = 2.2_deg;
 const double ROTATOR_VELOCITY_THRESHOLD = 10.0;
 
 // controller
@@ -111,7 +111,7 @@ const double ARM_I = 0;
 const double ARM_D = 0;
 const double INTAKE_WRIST_SPEED = 0.4;
 const double INTAKE_SPEED = 0.6;
-const double INTAKE_ARM_SPEED = 0.4;
+const double INTAKE_ARM_SPEED = 1.0;
 
 // climber
 const double MAX_EXTENDER_OUTPUT = 0.5;
@@ -124,7 +124,7 @@ const units::radian_t MIN_ROTATION = 0_deg;
 const units::radian_t MAX_ROTATION = 170_deg;
 const units::meter_t MIN_EXTEND = 0_in;
 const units::meter_t MAX_EXTEND = 15_in;
-const units::meters_per_second_t EXTENDER_VELOCITY = 2_fps;
+const units::meters_per_second_t EXTENDER_VELOCITY = 3_fps;
 const units::meters_per_second_squared_t EXTENDER_ACCELERATION = 4_fps / 1_s;
 const auto ROTATOR_VELOCITY = 90_deg / 1_s;
 const auto ROTATOR_ACCELERATION = 90_deg / 1_s / 1_s;

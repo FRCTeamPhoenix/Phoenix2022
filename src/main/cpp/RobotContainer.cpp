@@ -16,6 +16,12 @@ RobotContainer::RobotContainer() {
   m_driveSubsystem.SetDefaultCommand(std::move(m_driveTeleop));
   m_intakeSubsystem.SetDefaultCommand(std::move(m_operatorTeleop));
 
+  //add chooser options
+  m_autoChooser.SetDefaultOption("Defense Auto", &m_driveDistance);
+  m_autoChooser.AddOption("One Ball Auto", &m_oneBallCommand);
+
+  frc::SmartDashboard::PutData(&m_autoChooser);
+
   // Configure the button bindings
   ConfigureButtonBindings();
 }
@@ -26,10 +32,10 @@ void RobotContainer::ConfigureButtonBindings() {
   m_raiseButton.CancelWhenPressed(&m_defaultClimberState).CancelWhenPressed(&m_climberRoutine).WhenPressed(&m_raiseClimber);
   m_autoButton.CancelWhenPressed(&m_raiseClimber).CancelWhenPressed(&m_defaultClimberState).WhenPressed(&m_climberRoutine);
   m_cancelAutoButton.CancelWhenPressed(&m_raiseClimber).CancelWhenPressed(&m_defaultClimberState).CancelWhenPressed(&m_climberRoutine);
-  m_zeroButton.WhenPressed(&m_zeroClimber);
+  m_zeroButton.WhileHeld(&m_zeroHeld).WhenReleased(&m_zeroReleased);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   //grab the current dashboard values for target height and target angle
-  return &m_driveDistance;
+  return m_autoChooser.GetSelected();
 }

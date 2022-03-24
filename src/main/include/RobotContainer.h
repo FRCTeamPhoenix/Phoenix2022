@@ -8,8 +8,11 @@
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ParallelCommandGroup.h>
+#include <frc2/command/ParallelRaceGroup.h>
+#include <frc2/command/RunCommand.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/button/JoystickButton.h>
+#include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Joystick.h>
 
 #include "subsystems/DriveSubsystem.h"
@@ -53,20 +56,41 @@ class RobotContainer {
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
   OperatorTeleop m_operatorTeleop{&m_intakeSubsystem};
-  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 6_ft);
+
+  //forward, backward then shoot
+  frc2::SequentialCommandGroup m_oneBallCommand{
+    frc2::ParallelRaceGroup{
+      frc2::RunCommand{
+        [this] {m_intakeSubsystem.SetArmSpeed(0.2); m_intakeSubsystem.SetWristSpeed(0.2); },
+        {&m_intakeSubsystem}
+      },
+      frc2::SequentialCommandGroup{
+        DriveDistance(&m_driveSubsystem, 8_ft),
+        DriveDistance(&m_driveSubsystem, -13_ft),
+      }
+    },
+    frc2::RunCommand{
+      [this] {m_intakeSubsystem.SetArmSpeed(0.2); m_intakeSubsystem.SetWristSpeed(0.2);m_intakeSubsystem.SetIntakeSpeed(1.0);},
+      {&m_intakeSubsystem}
+    }
+  };
+
+  frc::SendableChooser<frc2::Command*> m_autoChooser;
+
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
 
   //default position
-  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 0_deg};
+  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 20_deg};
   //height for the starting position is 20 in
-  ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 0_deg};
+  ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 20_deg};
 
   //assume the extender is currently latched on, but the robot is on the floor and the rotators are directly up
   frc2::SequentialCommandGroup m_climberRoutine{
     //pull down and move the rotators back
-    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 30_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
     //extend slightly to latch rotators -- FIRST RUNG LATCHED --
     ClimberState(&m_climberSubsystem, 2.5_in, 35_deg),
     //rotate forwards (tilts bot backwards)
@@ -80,9 +104,9 @@ class RobotContainer {
     //rotate backwards
     ClimberState(&m_climberSubsystem, 4.5_in, 30_deg),
     //retract extender
-    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 30_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
     //extend slightly to latch rotators -- SECOND RUNG LATCHED --
     ClimberState(&m_climberSubsystem, 2.5_in, 35_deg),
     //rotate forwards (tilts bot backwards)
@@ -96,19 +120,21 @@ class RobotContainer {
     //rotate backwards
     ClimberState(&m_climberSubsystem, 4.5_in, 30_deg),
     //retract extender
-    ClimberState(&m_climberSubsystem, 0_in, 30_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 30_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, 0_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
     //extend slightly to latch rotators -- THIRD RUNG LATCHED --
     ClimberState(&m_climberSubsystem, 2.5_in, 35_deg)
   };
 
   //inline commands for some of the buttons
-  frc2::FunctionalCommand m_zeroClimber{
-    [this] {},
-    [this] { m_climberSubsystem.SetExtenderSpeed(-0.2); },
-    [this] (bool interrupted) { m_climberSubsystem.ZeroRotatorEncoders(); m_climberSubsystem.ZeroExtenderEncoders();},
-    [this] {return m_climberSubsystem.GetBottomExtenderLimit();},
+  frc2::InstantCommand m_zeroHeld{
+    [this] { m_climberSubsystem.SetExtenderSpeed(-0.2); m_climberSubsystem.SetRotatorSpeed(-0.1);},
+    {&m_climberSubsystem}
+  };
+
+  frc2::InstantCommand m_zeroReleased{
+    [this] { m_climberSubsystem.ZeroExtenderEncoders(); m_climberSubsystem.ZeroRotatorEncoders(); },
     {&m_climberSubsystem}
   };
 };
