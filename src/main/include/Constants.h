@@ -68,7 +68,7 @@ const double EXTENDER_I = 0.0;
 const double EXTENDER_D = 1.0;
 const double EXTENDER_F = 0.05;
 
-const units::meter_t EXTENDER_POSITION_THRESHOLD = 1.0_in;
+const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.7_in;
 const double EXTENDER_VELOCITY_THRESHOLD = 100;
 
 //Rotator PIDF
@@ -94,7 +94,7 @@ const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
 const int BUMPER_L = 5;
 const int BUMPER_R = 6;
-const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
+const auto TURN_RATE = wpi::numbers::pi * 0.7_rad / 1_s;
 
 //control panel
 const int CONTROL_PANEL_JOYSTICK = 2;
@@ -115,8 +115,8 @@ const double INTAKE_ARM_SPEED = 1.0;
 
 // climber
 const double MAX_EXTENDER_FORWARD_OUTPUT = 1.0;
-const double MAX_EXTENDER_REVERSE_OUTPUT = -0.7;
-const double MAX_ROTATOR_OUTPUT = 0.5;
+const double MAX_EXTENDER_REVERSE_OUTPUT = -1.0;
+const double MAX_ROTATOR_OUTPUT = 1.0;
 const units::meter_t EXTENDER_SPROCKET_DIAMETER = 1.79_in;
 const double TALON_TICKS_PER_ROTATION = 4096.0;
 const double FALCON_TO_EXTENDER_RATIO = 36.0;
