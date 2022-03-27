@@ -70,8 +70,8 @@ void ClimberSubsystem::ConfigureDefault(){
     //nominal = default, peak = maximum
     m_extenderArm.ConfigNominalOutputForward(0.0, 10);
     m_extenderArm.ConfigNominalOutputReverse(0.0, 10);
-    m_extenderArm.ConfigPeakOutputForward(MAX_EXTENDER_OUTPUT, 10);
-    m_extenderArm.ConfigPeakOutputReverse(-MAX_EXTENDER_OUTPUT, 10);
+    m_extenderArm.ConfigPeakOutputForward(MAX_EXTENDER_FORWARD_OUTPUT, 10);
+    m_extenderArm.ConfigPeakOutputReverse(MAX_EXTENDER_REVERSE_OUTPUT, 10);
     m_rightRotator.ConfigNominalOutputForward(0.0, 10);
     m_rightRotator.ConfigNominalOutputReverse(0.0, 10);
     m_rightRotator.ConfigPeakOutputForward(MAX_ROTATOR_OUTPUT, 10);
