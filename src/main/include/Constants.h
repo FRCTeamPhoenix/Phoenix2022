@@ -63,9 +63,9 @@ const double TURN_I = 0.0;
 const double TURN_D = 0.0;
 
 //Extender PIDF
-const double EXTENDER_P = 0.28;
+const double EXTENDER_P = 0.8;
 const double EXTENDER_I = 0.0;
-const double EXTENDER_D = 0.0;
+const double EXTENDER_D = 1.0;
 const double EXTENDER_F = 0.05;
 
 const units::meter_t EXTENDER_POSITION_THRESHOLD = 1.0_in;
@@ -114,7 +114,8 @@ const double INTAKE_SPEED = 0.6;
 const double INTAKE_ARM_SPEED = 1.0;
 
 // climber
-const double MAX_EXTENDER_OUTPUT = 0.5;
+const double MAX_EXTENDER_FORWARD_OUTPUT = 1.0;
+const double MAX_EXTENDER_REVERSE_OUTPUT = -0.7;
 const double MAX_ROTATOR_OUTPUT = 0.5;
 const units::meter_t EXTENDER_SPROCKET_DIAMETER = 1.79_in;
 const double TALON_TICKS_PER_ROTATION = 4096.0;
@@ -124,7 +125,7 @@ const units::radian_t MIN_ROTATION = 0_deg;
 const units::radian_t MAX_ROTATION = 170_deg;
 const units::meter_t MIN_EXTEND = 0_in;
 const units::meter_t MAX_EXTEND = 15_in;
-const units::meters_per_second_t EXTENDER_VELOCITY = 3_fps;
+const units::meters_per_second_t EXTENDER_VELOCITY = 8_fps;
 const units::meters_per_second_squared_t EXTENDER_ACCELERATION = 4_fps / 1_s;
 const auto ROTATOR_VELOCITY = 90_deg / 1_s;
 const auto ROTATOR_ACCELERATION = 90_deg / 1_s / 1_s;

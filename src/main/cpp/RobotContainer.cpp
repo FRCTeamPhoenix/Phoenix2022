@@ -37,5 +37,9 @@ void RobotContainer::ConfigureButtonBindings() {
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   //grab the current dashboard values for target height and target angle
-  return m_autoChooser.GetSelected();
+  units::meter_t targetHeight = units::inch_t(frc::SmartDashboard::GetNumber("Target Height", 0.0));
+  units::radian_t targetAngle = units::degree_t(frc::SmartDashboard::GetNumber("Target Angle", 0.0));
+  m_climberState = ClimberState(&m_climberSubsystem, targetHeight, targetAngle);
+  //return m_autoChooser.GetSelected();
+  return &m_climberState;
 }
