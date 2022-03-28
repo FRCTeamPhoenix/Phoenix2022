@@ -59,23 +59,6 @@ class RobotContainer {
   DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 6_ft);
 
   //forward, backward then shoot
-  frc2::SequentialCommandGroup m_oneBallCommand{
-    frc2::ParallelRaceGroup{
-      frc2::RunCommand{
-        [this] {m_intakeSubsystem.SetArmSpeed(0.2); m_intakeSubsystem.SetWristSpeed(0.2); },
-        {&m_intakeSubsystem}
-      },
-      frc2::SequentialCommandGroup{
-        DriveDistance(&m_driveSubsystem, 8_ft),
-        DriveDistance(&m_driveSubsystem, -13_ft),
-      }
-    },
-    frc2::RunCommand{
-      [this] {m_intakeSubsystem.SetArmSpeed(0.2); m_intakeSubsystem.SetWristSpeed(0.2);m_intakeSubsystem.SetIntakeSpeed(1.0);},
-      {&m_intakeSubsystem}
-    }
-  };
-
   frc::SendableChooser<frc2::Command*> m_autoChooser;
 
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);

@@ -95,9 +95,9 @@ const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
 const int BUMPER_L = 5;
 const int BUMPER_R = 6;
+const int SLIDER_INTAKE = 0;
+const int SWITCH_SHOOTER = 0;
 const auto TURN_RATE = wpi::numbers::pi * 0.7_rad / 1_s;
-const int TRIGGER_L = 7;
-const int TRIGGER_R = 8; // this is a guess, confirm it
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 //control panel
@@ -109,10 +109,16 @@ const int CANCEL_AUTO_BUTTON = 4;
 const int ZERO_CLIMBER_BUTTON = 5;
 
 // intake
-const double TALON_TO_ARM_RATIO = 64.0;
-const double ARM_P = 0.001;
+const double TALON_TO_ARM_RATIO = 1;
+const double TALON_TO_SHOOTER_RATIO = 1;
+const double ARM_P = 0;
 const double ARM_I = 0;
 const double ARM_D = 0;
+const double ARM_F = 0;
+const double SHOOTER_P = 0;
+const double SHOOTER_I = 0;
+const double SHOOTER_D = 0;
+const double SHOOTER_F = 0;
 const double INTAKE_WRIST_SPEED = 0.4;
 const double INTAKE_SPEED = 0.6;
 const double INTAKE_ARM_SPEED = 1.0;

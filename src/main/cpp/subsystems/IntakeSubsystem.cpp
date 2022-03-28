@@ -38,9 +38,9 @@ void IntakeSubsystem::ConfigureDefault(){
     m_intakeIndexer.ConfigPeakOutputReverse(-1.0, 10);
 
     //make bot resist motion
-    m_intake.SetNeutralMode(NeutralMode::Brake);
+    m_intake.SetNeutralMode(NeutralMode::Coast);
     m_intakeArm.SetNeutralMode(NeutralMode::Brake);
-    m_intakeShooter.SetNeutralMode(NeutralMode::Brake);
+    m_intakeShooter.SetNeutralMode(NeutralMode::Coast);
     m_intakeIndexer.SetNeutralMode(NeutralMode::Brake);
 }
 
@@ -60,6 +60,10 @@ void IntakeSubsystem::SetShooterSpeed(double speed){
     m_intakeShooter.Set(ControlMode::PercentOutput, speed);
 }
 
+void IntakeSubsystem::SetShooterVelocity(double rpm){
+    m_intakeShooter.Set(ControlMode::Velocity, rpm);
+}
+
 void IntakeSubsystem::SetIndexerSpeed(double speed){
     m_intakeIndexer.Set(ControlMode::PercentOutput, speed);
 }
@@ -73,17 +77,13 @@ units::radian_t IntakeSubsystem::GetArmAngle(){
 }
 
 units::radian_t IntakeSubsystem::ArmTicksToAngle(double ticks){
-    return 2_rad * M_PI * ticks / TALON_TICKS_PER_ROTATION / TALON_TO_ARM_RATIO;
+    return 360_deg * ticks / TALON_TICKS_PER_ROTATION / TALON_TO_ARM_RATIO;
 }
 
 double IntakeSubsystem::ArmAngleToTicks(units::radian_t angle){
-    return angle / (2_rad * M_PI) * TALON_TICKS_PER_ROTATION * TALON_TO_ARM_RATIO;
+    return angle / (360_deg) * TALON_TICKS_PER_ROTATION * TALON_TO_ARM_RATIO;
 }
 
-units::radian_t IntakeSubsystem::WristTicksToAngle(double ticks){
-    return 2_rad * M_PI * ticks / TALON_TICKS_PER_ROTATION;
-}
-
-double IntakeSubsystem::WristAngleToTicks(units::radian_t angle){
-    return angle / (2_rad * M_PI) * TALON_TICKS_PER_ROTATION;
+double IntakeSubsystem::ShooterRPMToTicks(double rpm){
+    return rpm * TALON_TICKS_PER_ROTATION * TALON_TO_SHOOTER_RATIO / 60000;
 }

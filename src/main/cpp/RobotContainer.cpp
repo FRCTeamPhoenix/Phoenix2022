@@ -18,7 +18,6 @@ RobotContainer::RobotContainer() {
 
   //add chooser options
   m_autoChooser.SetDefaultOption("Defense Auto", &m_driveDistance);
-  m_autoChooser.AddOption("One Ball Auto", &m_oneBallCommand);
 
   frc::SmartDashboard::PutData(&m_autoChooser);
 

@@ -22,19 +22,19 @@ class IntakeSubsystem : public frc2::SubsystemBase {
         
         void SetShooterSpeed(double speed);
 
+        void SetShooterVelocity(double rpm);
+
         void SetIndexerSpeed(double speed);
 
         void ZeroArmEncoders();
 
         units::radian_t GetArmAngle();
 
-        units::radian_t GetIndexerAngle();
     private:
         units::radian_t ArmTicksToAngle(double ticks);
         double ArmAngleToTicks(units::radian_t angle);
-        units::radian_t WristTicksToAngle(double ticks);
-        double WristAngleToTicks(units::radian_t angle);
-
+        double IntakeSubsystem::ShooterRPMToTicks(double rpm);
+        
         WPI_TalonSRX m_intakeArm{TALON_ARM};
         WPI_TalonSRX m_intakeShooter{TALON_SHOOTER};
         WPI_TalonSRX m_intake{TALON_INTAKE};
