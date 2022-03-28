@@ -9,6 +9,7 @@
 #include <units/acceleration.h>
 #include <units/time.h>
 #include <units/angle.h>
+#include <units/current.h>
 #include <wpi/numbers>
 
 /**
@@ -121,6 +122,7 @@ const units::meter_t EXTENDER_SPROCKET_DIAMETER = 1.79_in;
 const double TALON_TICKS_PER_ROTATION = 4096.0;
 const double FALCON_TO_EXTENDER_RATIO = 36.0;
 const double TALON_TO_ROTATOR_RATIO = 44.0 / 15.0;
+const units::ampere_t MAX_CLIMBER_CURRENT = units::ampere_t(60.0);
 const units::radian_t MIN_ROTATION = 0_deg;
 const units::radian_t MAX_ROTATION = 170_deg;
 const units::meter_t MIN_EXTEND = 0_in;

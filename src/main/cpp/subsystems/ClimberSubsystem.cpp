@@ -108,6 +108,9 @@ void ClimberSubsystem::ConfigureDefault(){
     m_leftRotator.ConfigMotionAcceleration(RotatorDegreesToTicks(ROTATOR_ACCELERATION * 1_s * 100_ms), 10);
     m_extenderArm.ConfigMotionCruiseVelocity(ExtenderDistanceToTicks(EXTENDER_VELOCITY * 100_ms), 10);
     m_extenderArm.ConfigMotionAcceleration(ExtenderDistanceToTicks(EXTENDER_ACCELERATION  * 1_s * 100_ms), 10);
+    
+    //cap the extender current draw to 60 amp
+    m_extenderArm.ConfigStatorCurrentLimit(StatorCurrentLimitConfiguration(true, MAX_CLIMBER_CURRENT.to<double>(), 0.0, 0.0), 10);
 }
 
 void ClimberSubsystem::SetExtenderSpeed(double percent){
