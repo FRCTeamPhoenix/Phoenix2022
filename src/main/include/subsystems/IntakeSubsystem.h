@@ -14,31 +14,29 @@ class IntakeSubsystem : public frc2::SubsystemBase {
 
         void ConfigureDefault();
 
-        void SetArmSpeed(double speed);
-        
-        void SetWristSpeed(double speed);
-
         void SetIntakeSpeed(double speed);
 
-        void SetArmAngle(units::radian_t angle);
+        void SetArmSpeed(double speed);
 
-        void SetWristAngle(units::radian_t angle);
+        void SetArmAngle(units::radian_t angle);
+        
+        void SetShooterSpeed(double speed);
+
+        void SetIndexerSpeed(double speed);
 
         void ZeroArmEncoders();
 
-        void ZeroIntakeWrist();
-
         units::radian_t GetArmAngle();
 
-        units::radian_t GetWristAngle();
+        units::radian_t GetIndexerAngle();
     private:
         units::radian_t ArmTicksToAngle(double ticks);
         double ArmAngleToTicks(units::radian_t angle);
         units::radian_t WristTicksToAngle(double ticks);
         double WristAngleToTicks(units::radian_t angle);
 
-        //1 because brushless
-        rev::CANSparkMax m_intakeArm{SPARK_ARM, rev::CANSparkMaxLowLevel::MotorType{1}};
-        WPI_TalonSRX m_intakeWrist{TALON_WRIST};
-        WPI_VictorSPX m_intake{TALON_INTAKE};
+        WPI_TalonSRX m_intakeArm{TALON_ARM};
+        WPI_TalonSRX m_intakeShooter{TALON_SHOOTER};
+        WPI_TalonSRX m_intake{TALON_INTAKE};
+        WPI_TalonSRX m_intakeIndexer{TALON_INDEXER}; // Thomas mentioned this so I'll make the component and we'll see how it get's implemented
 };
