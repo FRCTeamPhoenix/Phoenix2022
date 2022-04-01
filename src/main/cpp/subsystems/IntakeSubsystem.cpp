@@ -8,6 +8,12 @@ IntakeSubsystem::IntakeSubsystem(){
 }
 
 void IntakeSubsystem::ConfigureDefault(){
+    m_intakeArm.SelectProfileSlot(0, 0);
+    m_intakeArm.Config_kP(0, ARM_P);
+    m_intakeArm.Config_kI(0, ARM_I);
+    m_intakeArm.Config_kD(0, ARM_D);
+    m_intakeArm.Config_kF(0, ARM_F);
+
     m_intake.ConfigFactoryDefault();
     m_intakeArm.ConfigFactoryDefault();
     m_intakeShooter.ConfigFactoryDefault();

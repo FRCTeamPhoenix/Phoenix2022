@@ -111,14 +111,12 @@ const int ZERO_CLIMBER_BUTTON = 5;
 // intake
 const double TALON_TO_ARM_RATIO = 1;
 const double TALON_TO_SHOOTER_RATIO = 1;
+const double ARM_VELOCITY_MAX = 1500; // in ticks per hundred milliseconds, default from example
+const double ARM_ACCEL_MAX = 1500;
 const double ARM_P = 0;
 const double ARM_I = 0;
 const double ARM_D = 0;
 const double ARM_F = 0;
-const double SHOOTER_P = 0;
-const double SHOOTER_I = 0;
-const double SHOOTER_D = 0;
-const double SHOOTER_F = 0;
 const double INTAKE_WRIST_SPEED = 0.4;
 const double INTAKE_SPEED = 0.6;
 const double INTAKE_ARM_SPEED = 1.0;
