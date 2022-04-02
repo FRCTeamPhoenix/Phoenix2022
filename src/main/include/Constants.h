@@ -38,10 +38,9 @@ const int TALON_LEFT_ROTATOR = 6;
 const int TALON_RIGHT_ROTATOR = 7;
 
 const int TALON_ARM = 8;
-const int TALON_INTAKE = 9;
-const int TALON_INDEXER = 10;
-const int TALON_SHOOTER = 11;
-
+const int VICTOR_INDEXER = 9;
+const int TALON_SHOOTER = 10;
+const int TALON_INTAKE = 11;
 
 // wheel information
 const units::meter_t WHEEL_DIAMETER = 4_in;
@@ -125,6 +124,7 @@ const double INTAKE_WRIST_SPEED = 0.4;
 const double INTAKE_SPEED = 0.6;
 const double INTAKE_ARM_SPEED = 1.0;
 const double INDEXER_SPEED = 0.6;
+const double SHOOTER_SPEED = 0.6;
 
 // climber
 const double MAX_EXTENDER_FORWARD_OUTPUT = 1.0;

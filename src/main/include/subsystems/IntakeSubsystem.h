@@ -38,5 +38,5 @@ class IntakeSubsystem : public frc2::SubsystemBase {
         WPI_TalonSRX m_intakeArm{TALON_ARM};
         WPI_TalonSRX m_intakeShooter{TALON_SHOOTER};
         WPI_TalonSRX m_intake{TALON_INTAKE};
-        WPI_TalonSRX m_intakeIndexer{TALON_INDEXER}; // Thomas mentioned this so I'll make the component and we'll see how it get's implemented
+        WPI_VictorSPX m_intakeIndexer{VICTOR_INDEXER}; // the big wheel that holds the ball
 };

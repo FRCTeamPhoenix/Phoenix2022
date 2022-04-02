@@ -22,8 +22,8 @@ void IntakeSubsystem::ConfigureDefault(){
     //choose direction (going right way?)
     m_intake.SetInverted(false);
     m_intakeArm.SetInverted(false);
-    m_intakeShooter.SetInverted(false);
-    m_intakeIndexer.SetInverted(false);
+    m_intakeShooter.SetInverted(true);
+    m_intakeIndexer.SetInverted(true);
 
     //output limits
     m_intake.ConfigNominalOutputForward(0.0, 10);

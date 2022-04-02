@@ -112,7 +112,7 @@ class RobotContainer {
 
   //inline commands for some of the buttons
   frc2::InstantCommand m_zeroHeld{
-    [this] { m_climberSubsystem.SetExtenderSpeed(-0.2); m_climberSubsystem.SetRotatorSpeed(-0.1);},
+    [this] { m_climberSubsystem.SetExtenderSpeed(-0.2); m_climberSubsystem.SetRotatorSpeed(-0.2);},
     {&m_climberSubsystem}
   };
 
