@@ -40,12 +40,12 @@ class RobotContainer {
 
  private:
   // The robot's subsystems and commands are defined here...
-  frc::Joystick m_controlPanel{CONTROL_PANEL_JOYSTICK};
-  frc2::JoystickButton m_lowerButton{&m_controlPanel, LOWER_BUTTON};
-  frc2::JoystickButton m_raiseButton{&m_controlPanel, RAISE_BUTTON};
-  frc2::JoystickButton m_autoButton{&m_controlPanel, START_AUTO_BUTTON};
-  frc2::JoystickButton m_cancelAutoButton{&m_controlPanel, CANCEL_AUTO_BUTTON};
-  frc2::JoystickButton m_zeroButton{&m_controlPanel, ZERO_CLIMBER_BUTTON};
+  frc::Joystick m_operatorPanel{OPERATOR_JOYSTICK};
+  frc2::JoystickButton m_lowerButton{&m_operatorPanel, LOWER_BUTTON};
+  frc2::JoystickButton m_raiseButton{&m_operatorPanel, RAISE_BUTTON};
+  frc2::JoystickButton m_autoButton{&m_operatorPanel, START_AUTO_BUTTON};
+  frc2::JoystickButton m_cancelAutoButton{&m_operatorPanel, CANCEL_AUTO_BUTTON};
+  frc2::JoystickButton m_zeroButton{&m_operatorPanel, ZERO_CLIMBER_BUTTON};
 
   void ConfigureButtonBindings();
   //subsystems

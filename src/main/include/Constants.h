@@ -88,25 +88,30 @@ const double ROTATOR_VELOCITY_THRESHOLD = 10.0;
 
 // controller
 const int DRIVE_JOYSTICK = 0;
-const int OPERATOR_JOYSTICK = 1;
 const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
 const int RIGHTSTICK_Y = 5;
 const int BUMPER_L = 5;
 const int BUMPER_R = 6;
-const int SLIDER_INTAKE = 0;
-const int SWITCH_SHOOTER = 0;
 const auto TURN_RATE = wpi::numbers::pi * 0.7_rad / 1_s;
 const auto TURN_RATE = wpi::numbers::pi * 0.5_rad / 1_s;
 
 //control panel
-const int CONTROL_PANEL_JOYSTICK = 2;
-const int LOWER_BUTTON = 1;
-const int RAISE_BUTTON = 2;
-const int START_AUTO_BUTTON = 3;
-const int CANCEL_AUTO_BUTTON = 4;
-const int ZERO_CLIMBER_BUTTON = 5;
+const int OPERATOR_JOYSTICK = 1;
+const int LOWER_BUTTON = 4;
+const int RAISE_BUTTON = 5;
+const int START_AUTO_BUTTON = 1;
+const int CANCEL_AUTO_BUTTON = 3;
+const int ZERO_CLIMBER_BUTTON = 2;
+const int MANUAL_SWITCH = 6;
+const int SHOOTER_SWITCH = 7;
+
+const int INTAKE_SLIDER = 5;
+const int WRIST_SLIDER = 1;
+const int INDEXER_SLIDER = 0;
+const int EXTENDER = 4;
+const int ROTATOR_DIAL = 2;
 
 // intake
 const double TALON_TO_ARM_RATIO = 1;
