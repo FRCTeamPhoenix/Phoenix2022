@@ -33,7 +33,7 @@ class IntakeSubsystem : public frc2::SubsystemBase {
     private:
         units::radian_t ArmTicksToAngle(double ticks);
         double ArmAngleToTicks(units::radian_t angle);
-        double IntakeSubsystem::ShooterRPMToTicks(double rpm);
+        double ShooterRPMToTicks(double rpm);
         
         WPI_TalonSRX m_intakeArm{TALON_ARM};
         WPI_TalonSRX m_intakeShooter{TALON_SHOOTER};

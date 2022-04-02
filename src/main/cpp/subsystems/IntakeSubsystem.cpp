@@ -91,5 +91,5 @@ double IntakeSubsystem::ArmAngleToTicks(units::radian_t angle){
 }
 
 double IntakeSubsystem::ShooterRPMToTicks(double rpm){
-    return rpm * TALON_TICKS_PER_ROTATION * TALON_TO_SHOOTER_RATIO / 60000;
+    return rpm * TALON_TICKS_PER_ROTATION * TALON_TO_SHOOTER_RATIO;
 }
