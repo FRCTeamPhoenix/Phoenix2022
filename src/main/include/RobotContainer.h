@@ -64,7 +64,7 @@ class RobotContainer {
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
 
   //default position
-  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 20_deg};
+  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 20_deg, false, false};
   //height for the starting position is 20 in
   ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 20_deg};
 
