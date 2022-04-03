@@ -2,9 +2,9 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 
-OperatorTeleop::OperatorTeleop(IntakeSubsystem* IntakeSubsystem):
-m_intakeSubsystem(IntakeSubsystem){
-    AddRequirements(IntakeSubsystem);
+OperatorTeleop::OperatorTeleop(IntakeSubsystem* intakeSubsystem):
+m_intakeSubsystem(intakeSubsystem){
+    AddRequirements(intakeSubsystem);
 }
 
 void OperatorTeleop::Initialize(){

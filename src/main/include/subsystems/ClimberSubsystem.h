@@ -15,6 +15,10 @@ class ClimberSubsystem : public frc2::SubsystemBase {
 
         void ConfigureDefault();
     
+        void ConfigureManualPID();
+
+        void ConfigureAutoPID();
+
         void SetExtenderSpeed(double percent);
 
         void SetRotatorSpeed(double percent);
@@ -22,6 +26,10 @@ class ClimberSubsystem : public frc2::SubsystemBase {
         void SetExtenderDistance(units::meter_t distance);
 
         void SetRotatorAngle(units::radian_t angle);
+
+        void SetExtenderDistanceNoMM(units::meter_t distance);
+
+        void SetRotatorAngleNoMM(units::radian_t angle);
 
         void ZeroExtenderEncoders();
 

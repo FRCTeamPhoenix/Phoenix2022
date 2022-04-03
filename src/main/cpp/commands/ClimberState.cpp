@@ -13,6 +13,7 @@ m_ends()
 }
 
 void ClimberState::Initialize(){
+    m_climberSubsystem->ConfigureAutoPID();
     //Do NOT zero motor speed here as that would cause the mechanism to drop
     std::cout << "Setting climber state: " << m_extenderDistance.to<double>() << " m and " << m_rotatorAngle.to<double>() << " rad" << std::endl;
     std::cout << "Extender (ticks): " << m_climberSubsystem->ExtenderDistanceToTicks(m_extenderDistance) << " Rotator (ticks):" << m_climberSubsystem->RotatorDegreesToTicks(m_rotatorAngle) << std::endl;
@@ -44,5 +45,5 @@ bool ClimberState::IsFinished(){
     && std::abs(m_climberSubsystem->GetRightRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>();
     bool extenderPositionStopped = std::abs(m_climberSubsystem->GetExtenderDistance().to<double>() - m_extenderDistance.to<double>()) < EXTENDER_POSITION_THRESHOLD.to<double>();
     return extenderVelocityStopped && extenderPositionStopped 
-    && ((rotatorVelocityStopped && rotatorPositionStopped) || m_disableRotator) && ends;
+    && ((rotatorVelocityStopped && rotatorPositionStopped) || m_disableRotator) && m_ends;
 }

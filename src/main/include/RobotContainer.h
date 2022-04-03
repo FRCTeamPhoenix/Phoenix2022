@@ -22,6 +22,7 @@
 #include "commands/OperatorTeleop.h"
 #include "commands/DriveDistance.h"
 #include "commands/ClimberState.h"
+#include "commands/ClimberManual.h"
 #include <units/length.h>
 
 
@@ -46,6 +47,7 @@ class RobotContainer {
   frc2::JoystickButton m_autoButton{&m_operatorPanel, START_AUTO_BUTTON};
   frc2::JoystickButton m_cancelAutoButton{&m_operatorPanel, CANCEL_AUTO_BUTTON};
   frc2::JoystickButton m_zeroButton{&m_operatorPanel, ZERO_CLIMBER_BUTTON};
+  frc2::JoystickButton m_manualMode{&m_operatorPanel, MANUAL_SWITCH};
 
   void ConfigureButtonBindings();
   //subsystems
@@ -67,6 +69,8 @@ class RobotContainer {
   ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 20_deg, false, false};
   //height for the starting position is 20 in
   ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 20_deg};
+
+  ClimberManual m_climberManual{&m_climberSubsystem};
 
   //assume the extender is currently latched on, but the robot is on the floor and the rotators are directly up
   frc2::SequentialCommandGroup m_climberRoutine{

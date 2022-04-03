@@ -68,8 +68,14 @@ const double EXTENDER_I = 0.0;
 const double EXTENDER_D = 1.0;
 const double EXTENDER_F = 0.05;
 
+const double EXTENDER_MANUAL_P = 0.25;
+const double EXTENDER_MANUAL_I = 0.0;
+const double EXTENDER_MANUAL_D = 1.0;
+const double EXTENDER_MANUAL_F = 0.05;
+
 const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.7_in;
 const double EXTENDER_VELOCITY_THRESHOLD = 100;
+const units::meter_t MAX_EXTENDER_HEIGHT = 25_in;
 
 //Rotator PIDF
 const double ROTATOR_LEFT_P = 3.2;
@@ -83,6 +89,7 @@ const double ROTATOR_RIGHT_D = 0.0;
 const double ROTATOR_RIGHT_F = 0.0;
 
 const units::radian_t ROTATOR_POSITION_THRESHOLD = 2.2_deg;
+const units::radian_t MAX_ROTATOR_ANGLE = 70_deg;
 const double ROTATOR_VELOCITY_THRESHOLD = 10.0;
 
 // controller
@@ -108,7 +115,7 @@ const int SHOOTER_SWITCH = 7;
 const int INTAKE_SLIDER = 5;
 const int WRIST_SLIDER = 1;
 const int INDEXER_SLIDER = 0;
-const int EXTENDER = 4;
+const int EXTENDER_SLIDER = 4;
 const int ROTATOR_DIAL = 2;
 
 // intake
