@@ -15,9 +15,9 @@ void OperatorTeleop::Initialize(){
 }
 
 void OperatorTeleop::Execute(){
-    m_intakeSubsystem->SetArmSpeed(m_operatorJoystick.GetRawAxis(WRIST_SLIDER) * INTAKE_ARM_SPEED);
+    m_intakeSubsystem->SetArmSpeed(m_operatorJoystick.GetRawAxis(WRIST_SLIDER) * INTAKE_WRIST_SPEED);
 
-    frc::SmartDashboard::PutNumber("Arm power", m_operatorJoystick.GetRawAxis(WRIST_SLIDER) * INTAKE_ARM_SPEED);
+    frc::SmartDashboard::PutNumber("Arm power", m_operatorJoystick.GetRawAxis(WRIST_SLIDER) * INTAKE_WRIST_SPEED);
     m_intakeSubsystem->SetIndexerSpeed(m_operatorJoystick.GetRawAxis(INDEXER_SLIDER) * INDEXER_SPEED);
     m_intakeSubsystem->SetIntakeSpeed(m_operatorJoystick.GetRawAxis(INTAKE_SLIDER) * INTAKE_SPEED);
     m_intakeSubsystem->SetShooterSpeed(m_operatorJoystick.GetRawButton(SHOOTER_SWITCH) ? SHOOTER_SPEED : 0.0);

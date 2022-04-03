@@ -40,7 +40,7 @@ const int TALON_RIGHT_ROTATOR = 7;
 const int TALON_ARM = 8;
 const int VICTOR_INDEXER = 9;
 const int TALON_SHOOTER = 10;
-const int TALON_INTAKE = 11;
+const int VICTOR_INTAKE = 11;
 
 // wheel information
 const units::meter_t WHEEL_DIAMETER = 4_in;
@@ -105,17 +105,17 @@ const auto TURN_RATE = wpi::numbers::pi * 0.7_rad / 1_s;
 //control panel
 const int OPERATOR_JOYSTICK = 1;
 const int LOWER_BUTTON = 4;
-const int RAISE_BUTTON = 5;
-const int START_AUTO_BUTTON = 1;
-const int CANCEL_AUTO_BUTTON = 3;
-const int ZERO_CLIMBER_BUTTON = 2;
-const int MANUAL_SWITCH = 6;
-const int SHOOTER_SWITCH = 7;
+const int RAISE_BUTTON = 3;
+const int START_AUTO_BUTTON = 7;
+const int CANCEL_AUTO_BUTTON = 5;
+const int ZERO_CLIMBER_BUTTON = 6;
+const int MANUAL_SWITCH = 2;
+const int SHOOTER_SWITCH = 1;
 
-const int INTAKE_SLIDER = 5;
-const int WRIST_SLIDER = 1;
-const int INDEXER_SLIDER = 0;
-const int EXTENDER_SLIDER = 4;
+const int INTAKE_SLIDER = 0;
+const int WRIST_SLIDER = 5;
+const int INDEXER_SLIDER = 4;
+const int EXTENDER_SLIDER = 1;
 const int ROTATOR_DIAL = 2;
 
 // intake
@@ -127,9 +127,8 @@ const double ARM_P = 0;
 const double ARM_I = 0;
 const double ARM_D = 0;
 const double ARM_F = 0;
-const double INTAKE_WRIST_SPEED = 0.4;
+const double INTAKE_WRIST_SPEED = 1.0;
 const double INTAKE_SPEED = 0.6;
-const double INTAKE_ARM_SPEED = 1.0;
 const double INDEXER_SPEED = 0.6;
 const double SHOOTER_SPEED = 0.6;
 
