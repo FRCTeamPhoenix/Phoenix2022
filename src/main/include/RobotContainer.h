@@ -72,6 +72,16 @@ class RobotContainer {
 
   ClimberManual m_climberManual{&m_climberSubsystem};
 
+  //auto mode
+  frc2::SequentialCommandGroup m_oneBallAuto{
+    DriveDistance(&m_driveSubsystem, -6_ft),
+    DriveDistance(&m_driveSubsystem, 6_ft),
+    frc2::RunCommand(
+      [this]{m_intakeSubsystem.SetShooterSpeed(SHOOTER_SPEED); m_intakeSubsystem.SetIndexerSpeed(INDEXER_SPEED);},
+      {&m_intakeSubsystem}
+    )
+  };
+
   //assume the extender is currently latched on, but the robot is on the floor and the rotators are directly up
   frc2::SequentialCommandGroup m_climberRoutine{
     //pull down and move the rotators back
