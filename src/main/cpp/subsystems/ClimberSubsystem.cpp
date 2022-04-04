@@ -83,6 +83,9 @@ void ClimberSubsystem::ConfigureDefault(){
 
     ConfigureAutoPID();
 
+    //set current limits
+    m_extenderArm.ConfigSupplyCurrentLimit({true, MAX_EXTENDER_CURRENT.to<double>(), 0.0, 0.0});
+
     //set the proper pid slots
     m_rightRotator.SelectProfileSlot(0, 0);
     m_leftRotator.SelectProfileSlot(0, 0);

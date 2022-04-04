@@ -43,6 +43,9 @@ void IntakeSubsystem::ConfigureDefault(){
     m_intakeIndexer.ConfigPeakOutputForward(1.0, 10);
     m_intakeIndexer.ConfigPeakOutputReverse(-1.0, 10);
 
+    //current limit
+    m_intakeArm.ConfigSupplyCurrentLimit({true, MAX_ARM_CURRENT.to<double>(), 0.0, 0.0});
+
     //make bot resist motion
     m_intake.SetNeutralMode(NeutralMode::Coast);
     m_intakeArm.SetNeutralMode(NeutralMode::Brake);

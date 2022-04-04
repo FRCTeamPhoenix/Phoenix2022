@@ -10,6 +10,7 @@
 #include <units/time.h>
 #include <units/angle.h>
 #include <wpi/numbers>
+#include <units/current.h>
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -119,6 +120,7 @@ const int EXTENDER_SLIDER = 1;
 const int ROTATOR_DIAL = 2;
 
 // intake
+const units::ampere_t MAX_ARM_CURRENT = units::ampere_t(20.0);
 const double TALON_TO_ARM_RATIO = 1;
 const double TALON_TO_SHOOTER_RATIO = 1;
 const double ARM_VELOCITY_MAX = 1500; // in ticks per hundred milliseconds, default from example
@@ -133,6 +135,7 @@ const double INDEXER_SPEED = 0.6;
 const double SHOOTER_SPEED = 0.6;
 
 // climber
+const units::ampere_t MAX_EXTENDER_CURRENT = units::ampere_t(60.0);
 const double MAX_EXTENDER_FORWARD_OUTPUT = 1.0;
 const double MAX_EXTENDER_REVERSE_OUTPUT = -1.0;
 const double MAX_ROTATOR_OUTPUT = 1.0;
