@@ -21,6 +21,8 @@ public:
     bool IsFinished() override;
 
 private:
+    bool InThreshold();
+
     ClimberSubsystem* m_climberSubsystem;
     
     units::meter_t m_extenderDistance;

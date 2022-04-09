@@ -75,7 +75,7 @@ const double EXTENDER_MANUAL_D = 1.0;
 const double EXTENDER_MANUAL_F = 0.05;
 
 const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.7_in;
-const double EXTENDER_VELOCITY_THRESHOLD = 100;
+const double EXTENDER_VELOCITY_THRESHOLD = 1500;
 const units::meter_t MAX_EXTENDER_HEIGHT = 25_in;
 
 //Rotator PIDF
@@ -129,10 +129,10 @@ const double ARM_P = 0;
 const double ARM_I = 0;
 const double ARM_D = 0;
 const double ARM_F = 0;
-const double INTAKE_WRIST_SPEED = 1.0;
-const double INTAKE_SPEED = 0.6;
+const double INTAKE_WRIST_SPEED = 0.5;
+const double INTAKE_SPEED = 1.0;
 const double INDEXER_SPEED = 0.6;
-const double SHOOTER_SPEED = 0.6;
+const double SHOOTER_SPEED = 0.5;
 
 // climber
 const units::ampere_t MAX_EXTENDER_CURRENT = units::ampere_t(60.0);

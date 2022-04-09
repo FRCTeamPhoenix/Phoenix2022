@@ -58,7 +58,7 @@ class RobotContainer {
   //commands
   DriveTeleop m_driveTeleop{&m_driveSubsystem};
   OperatorTeleop m_operatorTeleop{&m_intakeSubsystem};
-  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, 6_ft);
+  DriveDistance m_driveDistance = DriveDistance(&m_driveSubsystem, -8_ft);
 
   //forward, backward then shoot
   frc::SendableChooser<frc2::Command*> m_autoChooser;
@@ -66,7 +66,7 @@ class RobotContainer {
   ClimberState m_climberState = ClimberState(&m_climberSubsystem, 0_in, 0_deg);
 
   //default position
-  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_in, 20_deg, false, false};
+  ClimberState m_defaultClimberState{&m_climberSubsystem, 0_m, 20_deg, false, false};
   //height for the starting position is 20 in
   ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 20_deg};
 
@@ -74,8 +74,8 @@ class RobotContainer {
 
   //auto mode
   frc2::SequentialCommandGroup m_oneBallAuto{
-    DriveDistance(&m_driveSubsystem, -6_ft),
-    DriveDistance(&m_driveSubsystem, 6_ft),
+    DriveDistance(&m_driveSubsystem, -8_ft),
+    DriveDistance(&m_driveSubsystem, 8_ft),
     frc2::RunCommand(
       [this]{m_intakeSubsystem.SetShooterSpeed(SHOOTER_SPEED); m_intakeSubsystem.SetIndexerSpeed(INDEXER_SPEED);},
       {&m_intakeSubsystem}
@@ -131,7 +131,10 @@ class RobotContainer {
   };
 
   frc2::InstantCommand m_zeroReleased{
-    [this] { m_climberSubsystem.ZeroExtenderEncoders(); m_climberSubsystem.ZeroRotatorEncoders(); },
+    [this] { m_climberSubsystem.ZeroExtenderEncoders(); 
+    m_climberSubsystem.ZeroRotatorEncoders(); 
+    m_climberSubsystem.SetExtenderSpeed(0.0);
+    m_climberSubsystem.SetRotatorSpeed(0.0); },
     {&m_climberSubsystem}
   };
 };
