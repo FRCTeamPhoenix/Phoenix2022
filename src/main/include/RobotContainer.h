@@ -75,7 +75,13 @@ class RobotContainer {
   //auto mode
   frc2::SequentialCommandGroup m_oneBallAuto{
     DriveDistance(&m_driveSubsystem, -8_ft),
-    DriveDistance(&m_driveSubsystem, 8_ft),
+    frc2::ParallelRaceGroup{
+      frc2::RunCommand(
+        [this]{m_intakeSubsystem.SetShooterSpeed(SHOOTER_SPEED);},
+        {&m_intakeSubsystem}
+      ),
+      DriveDistance(&m_driveSubsystem, 8_ft)
+    },
     frc2::RunCommand(
       [this]{m_intakeSubsystem.SetShooterSpeed(SHOOTER_SPEED); m_intakeSubsystem.SetIndexerSpeed(INDEXER_SPEED);},
       {&m_intakeSubsystem}
