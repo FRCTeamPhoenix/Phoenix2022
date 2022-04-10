@@ -67,13 +67,17 @@ class RobotContainer {
 
   //default position
   ClimberState m_defaultClimberState{&m_climberSubsystem, 0_m, 20_deg, false, false};
-  //height for the starting position is 20 in
-  ClimberState m_raiseClimber{&m_climberSubsystem, 20_in, 20_deg};
+  //height for the starting position is 21 in
+  ClimberState m_raiseClimber{&m_climberSubsystem, 21_in, 20_deg};
 
   ClimberManual m_climberManual{&m_climberSubsystem};
 
   //auto mode
   frc2::SequentialCommandGroup m_oneBallAuto{
+    frc2::InstantCommand(
+      [this]{m_intakeSubsystem.SetShooterSpeed(0.0); m_intakeSubsystem.SetIndexerSpeed(0.0);},
+      {&m_intakeSubsystem}
+    ),
     DriveDistance(&m_driveSubsystem, -8_ft),
     frc2::ParallelRaceGroup{
       frc2::RunCommand(

@@ -133,6 +133,7 @@ const double INTAKE_WRIST_SPEED = 0.5;
 const double INTAKE_SPEED = 1.0;
 const double INDEXER_SPEED = 0.6;
 const double SHOOTER_SPEED = 0.5;
+const double SHOOTER_AUTO_SPEED = 0.4;
 
 // climber
 const units::ampere_t MAX_EXTENDER_CURRENT = units::ampere_t(60.0);
