@@ -78,13 +78,13 @@ class RobotContainer {
       [this]{m_intakeSubsystem.SetShooterSpeed(0.0); m_intakeSubsystem.SetIndexerSpeed(0.0);},
       {&m_intakeSubsystem}
     ),
-    DriveDistance(&m_driveSubsystem, -8_ft),
+    DriveDistance(&m_driveSubsystem, -6_ft),
     frc2::ParallelRaceGroup{
       frc2::RunCommand(
         [this]{m_intakeSubsystem.SetShooterSpeed(SHOOTER_SPEED);},
         {&m_intakeSubsystem}
       ),
-      DriveDistance(&m_driveSubsystem, 8_ft)
+      DriveDistance(&m_driveSubsystem, 6_ft)
     },
     frc2::RunCommand(
       [this]{m_intakeSubsystem.SetShooterSpeed(SHOOTER_SPEED); m_intakeSubsystem.SetIndexerSpeed(INDEXER_SPEED);},
