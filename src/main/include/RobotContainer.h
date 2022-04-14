@@ -97,41 +97,41 @@ class RobotContainer {
     //pull down and move the rotators back
     ClimberState(&m_climberSubsystem, -0.3_in, 25_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35.5_deg),
     //extend slightly to latch rotators -- FIRST RUNG LATCHED --
-    ClimberState(&m_climberSubsystem, 2.5_in, 35_deg),
+    ClimberState(&m_climberSubsystem, 2.5_in, 35.5_deg),
     //rotate forwards (tilts bot backwards)
     ClimberState(&m_climberSubsystem, 2.5_in, 68_deg),
     //extend to first traversal bar
     ClimberState(&m_climberSubsystem, 24.5_in, 68_deg),
     //rotate backwards
-    ClimberState(&m_climberSubsystem, 24.5_in, 54_deg),
+    ClimberState(&m_climberSubsystem, 24.5_in, 52_deg),
     //latch extender
-    ClimberState(&m_climberSubsystem, 4.5_in, 54_deg, true),
+    ClimberState(&m_climberSubsystem, 4.5_in, 52_deg, true),
     //rotate backwards
     ClimberState(&m_climberSubsystem, 4.5_in, 25_deg),
     //retract extender
     ClimberState(&m_climberSubsystem, -0.3_in, 25_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35.5_deg),
     //extend slightly to latch rotators -- SECOND RUNG LATCHED --
-    ClimberState(&m_climberSubsystem, 2.5_in, 35_deg),
+    ClimberState(&m_climberSubsystem, 2.5_in, 35.5_deg),
     //rotate forwards (tilts bot backwards)
     ClimberState(&m_climberSubsystem, 2.5_in, 68_deg),
     //extend to third traversal bar
     ClimberState(&m_climberSubsystem, 24.5_in, 68_deg),
     //rotate backward
-    ClimberState(&m_climberSubsystem, 24.5_in, 54_deg),
+    ClimberState(&m_climberSubsystem, 24.5_in, 52_deg),
     //latch extender
-    ClimberState(&m_climberSubsystem, 4.5_in, 54_deg, true),
+    ClimberState(&m_climberSubsystem, 4.5_in, 52_deg, true),
     //rotate backwards
     ClimberState(&m_climberSubsystem, 4.5_in, 25_deg),
     //retract extender
     ClimberState(&m_climberSubsystem, -0.3_in, 25_deg),
     //move the rotators in place
-    ClimberState(&m_climberSubsystem, -0.3_in, 35_deg),
+    ClimberState(&m_climberSubsystem, -0.3_in, 35.5_deg),
     //extend slightly to latch rotators -- THIRD RUNG LATCHED --
-    ClimberState(&m_climberSubsystem, 2.5_in, 35_deg)
+    ClimberState(&m_climberSubsystem, 2.5_in, 35.5_deg)
   };
 
   //inline commands for some of the buttons

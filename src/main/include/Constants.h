@@ -79,12 +79,12 @@ const double EXTENDER_VELOCITY_THRESHOLD = 1500;
 const units::meter_t MAX_EXTENDER_HEIGHT = 25_in;
 
 //Rotator PIDF
-const double ROTATOR_LEFT_P = 3.2;
+const double ROTATOR_LEFT_P = 3.0;
 const double ROTATOR_LEFT_I = 0.0;
 const double ROTATOR_LEFT_D = 0.0;
 const double ROTATOR_LEFT_F = 0.0;
 
-const double ROTATOR_RIGHT_P = 3.2;
+const double ROTATOR_RIGHT_P = 3.0;
 const double ROTATOR_RIGHT_I = 0.0;
 const double ROTATOR_RIGHT_D = 0.0;
 const double ROTATOR_RIGHT_F = 0.0;
