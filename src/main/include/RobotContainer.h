@@ -68,7 +68,7 @@ class RobotContainer {
   //default position
   ClimberState m_defaultClimberState{&m_climberSubsystem, 0_m, 20_deg, false, false};
   //height for the starting position is 21 in
-  ClimberState m_raiseClimber{&m_climberSubsystem, 21_in, 20_deg};
+  ClimberState m_raiseClimber{&m_climberSubsystem, 20.1_in, 20_deg};
 
   ClimberManual m_climberManual{&m_climberSubsystem};
 
@@ -105,9 +105,9 @@ class RobotContainer {
     //extend to first traversal bar
     ClimberState(&m_climberSubsystem, 24.5_in, 68_deg),
     //rotate backwards
-    ClimberState(&m_climberSubsystem, 24.5_in, 52_deg),
+    ClimberState(&m_climberSubsystem, 24.5_in, 52.5_deg),
     //latch extender
-    ClimberState(&m_climberSubsystem, 4.5_in, 52_deg, true),
+    ClimberState(&m_climberSubsystem, 4.5_in, 52.5_deg, true),
     //rotate backwards
     ClimberState(&m_climberSubsystem, 4.5_in, 25_deg),
     //retract extender
@@ -121,9 +121,9 @@ class RobotContainer {
     //extend to third traversal bar
     ClimberState(&m_climberSubsystem, 24.5_in, 68_deg),
     //rotate backward
-    ClimberState(&m_climberSubsystem, 24.5_in, 52_deg),
+    ClimberState(&m_climberSubsystem, 24.5_in, 52.5_deg),
     //latch extender
-    ClimberState(&m_climberSubsystem, 4.5_in, 52_deg, true),
+    ClimberState(&m_climberSubsystem, 4.5_in, 52.5_deg, true),
     //rotate backwards
     ClimberState(&m_climberSubsystem, 4.5_in, 25_deg),
     //retract extender

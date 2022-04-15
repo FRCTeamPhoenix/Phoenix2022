@@ -1,6 +1,7 @@
 #include "commands/ClimberState.h"
 
 #include <iostream>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 ClimberState::ClimberState(ClimberSubsystem* climberSubsystem, units::meter_t extenderDistance, units::radian_t rotatorAngle, bool disableArms, bool ends):
 m_climberSubsystem(climberSubsystem),
@@ -51,10 +52,16 @@ bool ClimberState::InThreshold(){
     //normally, check if both mechanisms are stopped and within a set target range
     bool rotatorVelocityStopped = m_climberSubsystem->IsRotatorStopped();
     bool extenderVelocityStopped = m_climberSubsystem->IsExtenderStopped();
-    bool rotatorPositionStopped = std::abs(m_climberSubsystem->GetLeftRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>()
-    && std::abs(m_climberSubsystem->GetRightRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>();
+    bool rotatorPositionStopped = std::abs((m_climberSubsystem->GetLeftRotatorAngle().to<double>() + 
+    m_climberSubsystem->GetRightRotatorAngle().to<double>()) / 2.0 
+    - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>();
     bool extenderPositionStopped = std::abs(m_climberSubsystem->GetExtenderDistance().to<double>() - m_extenderDistance.to<double>()) < EXTENDER_POSITION_THRESHOLD.to<double>();
     
+    frc::SmartDashboard::PutBoolean("Rotators Stopped", rotatorVelocityStopped);
+    frc::SmartDashboard::PutBoolean("Rotators Destination", rotatorPositionStopped);
+    frc::SmartDashboard::PutBoolean("Extender Stopped", extenderVelocityStopped);
+    frc::SmartDashboard::PutBoolean("Extender Destination", extenderPositionStopped);
+
     return extenderVelocityStopped && extenderPositionStopped 
     && ((rotatorVelocityStopped && rotatorPositionStopped) || m_disableRotator);
 }

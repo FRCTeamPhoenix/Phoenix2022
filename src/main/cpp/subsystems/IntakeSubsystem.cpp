@@ -1,6 +1,8 @@
 #include "subsystems/IntakeSubsystem.h"
 #include <math.h>
 
+#include <frc/smartdashboard/SmartDashboard.h>
+
 IntakeSubsystem::IntakeSubsystem(){
     // m_encoder = m_intakeArm.GetEncoder();
     // we have to call this every time to use it instead of storing it

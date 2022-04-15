@@ -7,6 +7,11 @@
 
 ClimberSubsystem::ClimberSubsystem(){
     ConfigureDefault();
+
+    frc::SmartDashboard::PutBoolean("Rotators Stopped", false);
+    frc::SmartDashboard::PutBoolean("Rotators Destination", false);
+    frc::SmartDashboard::PutBoolean("Extender Stopped", false);
+    frc::SmartDashboard::PutBoolean("Extender Destination", false);
 }
 
 void ClimberSubsystem::Periodic(){
@@ -29,8 +34,8 @@ void ClimberSubsystem::Periodic(){
 
 void ClimberSubsystem::ConfigureDefault(){
     //put a boolean value on the smartdashboard for zeroing
-    frc::SmartDashboard::PutBoolean("Zero Rotators", false);
-    frc::SmartDashboard::PutBoolean("Zero Extenders", false);
+    //frc::SmartDashboard::PutBoolean("Zero Rotators", false);
+    //frc::SmartDashboard::PutBoolean("Zero Extenders", false);
 
     //reset everything
     m_rightRotator.ConfigFactoryDefault();

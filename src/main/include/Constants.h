@@ -74,7 +74,7 @@ const double EXTENDER_MANUAL_I = 0.0;
 const double EXTENDER_MANUAL_D = 1.0;
 const double EXTENDER_MANUAL_F = 0.05;
 
-const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.7_in;
+const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.9_in;
 const double EXTENDER_VELOCITY_THRESHOLD = 1500;
 const units::meter_t MAX_EXTENDER_HEIGHT = 25_in;
 
@@ -89,7 +89,7 @@ const double ROTATOR_RIGHT_I = 0.0;
 const double ROTATOR_RIGHT_D = 0.0;
 const double ROTATOR_RIGHT_F = 0.0;
 
-const units::radian_t ROTATOR_POSITION_THRESHOLD = 2.2_deg;
+const units::radian_t ROTATOR_POSITION_THRESHOLD = 3.0_deg;
 const units::radian_t MAX_ROTATOR_ANGLE = 70_deg;
 const double ROTATOR_VELOCITY_THRESHOLD = 10.0;
 
