@@ -52,9 +52,8 @@ bool ClimberState::InThreshold(){
     //normally, check if both mechanisms are stopped and within a set target range
     bool rotatorVelocityStopped = m_climberSubsystem->IsRotatorStopped();
     bool extenderVelocityStopped = m_climberSubsystem->IsExtenderStopped();
-    bool rotatorPositionStopped = std::abs((m_climberSubsystem->GetLeftRotatorAngle().to<double>() + 
-    m_climberSubsystem->GetRightRotatorAngle().to<double>()) / 2.0 
-    - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>();
+    bool rotatorPositionStopped = std::abs(m_climberSubsystem->GetLeftRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>()
+    && std::abs(m_climberSubsystem->GetRightRotatorAngle().to<double>() - m_rotatorAngle.to<double>()) < ROTATOR_POSITION_THRESHOLD.to<double>();
     bool extenderPositionStopped = std::abs(m_climberSubsystem->GetExtenderDistance().to<double>() - m_extenderDistance.to<double>()) < EXTENDER_POSITION_THRESHOLD.to<double>();
     
     frc::SmartDashboard::PutBoolean("Rotators Stopped", rotatorVelocityStopped);
