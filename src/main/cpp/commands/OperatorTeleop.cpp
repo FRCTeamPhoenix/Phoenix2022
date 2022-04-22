@@ -19,8 +19,13 @@ void OperatorTeleop::Execute(){
 
     frc::SmartDashboard::PutNumber("Arm power", m_operatorJoystick.GetRawAxis(WRIST_SLIDER) * INTAKE_WRIST_SPEED);
 
-    double wristSlider = m_operatorJoystick.GetRawAxis(WRIST_SLIDER);
-    wristSlider = wristSlider > 0.3 ? wristSlider : 0.0;
+    /*double wristSlider = m_operatorJoystick.GetRawAxis(WRIST_SLIDER);
+    wristSlider = wristSlider > 0.3 ? wristSlider : 0.0;*/
+    double wristSlider = 0.0;
+    if(m_driverJoystick.GetRawButton(BUMPER_L))
+        wristSlider = -1.0;
+    else if(m_driverJoystick.GetRawButton(BUMPER_R))
+        wristSlider = 1.0;
     m_intakeSubsystem->SetArmSpeed(wristSlider * INTAKE_WRIST_SPEED);
 
     m_intakeSubsystem->SetIndexerSpeed(m_operatorJoystick.GetRawAxis(INDEXER_SLIDER) * INDEXER_SPEED);

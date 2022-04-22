@@ -23,6 +23,7 @@ public:
 
 private:
     IntakeSubsystem* m_intakeSubsystem;
+    frc::Joystick m_driverJoystick{DRIVE_JOYSTICK};
     frc::Joystick m_operatorJoystick{OPERATOR_JOYSTICK};
     units::radian_t m_armAngle;
 };
