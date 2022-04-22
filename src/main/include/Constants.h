@@ -10,6 +10,7 @@
 #include <units/time.h>
 #include <units/angle.h>
 #include <wpi/numbers>
+#include <units/current.h>
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -37,10 +38,10 @@ const int FALCON_EXTENDING_ARM = 5;
 const int TALON_LEFT_ROTATOR = 6;
 const int TALON_RIGHT_ROTATOR = 7;
 
-const int SPARK_ARM = 8;
-const int TALON_INTAKE = 9;
-const int TALON_WRIST = 10;
-
+const int TALON_ARM = 8;
+const int VICTOR_INDEXER = 9;
+const int TALON_SHOOTER = 10;
+const int VICTOR_INTAKE = 11;
 
 // wheel information
 const units::meter_t WHEEL_DIAMETER = 4_in;
@@ -68,26 +69,32 @@ const double EXTENDER_I = 0.0;
 const double EXTENDER_D = 1.0;
 const double EXTENDER_F = 0.05;
 
-const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.7_in;
-const double EXTENDER_VELOCITY_THRESHOLD = 100;
+const double EXTENDER_MANUAL_P = 0.25;
+const double EXTENDER_MANUAL_I = 0.0;
+const double EXTENDER_MANUAL_D = 1.0;
+const double EXTENDER_MANUAL_F = 0.05;
+
+const units::meter_t EXTENDER_POSITION_THRESHOLD = 0.9_in;
+const double EXTENDER_VELOCITY_THRESHOLD = 1500;
+const units::meter_t MAX_EXTENDER_HEIGHT = 25_in;
 
 //Rotator PIDF
-const double ROTATOR_LEFT_P = 3.2;
+const double ROTATOR_LEFT_P = 3.0;
 const double ROTATOR_LEFT_I = 0.0;
 const double ROTATOR_LEFT_D = 0.0;
 const double ROTATOR_LEFT_F = 0.0;
 
-const double ROTATOR_RIGHT_P = 3.2;
+const double ROTATOR_RIGHT_P = 3.0;
 const double ROTATOR_RIGHT_I = 0.0;
 const double ROTATOR_RIGHT_D = 0.0;
 const double ROTATOR_RIGHT_F = 0.0;
 
-const units::radian_t ROTATOR_POSITION_THRESHOLD = 2.2_deg;
+const units::radian_t ROTATOR_POSITION_THRESHOLD = 3.0_deg;
+const units::radian_t MAX_ROTATOR_ANGLE = 70_deg;
 const double ROTATOR_VELOCITY_THRESHOLD = 10.0;
 
 // controller
 const int DRIVE_JOYSTICK = 0;
-const int OPERATOR_JOYSTICK = 1;
 const int LEFTSTICK_X = 0;
 const int LEFTSTICK_Y = 1;
 const int RIGHTSTICK_X = 4;
@@ -97,23 +104,39 @@ const int BUMPER_R = 6;
 const auto TURN_RATE = wpi::numbers::pi * 0.7_rad / 1_s;
 
 //control panel
-const int CONTROL_PANEL_JOYSTICK = 2;
-const int LOWER_BUTTON = 1;
-const int RAISE_BUTTON = 2;
-const int START_AUTO_BUTTON = 3;
-const int CANCEL_AUTO_BUTTON = 4;
-const int ZERO_CLIMBER_BUTTON = 5;
+const int OPERATOR_JOYSTICK = 1;
+const int LOWER_BUTTON = 4;
+const int RAISE_BUTTON = 3;
+const int START_AUTO_BUTTON = 7;
+const int CANCEL_AUTO_BUTTON = 5;
+const int ZERO_CLIMBER_BUTTON = 6;
+const int MANUAL_SWITCH = 2;
+const int SHOOTER_SWITCH = 1;
+
+const int INTAKE_SLIDER = 0;
+const int WRIST_SLIDER = 5;
+const int INDEXER_SLIDER = 4;
+const int EXTENDER_SLIDER = 1;
+const int ROTATOR_DIAL = 2;
 
 // intake
-const double TALON_TO_ARM_RATIO = 64.0;
-const double ARM_P = 0.001;
+const units::ampere_t MAX_ARM_CURRENT = units::ampere_t(20.0);
+const double TALON_TO_ARM_RATIO = 1;
+const double TALON_TO_SHOOTER_RATIO = 1;
+const double ARM_VELOCITY_MAX = 1500; // in ticks per hundred milliseconds, default from example
+const double ARM_ACCEL_MAX = 1500;
+const double ARM_P = 0;
 const double ARM_I = 0;
 const double ARM_D = 0;
-const double INTAKE_WRIST_SPEED = 0.4;
-const double INTAKE_SPEED = 0.6;
-const double INTAKE_ARM_SPEED = 1.0;
+const double ARM_F = 0;
+const double INTAKE_WRIST_SPEED = 0.5;
+const double INTAKE_SPEED = 1.0;
+const double INDEXER_SPEED = 0.6;
+const double SHOOTER_SPEED = 0.5;
+const double SHOOTER_AUTO_SPEED = 0.4;
 
 // climber
+const units::ampere_t MAX_EXTENDER_CURRENT = units::ampere_t(60.0);
 const double MAX_EXTENDER_FORWARD_OUTPUT = 1.0;
 const double MAX_EXTENDER_REVERSE_OUTPUT = -1.0;
 const double MAX_ROTATOR_OUTPUT = 1.0;

@@ -7,6 +7,11 @@
 
 ClimberSubsystem::ClimberSubsystem(){
     ConfigureDefault();
+
+    frc::SmartDashboard::PutBoolean("Rotators Stopped", false);
+    frc::SmartDashboard::PutBoolean("Rotators Destination", false);
+    frc::SmartDashboard::PutBoolean("Extender Stopped", false);
+    frc::SmartDashboard::PutBoolean("Extender Destination", false);
 }
 
 void ClimberSubsystem::Periodic(){
@@ -29,8 +34,8 @@ void ClimberSubsystem::Periodic(){
 
 void ClimberSubsystem::ConfigureDefault(){
     //put a boolean value on the smartdashboard for zeroing
-    frc::SmartDashboard::PutBoolean("Zero Rotators", false);
-    frc::SmartDashboard::PutBoolean("Zero Extenders", false);
+    //frc::SmartDashboard::PutBoolean("Zero Rotators", false);
+    //frc::SmartDashboard::PutBoolean("Zero Extenders", false);
 
     //reset everything
     m_rightRotator.ConfigFactoryDefault();
@@ -81,6 +86,43 @@ void ClimberSubsystem::ConfigureDefault(){
     m_leftRotator.ConfigPeakOutputForward(MAX_ROTATOR_OUTPUT, 10);
     m_leftRotator.ConfigPeakOutputReverse(-MAX_ROTATOR_OUTPUT, 10);
 
+    ConfigureAutoPID();
+
+    //set current limits
+    m_extenderArm.ConfigSupplyCurrentLimit({true, MAX_EXTENDER_CURRENT.to<double>(), 0.0, 0.0});
+
+    //set the proper pid slots
+    m_rightRotator.SelectProfileSlot(0, 0);
+    m_leftRotator.SelectProfileSlot(0, 0);
+
+    //set motion magic cruise velocity and acceleration
+    m_rightRotator.ConfigMotionCruiseVelocity(RotatorDegreesToTicks(ROTATOR_VELOCITY * 100_ms), 10);
+    m_rightRotator.ConfigMotionAcceleration(RotatorDegreesToTicks(ROTATOR_ACCELERATION * 1_s * 100_ms), 10);
+    m_leftRotator.ConfigMotionCruiseVelocity(RotatorDegreesToTicks(ROTATOR_VELOCITY * 100_ms), 10);
+    m_leftRotator.ConfigMotionAcceleration(RotatorDegreesToTicks(ROTATOR_ACCELERATION * 1_s * 100_ms), 10);
+    m_extenderArm.ConfigMotionCruiseVelocity(ExtenderDistanceToTicks(EXTENDER_VELOCITY * 100_ms), 10);
+    m_extenderArm.ConfigMotionAcceleration(ExtenderDistanceToTicks(EXTENDER_ACCELERATION  * 1_s * 100_ms), 10);
+}
+
+void ClimberSubsystem::ConfigureManualPID(){
+    //configure PID values
+    m_extenderArm.Config_kP(0, EXTENDER_MANUAL_P);
+    m_extenderArm.Config_kI(0, EXTENDER_MANUAL_I);
+    m_extenderArm.Config_kD(0, EXTENDER_MANUAL_D);
+    m_extenderArm.Config_kF(0, EXTENDER_MANUAL_F);
+
+    m_rightRotator.Config_kP(0, ROTATOR_RIGHT_P);
+    m_rightRotator.Config_kI(0, ROTATOR_RIGHT_I);
+    m_rightRotator.Config_kD(0, ROTATOR_RIGHT_D);
+    m_rightRotator.Config_kF(0, ROTATOR_RIGHT_F);
+
+    m_leftRotator.Config_kP(0, ROTATOR_LEFT_P);
+    m_leftRotator.Config_kI(0, ROTATOR_LEFT_I);
+    m_leftRotator.Config_kD(0, ROTATOR_LEFT_D);
+    m_leftRotator.Config_kF(0, ROTATOR_LEFT_F);
+}
+
+void ClimberSubsystem::ConfigureAutoPID(){
     //configure PID values
     m_extenderArm.Config_kP(0, EXTENDER_P);
     m_extenderArm.Config_kI(0, EXTENDER_I);
@@ -96,18 +138,6 @@ void ClimberSubsystem::ConfigureDefault(){
     m_leftRotator.Config_kI(0, ROTATOR_LEFT_I);
     m_leftRotator.Config_kD(0, ROTATOR_LEFT_D);
     m_leftRotator.Config_kF(0, ROTATOR_LEFT_F);
-
-    //set the proper pid slots
-    m_rightRotator.SelectProfileSlot(0, 0);
-    m_leftRotator.SelectProfileSlot(0, 0);
-
-    //set motion magic cruise velocity and acceleration
-    m_rightRotator.ConfigMotionCruiseVelocity(RotatorDegreesToTicks(ROTATOR_VELOCITY * 100_ms), 10);
-    m_rightRotator.ConfigMotionAcceleration(RotatorDegreesToTicks(ROTATOR_ACCELERATION * 1_s * 100_ms), 10);
-    m_leftRotator.ConfigMotionCruiseVelocity(RotatorDegreesToTicks(ROTATOR_VELOCITY * 100_ms), 10);
-    m_leftRotator.ConfigMotionAcceleration(RotatorDegreesToTicks(ROTATOR_ACCELERATION * 1_s * 100_ms), 10);
-    m_extenderArm.ConfigMotionCruiseVelocity(ExtenderDistanceToTicks(EXTENDER_VELOCITY * 100_ms), 10);
-    m_extenderArm.ConfigMotionAcceleration(ExtenderDistanceToTicks(EXTENDER_ACCELERATION  * 1_s * 100_ms), 10);
 }
 
 void ClimberSubsystem::SetExtenderSpeed(double percent){
@@ -129,6 +159,15 @@ void ClimberSubsystem::SetRotatorAngle(units::radian_t angle){
     m_leftRotator.Set(ControlMode::MotionMagic, RotatorDegreesToTicks(angle));
 }
 
+void ClimberSubsystem::SetExtenderDistanceNoMM(units::meter_t distance){
+    m_extenderArm.Set(ControlMode::Position, ExtenderDistanceToTicks(distance));
+}
+
+void ClimberSubsystem::SetRotatorAngleNoMM(units::radian_t angle){
+    //go to the target angle
+    m_rightRotator.Set(ControlMode::Position, RotatorDegreesToTicks(angle));
+    m_leftRotator.Set(ControlMode::Position, RotatorDegreesToTicks(angle));
+}
 
 void ClimberSubsystem::ZeroExtenderEncoders(){
     std::cout << "Zeroed the extender encoders" << std::endl;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Constants.h"
-#include "subsystems/IntakeSubsystem.h"
+#include "subsystems/ClimberSubsystem.h"
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/CommandBase.h>
@@ -9,9 +9,9 @@
 #include <frc/Timer.h>
 #include <frc/Joystick.h>
 
-class OperatorTeleop : public frc2::CommandHelper<frc2::CommandBase, OperatorTeleop>{
+class ClimberManual : public frc2::CommandHelper<frc2::CommandBase, ClimberManual>{
 public:
-    OperatorTeleop(IntakeSubsystem* intakeSubsystem);
+    ClimberManual(ClimberSubsystem* climberSubsystem);
 
     void Initialize() override;
 
@@ -22,8 +22,6 @@ public:
     bool IsFinished() override;
 
 private:
-    IntakeSubsystem* m_intakeSubsystem;
-    frc::Joystick m_driverJoystick{DRIVE_JOYSTICK};
+    ClimberSubsystem* m_climberSubsystem;
     frc::Joystick m_operatorJoystick{OPERATOR_JOYSTICK};
-    units::radian_t m_armAngle;
 };
